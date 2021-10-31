@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_result"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ResultActivity">
+
+    <!--타이틀-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:layout_marginBottom="10dp"
+        android:background="#6CBA4F"
+        android:gravity="center"
+        android:text="산책로 추천 결과"
+        android:textColor="#ffffff"
+        android:textSize="28sp" />
+
+    <!--전체 레이아웃-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!--추천 멘트 부분-->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:orientation="horizontal"
+            android:weightSum="6">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:src="@drawable/ic_temp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:background="#bbdfae"
+                android:padding="10dp"
+                android:textAlignment="center"
+                android:text="자연을 좋아하시는 UserName님, \n호수 산책은 어떠세요?"
+                android:gravity="center_horizontal" />
+
+
+        </LinearLayout>
+
+        <!--티맵 뷰-->
+        <LinearLayout
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="357dp"
+            android:orientation="vertical"
+            android:layout_margin="20dp"
+            tools:context=".MapsActivity" />
+
+        <!--하단 부분-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="4">
+            <!--루트 정보 요약-->
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="20dp"
+                android:layout_weight="3"
+                android:padding="20dp"
+                android:background="#bbdfae"
+                android:text="ㅇㅇ산, ㅁㅁ호수를 \n경유하는 산책 코스입니다.\n 예상 시간: 30분" />
+            <!--버튼 2개-->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="20dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:weightSum="5">
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_marginTop="20dp"
+                    android:layout_weight="2"
+                    android:text="다시" />
+
+                <Button
+                    android:id="@+id/save_walk_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_weight="2"
+                    android:text="OK"
+                    android:onClick="saveWalkClicked"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>

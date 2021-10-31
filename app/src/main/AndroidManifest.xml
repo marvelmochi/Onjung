@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.cookandroid.onjung">
+    <!-- 티맵 관련 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Test1">
+        <activity android:name=".PreferenceTestResultActivity"></activity>
+        <activity android:name=".PreferenceTestActivity" />
+        <activity android:name=".LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".EditUserInfoActivity" />
+        <activity android:name=".SignUpActivity" />
+        <activity android:name=".FriendActivity" />
+        <activity android:name=".SaveWalkActivity" />
+        <activity android:name=".DiaryReadActivity" />
+        <activity android:name=".DiaryCreateActivity" />
+        <activity android:name=".DiaryActivity" />
+        <activity android:name=".QuestionActivity" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCbOzdWHsTMANB9NO_qpz3DMYJPnS2BA-I" />
+
+        <activity android:name=".ResultActivity" />
+        <activity android:name=".SelectActivity" />
+        <activity android:name=".MainActivity" />
+    </application>
+
+</manifest>

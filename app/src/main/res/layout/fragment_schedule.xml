@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragmentSchedule"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <!--타이틀-->
+    <TextView
+        android:id="@+id/calendarTitle"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:background="#6CBA4F"
+        android:gravity="center"
+        android:text="산책 캘린더"
+        android:textColor="#ffffff"
+        android:textSize="28sp" />
+
+    <!--캘린더 뷰-->
+    <CalendarView
+        android:id="@+id/calendarView"
+        android:layout_width="match_parent"
+        android:layout_height="310dp" />
+
+    <!--산책 일정 타이틀-->
+    <TextView
+        android:id="@+id/scheduleTitle"
+        android:layout_width="match_parent"
+        android:layout_height="43dp"
+        android:background="#BB6CBA4F"
+        android:gravity="center"
+        android:text="산책 일정"
+        android:textColor="#ffffff"
+        android:textSize="24sp" />
+
+    <!--산책 리스트(스크롤뷰)-->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="192dp"
+        android:background="@drawable/border_line">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:padding="5dp">
+
+            <TextView
+                android:id="@+id/schedule_1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="2dp"
+                android:background="@drawable/border_line"
+                android:padding="10dp"
+                android:text="여의도한강공원 30분 산책"
+                android:textSize="20sp"
+
+                />
+
+            <TextView
+                android:id="@+id/schedule_2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="2dp"
+                android:background="@drawable/border_line"
+                android:padding="10dp"
+                android:text="유미랑 강아지 산책"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/schedule_3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="2dp"
+                android:background="@drawable/border_line"
+                android:padding="10dp"
+                android:text="일산호수공원 산책"
+                android:textSize="20sp" />
+
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!--다이어리로 전환되는 버튼-->
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="20dp"
+        android:padding="10dp"
+        android:text="다이어리 작성"
+        android:textSize="26dp"
+        android:onClick="diaryCreateClicked"/>
+
+
+</LinearLayout>
