@@ -1,8 +1,8 @@
 package com.cookandroid.onjung;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class SatisfactionScoreActivity extends AppCompatActivity {
 

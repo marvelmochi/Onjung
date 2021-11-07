@@ -43,44 +43,40 @@
         android:background="@drawable/border_line">
 
         <LinearLayout
+            android:id="@+id/scheduleView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="center"
             android:orientation="vertical"
             android:padding="5dp">
 
-            <TextView
-                android:id="@+id/schedule_1"
+            <!--<TextView
+                android:id="@+id/schedule1"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="2dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
                 android:background="@drawable/border_line"
                 android:padding="10dp"
                 android:text="여의도한강공원 30분 산책"
-                android:textSize="20sp"
-
-                />
-
+                android:textSize="20sp" />
             <TextView
-                android:id="@+id/schedule_2"
+                android:id="@+id/schedule2"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="2dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
                 android:background="@drawable/border_line"
                 android:padding="10dp"
                 android:text="유미랑 강아지 산책"
                 android:textSize="20sp" />
-
             <TextView
-                android:id="@+id/schedule_3"
+                android:id="@+id/schedule3"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="2dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
                 android:background="@drawable/border_line"
                 android:padding="10dp"
                 android:text="일산호수공원 산책"
-                android:textSize="20sp" />
-
+                android:textSize="20sp" /> -->
 
         </LinearLayout>
     </ScrollView>
@@ -92,10 +88,16 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="20dp"
+        android:onClick="diaryCreateClicked"
         android:padding="10dp"
         android:text="다이어리 작성"
-        android:textSize="26dp"
-        android:onClick="diaryCreateClicked"/>
+        android:textSize="26dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="addScheduleClicked"
+        android:text="일정 추가" />
 
 
 </LinearLayout>

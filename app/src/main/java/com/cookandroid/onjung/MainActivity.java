@@ -4,11 +4,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -27,6 +30,11 @@ public class MainActivity extends AppCompatActivity {
     // 뒤로가기 두 번 눌러 종료
     private long backKeyPressedTime = 0;
     private Toast toast;
+
+
+    // 산책일정 추가 (동적뷰)
+    LinearLayout scheduleView; // 동적 뷰(일정) 추가할 부모 레이아웃
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
         quitDialog.setContentView(R.layout.dialog_quit);
         */
 
+
     }
 
     // 조건에 맞는 산책로 추천 클릭
@@ -80,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // 취향을 분석한 산책로 추천 클릭
-    public void tastebtnClicked(View view) {
+    public void preferencebtnClicked(View view) {
         Intent intent = new Intent(this, PreferenceTestResultActivity.class);
         startActivity(intent);
     }
@@ -163,6 +172,28 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         */
+
+    }
+
+
+    public void satisfactionClicked(View view) {
+        Intent intent = new Intent(this, SatisfactionScoreActivity.class);
+        startActivity(intent);
+    }
+
+    public void addScheduleClicked(View view) {
+        scheduleView = findViewById(R.id.scheduleView);
+        TextView schedule = new TextView(getApplicationContext());
+        schedule.setText("산책 일정 제목");
+        schedule.setTextSize(20);
+        LinearLayout.LayoutParams param = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        param.setMargins(10, 10, 10, 10);
+        schedule.setPadding(20, 30, 20, 30);
+
+
+        schedule.setBackground(ContextCompat.getDrawable(this, R.drawable.border_line));
+        schedule.setLayoutParams(param);
+        scheduleView.addView(schedule);
     }
 }
 

@@ -9,8 +9,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.cookandroid.onjung.R;
-
 public class ScheduleFragment extends Fragment {
     ViewGroup viewGroup;
 
@@ -19,6 +17,8 @@ public class ScheduleFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         viewGroup = (ViewGroup) inflater.inflate(R.layout.fragment_schedule, container, false);
         return viewGroup;
+
+
     }
 }
 

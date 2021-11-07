@@ -289,7 +289,7 @@
             android:layout_gravity="center"
             android:layout_margin="20dp"
             android:layout_weight="1"
-            android:onClick="tastebtnClicked"
+            android:onClick="preferencebtnClicked"
             android:text="취향을 분석한\n 산책로 추천" />
 
     </LinearLayout>
