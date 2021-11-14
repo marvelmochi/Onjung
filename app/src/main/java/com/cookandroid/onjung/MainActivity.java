@@ -17,7 +17,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
-    // 지영 브랜치 테스트
     // 하단 내비게이션 바 선언
     BottomNavigationView bottomNavigationView;
     ScheduleFragment fragment1;

@@ -1,14 +1,12 @@
 package com.cookandroid.onjung;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-@RequiresApi(api = Build.VERSION_CODES.N)
+//@RequiresApi(api = Build.VERSION_CODES.N)
 public class DiaryActivity extends AppCompatActivity {
 
     @Override
