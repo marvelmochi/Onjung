@@ -30,10 +30,12 @@ public class MainActivity extends AppCompatActivity {
     private long backKeyPressedTime = 0;
     private Toast toast;
 
-
     // 산책일정 추가 (동적뷰)
     LinearLayout scheduleView; // 동적 뷰(일정) 추가할 부모 레이아웃
 
+    // 저장된 유저 정보 가져오기
+    //private SharedPreferences preferences;
+    //TextView UserId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,12 +73,13 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-        //
-        /* 앱 종료 다이얼로그 실패..
-        quitDialog = new Dialog(MainActivity.this);
-        quitDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        quitDialog.setContentView(R.layout.dialog_quit);
-        */
+        /*
+        preferences = getSharedPreferences("UserInfo", MODE_MULTI_PROCESS);
+        TextView UserId = (TextView) findViewById(R.id.UserId);
+        String id = preferences.getString("id", "");
+        UserId.setText(id);
+
+         */
 
 
     }
@@ -118,20 +121,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // [메뉴] - 회원정보 수정 클릭
-    public void editInfoClicked(View view){
+    public void editInfoClicked(View view) {
         Intent intent = new Intent(this, EditUserInfoActivity.class);
         startActivity(intent);
     }
 
     // [메뉴] - 로그아웃 클릭
 
-    public void logoutClicked(View view){
+    public void logoutClicked(View view) {
+
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
+
     // 홈에서 뒤로가기 막기
     @Override
-    public void onBackPressed(){
+    public void onBackPressed() {
         if (System.currentTimeMillis() > backKeyPressedTime + 2000) {
             backKeyPressedTime = System.currentTimeMillis();
             toast = Toast.makeText(this, "\'뒤로\' 버튼을 한번 더 누르시면 종료됩니다.", Toast.LENGTH_SHORT);

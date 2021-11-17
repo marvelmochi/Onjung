@@ -63,10 +63,12 @@
                 android:textSize="26sp" />
 
             <EditText
+                android:id="@+id/id"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginRight="10dp"
-                android:layout_weight="6" />
+                android:layout_weight="6"
+                android:maxLength="10"/>
 
         </LinearLayout>
 
@@ -88,10 +90,13 @@
                 android:textSize="26sp" />
 
             <EditText
+                android:id="@+id/password"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginRight="10dp"
-                android:layout_weight="6" />
+                android:layout_weight="6"
+                android:inputType="textPassword"
+                android:maxLength="20"/>
 
         </LinearLayout>
 
