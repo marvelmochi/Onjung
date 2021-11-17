@@ -194,18 +194,21 @@
                 android:weightSum="3">
 
                 <CheckBox
+                    android:id="@+id/mountain"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="산" />
 
                 <CheckBox
+                    android:id="@+id/park"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="공원" />
 
                 <CheckBox
+                    android:id="@+id/lake"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -221,18 +224,21 @@
                 android:weightSum="3">
 
                 <CheckBox
+                    android:id="@+id/forest"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="숲" />
 
                 <CheckBox
+                    android:id="@+id/bridge"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="한강대교" />
 
                 <CheckBox
+                    android:id="@+id/river"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -280,18 +286,21 @@
                 android:weightSum="3">
 
                 <CheckBox
+                    android:id="@+id/heritage"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="문화재" />
 
                 <CheckBox
+                    android:id="@+id/hanok"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="한옥마을" />
 
                 <CheckBox
+                    android:id="@+id/mural"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -307,18 +316,21 @@
                 android:weightSum="3">
 
                 <CheckBox
+                    android:id="@+id/market"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="시장" />
 
                 <CheckBox
+                    android:id="@+id/castle"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="성곽" />
 
                 <CheckBox
+                    android:id="@+id/stonewall"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"

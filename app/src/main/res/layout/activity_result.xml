@@ -31,7 +31,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
             android:orientation="horizontal"
-            android:weightSum="6">
+            android:weightSum="6"
+            android:layout_gravity="center">
 
             <ImageView
                 android:layout_width="0dp"
@@ -47,7 +48,8 @@
                 android:background="#bbdfae"
                 android:padding="10dp"
                 android:textAlignment="center"
-                android:text="자연을 좋아하시는 UserName님, \n호수 산책은 어떠세요?"
+                android:textSize="20sp"
+                android:text="산책로 추천 결과 보기"
                 android:gravity="center_horizontal" />
 
 
@@ -71,13 +73,14 @@
             android:weightSum="4">
             <!--루트 정보 요약-->
             <TextView
+                android:id="@+id/courseInfo"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_margin="20dp"
                 android:layout_weight="3"
                 android:padding="20dp"
                 android:background="#bbdfae"
-                android:text="ㅇㅇ산, ㅁㅁ호수를 \n경유하는 산책 코스입니다.\n 예상 시간: 30분" />
+                 />
             <!--버튼 2개-->
             <LinearLayout
                 android:layout_width="0dp"
