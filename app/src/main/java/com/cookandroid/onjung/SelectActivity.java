@@ -138,6 +138,8 @@ public class SelectActivity extends AppCompatActivity
                 //System.out.println("로그: 산책지 " + spot.get(i));}
             }
         }
+
+
         // 한글 -> type명으로
         //System.out.println("로그: 체크된 선택지: ");
         for (int i = 0; i < spot.size(); i++) {
@@ -160,6 +162,9 @@ public class SelectActivity extends AppCompatActivity
         HttpConnectorSelect selectThread = new HttpConnectorSelect();
         selectThread.start();
 
+
+
+
         // 인텐트 전달
         /*
         Intent intentResult = new Intent(SelectActivity.this, ResultActivity.class);
@@ -170,8 +175,8 @@ public class SelectActivity extends AppCompatActivity
         intentResult.putExtra("spotLon", spotLon);
         startActivity(intentResult);
 
-         */
 
+         */
 
     }
 

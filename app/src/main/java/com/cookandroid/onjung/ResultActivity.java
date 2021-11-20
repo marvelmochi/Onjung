@@ -1,6 +1,9 @@
 package com.cookandroid.onjung;
 
 import android.Manifest;
+import android.app.Dialog;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.Location;
 import android.os.Build;
@@ -18,6 +21,8 @@ import com.skt.Tmap.TMapPolyLine;
 import com.skt.Tmap.TMapView;
 
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class ResultActivity extends AppCompatActivity
         implements TMapGpsManager.onLocationChangedCallback {
@@ -42,6 +47,30 @@ public class ResultActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
 
+
+        // 로딩중 표시할 프로그레스 다이얼로그
+        showDialog(1); // 대화상자 호출
+
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                // 3초가 지나면 다이얼로그 닫기
+                TimerTask task = new TimerTask(){
+                    @Override
+                    public void run() {
+                        removeDialog(1);
+
+                    }
+                };
+
+                Timer timer = new Timer();
+                timer.schedule(task, 20000);
+            }
+        });
+        thread.start();
+
+
+        // 이전 액티비티에서 데이터 받아오기
         Intent intent = getIntent();
         String myData = intent.getStringExtra("mydata");
         //System.out.println("로그: mydata: "+myData);
@@ -51,16 +80,20 @@ public class ResultActivity extends AppCompatActivity
         spotLat = intent.getStringArrayListExtra("spotLat");
         spotLon = intent.getStringArrayListExtra("spotLon");
 
-        /*
-        String spotname;
+
+
+
+        // 코스 정보를 텍스트뷰에 표시하기
+
         for(int i=0; i<spotName.size();i++){
-            spotname
-        }*/
+            System.out.println("로그: spotName: " + spotName.getClass().getName());
+        }
 
-        courseInfo = (TextView)findViewById(R.id.courseInfo);
-        courseInfo.setText("");
+        //courseInfo = (TextView)findViewById(R.id.courseInfo);
+        //courseInfo.setText("이름: "+ sb.toString());
 
-        //
+
+        // 티맵 관련
         tMapView = new TMapView(this); // 티맵 뷰 생성
         tMapView.setSKTMapApiKey(API_Key); // 앱 키 등록
 
@@ -94,6 +127,8 @@ public class ResultActivity extends AppCompatActivity
 
         tMapGPS.OpenGps();
 
+
+
     }
 
     @Override
@@ -106,7 +141,7 @@ public class ResultActivity extends AppCompatActivity
 
         TMapPoint home = new TMapPoint(Double.parseDouble(recentPosition.get(0)),Double.parseDouble(recentPosition.get(1)));
 
-
+        
 
         ArrayList<TMapPoint> spots = new ArrayList<>();
         TMapData tmapdata = new TMapData();
@@ -134,6 +169,22 @@ public class ResultActivity extends AppCompatActivity
         //startActivity(intent);
     }
 
+    // 로딩중 표시할 프로그레스 다이얼로그
+    @Override
+    protected Dialog onCreateDialog(int id) {
+        ProgressDialog dialog = new ProgressDialog(this); // 사용자에게 보여줄 대화상자
+        dialog.setTitle("산책 코스를 불러오는 중...");
+        dialog.setMessage("잠시만 기다려주세요...");
+        dialog.setButton(ProgressDialog.BUTTON_NEGATIVE, "취소",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
 
+                    }
+                }
+        );
+
+        return dialog;
+    }
 }
 
