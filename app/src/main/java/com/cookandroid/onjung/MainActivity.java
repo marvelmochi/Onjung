@@ -92,7 +92,8 @@ public class MainActivity extends AppCompatActivity {
 
     // 취향을 분석한 산책로 추천 클릭
     public void preferencebtnClicked(View view) {
-        Intent intent = new Intent(this, PreferenceTestResultActivity.class);
+        //Intent intent = new Intent(this, PreferenceTestResultActivity.class);
+        Intent intent = new Intent(this, PreferenceTestActivity.class);
         startActivity(intent);
     }
 

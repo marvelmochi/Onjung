@@ -46,31 +46,31 @@
                     android:layout_width="120dp"
                     android:layout_height="match_parent"
                     android:layout_margin="5dp"
-                    android:src="@drawable/ic_launcher_background" />
+                    android:src="@drawable/select_mountain" />
                 <!--강-->
                 <ImageView
                     android:layout_width="120dp"
                     android:layout_height="match_parent"
                     android:layout_margin="5dp"
-                    android:src="@drawable/ic_launcher_background" />
+                    android:src="@drawable/select_river" />
                 <!--공원-->
                 <ImageView
                     android:layout_width="120dp"
                     android:layout_height="match_parent"
                     android:layout_margin="5dp"
-                    android:src="@drawable/ic_launcher_background" />
+                    android:src="@drawable/select_forest" />
                 <!--호수-->
                 <ImageView
                     android:layout_width="120dp"
                     android:layout_height="match_parent"
                     android:layout_margin="5dp"
-                    android:src="@drawable/ic_launcher_background" />
+                    android:src="@drawable/select_lake" />
                 <!--호수-->
                 <ImageView
                     android:layout_width="120dp"
                     android:layout_height="match_parent"
                     android:layout_margin="5dp"
-                    android:src="@drawable/ic_launcher_background" />
+                    android:src="@drawable/select_park" />
 
             </LinearLayout>
         </HorizontalScrollView>
@@ -108,13 +108,13 @@
                         android:layout_width="150dp"
                         android:layout_height="150dp"
                         android:layout_margin="10dp"
-                        android:src="@drawable/ic_launcher_background" />
+                        android:src="@drawable/select_crowded" />
 
                     <ImageView
                         android:layout_width="150dp"
                         android:layout_height="150dp"
                         android:layout_margin="10dp"
-                        android:src="@drawable/ic_launcher_background" />
+                        android:src="@drawable/select_show" />
                 </LinearLayout>
 
                 <!--둘째 줄-->
@@ -127,13 +127,13 @@
                         android:layout_width="150dp"
                         android:layout_height="150dp"
                         android:layout_margin="10dp"
-                        android:src="@drawable/ic_launcher_background" />
+                        android:src="@drawable/select_scenery" />
 
                     <ImageView
                         android:layout_width="150dp"
                         android:layout_height="150dp"
                         android:layout_margin="10dp"
-                        android:src="@drawable/ic_launcher_background" />
+                        android:src="@drawable/select_pet" />
                 </LinearLayout>
 
                 <!--셋째 줄-->
@@ -146,13 +146,13 @@
                         android:layout_width="150dp"
                         android:layout_height="150dp"
                         android:layout_margin="10dp"
-                        android:src="@drawable/ic_launcher_background" />
+                        android:src="@drawable/select_exercise" />
 
                     <ImageView
                         android:layout_width="150dp"
                         android:layout_height="150dp"
                         android:layout_margin="10dp"
-                        android:src="@drawable/ic_launcher_background" />
+                        android:src="@drawable/select_quiet" />
                 </LinearLayout>
 
                 <!--넷째 줄-->
@@ -165,13 +165,13 @@
                         android:layout_width="150dp"
                         android:layout_height="150dp"
                         android:layout_margin="10dp"
-                        android:src="@drawable/ic_launcher_background" />
+                        android:src="@drawable/select_walk" />
 
                     <ImageView
                         android:layout_width="150dp"
                         android:layout_height="150dp"
                         android:layout_margin="10dp"
-                        android:src="@drawable/ic_launcher_background" />
+                        android:src="@drawable/select_statue" />
                 </LinearLayout>
 
             </LinearLayout>
