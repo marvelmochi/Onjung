@@ -20,7 +20,11 @@
         <activity android:name=".PreferenceTestResultActivity" />
         <activity android:name=".PreferenceTestActivity" />
         <activity android:name=".LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".EditUserInfoActivity" />
         <activity android:name=".SignUpActivity" />
@@ -35,11 +39,7 @@
         <activity android:name=".ResultActivity" />
         <activity android:name=".SelectActivity" />
         <activity android:name=".MainActivity" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 
