@@ -3,11 +3,28 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/drawable-v24/drawable_view.xml" value="0.26979166666666665" />
+        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/drawable-v24/drawable_view_focused.xml" value="0.26979166666666665" />
+        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/drawable-v24/select_view.xml" value="0.26979166666666665" />
+        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/drawable/border_line.xml" value="0.26979166666666665" />
+        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/drawable/check_crowded.xml" value="0.26979166666666665" />
+        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/drawable/check_exercise.xml" value="0.26979166666666665" />
+        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/drawable/check_forest.xml" value="0.14583333333333334" />
+        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/drawable/check_lake.xml" value="0.14583333333333334" />
+        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/drawable/check_park.xml" value="0.14583333333333334" />
+        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/drawable/check_pet.xml" value="0.26979166666666665" />
+        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/drawable/check_quiet.xml" value="0.26979166666666665" />
+        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/drawable/check_river.xml" value="0.14583333333333334" />
+        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/drawable/check_scenery.xml" value="0.26979166666666665" />
+        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/drawable/check_show.xml" value="0.26979166666666665" />
+        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/drawable/check_statue.xml" value="0.26979166666666665" />
+        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/drawable/check_walk.xml" value="0.26979166666666665" />
         <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/layout/activity_login.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/layout/activity_preference_test.xml" value="0.14736842105263157" />
+        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/layout/activity_preference_test.xml" value="0.3487394957983193" />
         <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/layout/activity_preference_test_result.xml" value="0.12916666666666668" />
         <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/layout/activity_question.xml" value="0.12916666666666668" />
+        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/layout/activity_select.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/layout/activity_sign_up.xml" value="0.12916666666666668" />
         <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/layout/fragment_home.xml" value="0.1" />
         <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/layout/fragment_menu.xml" value="0.12916666666666668" />

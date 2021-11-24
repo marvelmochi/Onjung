@@ -42,35 +42,46 @@
                 android:layout_margin="5dp"
                 android:orientation="horizontal">
                 <!--산-->
-                <ImageView
+                <CheckBox
+                    android:id="@+id/mountain"
                     android:layout_width="120dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="120dp"
                     android:layout_margin="5dp"
-                    android:src="@drawable/select_mountain" />
+                    android:button="@android:color/transparent"
+                    android:background="@drawable/check_mountain"
+                    />
                 <!--강-->
-                <ImageView
+                <CheckBox
+                    android:id="@+id/river"
                     android:layout_width="120dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="120dp"
                     android:layout_margin="5dp"
-                    android:src="@drawable/select_river" />
+                    android:button="@android:color/transparent"
+                    android:background="@drawable/check_river" />
                 <!--공원-->
-                <ImageView
+                <CheckBox
+                    android:id="@+id/park"
                     android:layout_width="120dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="120dp"
                     android:layout_margin="5dp"
-                    android:src="@drawable/select_forest" />
+                    android:button="@android:color/transparent"
+                    android:background="@drawable/check_park" />
                 <!--호수-->
-                <ImageView
+                <CheckBox
+                    android:id="@+id/lake"
                     android:layout_width="120dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="120dp"
                     android:layout_margin="5dp"
-                    android:src="@drawable/select_lake" />
-                <!--호수-->
-                <ImageView
+                    android:button="@android:color/transparent"
+                    android:background="@drawable/check_lake" />
+                <!--숲-->
+                <CheckBox
+                    android:id="@+id/forest"
                     android:layout_width="120dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="120dp"
                     android:layout_margin="5dp"
-                    android:src="@drawable/select_park" />
+                    android:button="@android:color/transparent"
+                    android:background="@drawable/check_forest" />
 
             </LinearLayout>
         </HorizontalScrollView>
@@ -104,17 +115,21 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center">
 
-                    <ImageView
+                    <CheckBox
+                        android:id="@+id/crowded"
                         android:layout_width="150dp"
                         android:layout_height="150dp"
                         android:layout_margin="10dp"
-                        android:src="@drawable/select_crowded" />
+                        android:button="@android:color/transparent"
+                        android:background="@drawable/check_crowded" />
 
-                    <ImageView
+                    <CheckBox
+                        android:id="@+id/show"
                         android:layout_width="150dp"
                         android:layout_height="150dp"
                         android:layout_margin="10dp"
-                        android:src="@drawable/select_show" />
+                        android:button="@android:color/transparent"
+                        android:background="@drawable/check_show" />
                 </LinearLayout>
 
                 <!--둘째 줄-->
@@ -123,17 +138,21 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center">
 
-                    <ImageView
+                    <CheckBox
+                        android:id="@+id/scenery"
                         android:layout_width="150dp"
                         android:layout_height="150dp"
                         android:layout_margin="10dp"
-                        android:src="@drawable/select_scenery" />
+                        android:button="@android:color/transparent"
+                        android:background="@drawable/check_scenery" />
 
-                    <ImageView
+                    <CheckBox
+                        android:id="@+id/pet"
                         android:layout_width="150dp"
                         android:layout_height="150dp"
                         android:layout_margin="10dp"
-                        android:src="@drawable/select_pet" />
+                        android:button="@android:color/transparent"
+                        android:background="@drawable/check_pet" />
                 </LinearLayout>
 
                 <!--셋째 줄-->
@@ -142,17 +161,21 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center">
 
-                    <ImageView
+                    <CheckBox
+                        android:id="@+id/exercise"
                         android:layout_width="150dp"
                         android:layout_height="150dp"
                         android:layout_margin="10dp"
-                        android:src="@drawable/select_exercise" />
+                        android:button="@android:color/transparent"
+                        android:background="@drawable/check_exercise" />
 
-                    <ImageView
+                    <CheckBox
+                        android:id="@+id/quiet"
                         android:layout_width="150dp"
                         android:layout_height="150dp"
                         android:layout_margin="10dp"
-                        android:src="@drawable/select_quiet" />
+                        android:button="@android:color/transparent"
+                        android:background="@drawable/check_quiet" />
                 </LinearLayout>
 
                 <!--넷째 줄-->
@@ -161,17 +184,21 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center">
 
-                    <ImageView
+                    <CheckBox
+                        android:id="@+id/walk"
                         android:layout_width="150dp"
                         android:layout_height="150dp"
                         android:layout_margin="10dp"
-                        android:src="@drawable/select_walk" />
+                        android:button="@android:color/transparent"
+                        android:background="@drawable/check_walk" />
 
-                    <ImageView
+                    <CheckBox
+                        android:id="@+id/statue"
                         android:layout_width="150dp"
                         android:layout_height="150dp"
                         android:layout_margin="10dp"
-                        android:src="@drawable/select_statue" />
+                        android:button="@android:color/transparent"
+                        android:background="@drawable/check_statue" />
                 </LinearLayout>
 
             </LinearLayout>
