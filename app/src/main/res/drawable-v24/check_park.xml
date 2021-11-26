@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Unchecked -->
+    <item android:state_checked="false">
+        <layer-list>
+            <item>
+                <shape>
+                    <solid android:color="#00000000" />
+                    <stroke android:color="#000000" android:width="10dp" />
+                </shape>
+            </item>
+            <item android:drawable="@drawable/select_park" android:width="150dp" android:height="150dp" />
+        </layer-list>
+    </item>
+    <!-- Checked -->
+    <item android:state_checked="true">
+        <layer-list>
+            <!-- 배경 -->
+            <item>
+                <shape>
+                    <solid android:color="#00000000" />
+                </shape>
+            </item>
+            <!-- 이미지 영역 -->
+            <item android:drawable="@drawable/select_park_check" android:width="150dp" android:height="150dp" />
+        </layer-list>
+    </item>
+</selector>

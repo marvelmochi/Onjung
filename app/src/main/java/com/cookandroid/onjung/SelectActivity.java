@@ -190,7 +190,7 @@ public class SelectActivity extends AppCompatActivity
                 try {
                     String type;
                     type = spot.get(z);
-                    URL url = new URL("http://3.18.232.232:8080/spot?latitude=" + lat
+                    URL url = new URL("http://smwu.onjung.tk/spot?latitude=" + lat
                             + "&longitude=" + lon + "&type=" + type);
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                     conn.setRequestMethod("GET");
@@ -209,8 +209,8 @@ public class SelectActivity extends AppCompatActivity
 
 
             Intent intentResult = new Intent(SelectActivity.this, ResultActivity.class);
+            intentResult.putExtra("mydata", data);
             intentResult.putExtra("recentPosition", recentPosition);
-
             intentResult.putExtra("spotName", spotName);
             intentResult.putExtra("spotLat", spotLat);
             intentResult.putExtra("spotLon", spotLon);

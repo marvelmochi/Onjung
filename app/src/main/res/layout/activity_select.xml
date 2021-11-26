@@ -11,7 +11,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="54dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="10dp"
         android:background="#6CBA4F"
         android:gravity="center"
         android:text="조건에 맞는 산책로 추천"
@@ -31,7 +31,7 @@
             android:orientation="vertical"
             android:padding="10dp">
 
-            <!--질문1-->
+            <!--경유 시간-->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -53,13 +53,13 @@
 
             </LinearLayout>
 
-            <!--선택지1-->
+            <!--체크박스-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:orientation="horizontal"
-                android:weightSum="4">
+                android:weightSum="5">
 
                 <CheckBox
                     android:layout_width="0dp"
@@ -84,9 +84,15 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="60분" />
+
+                <CheckBox
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="무관" />
             </LinearLayout>
 
-            <!--질문2-->
+            <!--편의 사항-->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -108,7 +114,7 @@
 
             </LinearLayout>
 
-            <!--선택지2-->
+            <!--체크박스-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -163,7 +169,7 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <!--질문3-->
+            <!--기본 산책지-->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -185,7 +191,7 @@
 
             </LinearLayout>
 
-            <!--선택지3-->
+            <!--체크박스-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -255,7 +261,7 @@
 
 
             </LinearLayout>
-            <!--질문4-->
+            <!--특별 산책지-->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -277,7 +283,7 @@
 
             </LinearLayout>
 
-            <!--선택지4-->
+            <!--체크박스-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -335,9 +341,36 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="돌담길" />
+            </LinearLayout>
 
+            <!--반경 선택-->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginRight="10dp"
+                    android:src="@drawable/ic_temp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:text="반경 몇 km 이내의 산책지를 보여드릴까요?"
+                    android:textSize="16sp" />
 
             </LinearLayout>
+            <SeekBar
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginVertical="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="10"
+                android:progress="1"/>
 
 
         </LinearLayout>

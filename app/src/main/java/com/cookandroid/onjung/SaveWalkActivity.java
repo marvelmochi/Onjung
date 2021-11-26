@@ -12,18 +12,37 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.skt.Tmap.TMapGpsManager;
 import com.skt.Tmap.TMapView;
 
+import java.util.ArrayList;
+
 public class SaveWalkActivity extends AppCompatActivity
         implements TMapGpsManager.onLocationChangedCallback {
 
+    String myData;
     // T Map 뷰
     TMapView tMapView = null;
     // T Map GPS
     TMapGpsManager tMapGPS = null;
 
+    // 전역변수 선언
+    ArrayList<String> recentPosition;
+    ArrayList<String> spotName;
+    ArrayList<String> spotLat;
+    ArrayList<String> spotLon;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_save_walk);
+
+        // 이전 액티비티에서 데이터 받아오기
+        Intent intent = getIntent();
+        myData = intent.getStringExtra("mydata");
+        System.out.println("로그: mydata: "+myData);
+        recentPosition = intent.getStringArrayListExtra("recentPosition");
+        System.out.println("로그: 현위치: " + recentPosition.get(0) + ", " + recentPosition.get(1));
+        spotName = intent.getStringArrayListExtra("spotName");
+        spotLat = intent.getStringArrayListExtra("spotLat");
+        spotLon = intent.getStringArrayListExtra("spotLon");
 
         // 티맵
         tMapView = new TMapView(this);

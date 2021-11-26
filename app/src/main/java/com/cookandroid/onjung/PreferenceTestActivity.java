@@ -1,10 +1,15 @@
 package com.cookandroid.onjung;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
+import android.widget.Toolbar;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class PreferenceTestActivity extends AppCompatActivity {
@@ -31,5 +36,17 @@ public class PreferenceTestActivity extends AppCompatActivity {
         statue = (CheckBox) findViewById(R.id.statue);
         exercise = (CheckBox) findViewById(R.id.exercise);
         walk = (CheckBox) findViewById(R.id.walk);
+
+        // 뒤로가기 버튼
+    }
+
+    public void preferenceResultbtnClicked(View view) {
+        Intent intent = new Intent(this, PreferenceTestResultActivity.class);
+        startActivity(intent);
+    }
+
+    public void HomebtnClicked(View view) {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 }

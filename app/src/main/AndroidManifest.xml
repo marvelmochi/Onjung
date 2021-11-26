@@ -38,9 +38,7 @@
 
         <activity android:name=".ResultActivity" />
         <activity android:name=".SelectActivity" />
-        <activity android:name=".MainActivity" >
-
-        </activity>
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>

@@ -189,8 +189,8 @@ public class MainActivity extends AppCompatActivity {
     public void addScheduleClicked(View view) {
         scheduleView = findViewById(R.id.scheduleView);
         TextView schedule = new TextView(getApplicationContext());
-        schedule.setText("산책 일정 제목");
-        schedule.setTextSize(20);
+        schedule.setText("뽀삐와 산책");
+        schedule.setTextSize(22);
         LinearLayout.LayoutParams param = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         param.setMargins(10, 10, 10, 10);
         schedule.setPadding(20, 30, 20, 30);
