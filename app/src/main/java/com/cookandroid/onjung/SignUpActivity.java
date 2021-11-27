@@ -84,7 +84,7 @@ public class SignUpActivity extends AppCompatActivity {
                 data.put("id", id.getText().toString());
                 data.put("pw", pw.getText().toString());
                 System.out.println("로그: data: " + data);
-                url = new URL("http://3.18.232.232:8080/member");
+                url = new URL("http://smwu.onjung.tk/member");
                 conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestMethod("POST");
                 conn.setRequestProperty("Content-Type", "application/json");
@@ -128,7 +128,7 @@ public class SignUpActivity extends AppCompatActivity {
         public HttpConnectorIdCheck(){
             try {
                 idCheck = id.getText().toString();
-                url = new URL("http://3.18.232.232:8080/member/check?id="+idCheck);
+                url = new URL("http://smwu.onjung.tk/member/check?id="+idCheck);
                 conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestMethod("GET");
                 //System.out.println("로그: 입력된 아이디 값: "+ idCheck);

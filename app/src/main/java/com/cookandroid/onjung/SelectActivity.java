@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.os.Message;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.SeekBar;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -57,11 +59,17 @@ public class SelectActivity extends AppCompatActivity
     ArrayList<String> spotLat = new ArrayList<>();  // 경유지 위도 ArrayList
     ArrayList<String> spotLon = new ArrayList<>(); // 경유지 경도 ArrayList
 
+    // 반경을 입력 받을 시크바
+    SeekBar seekBar;
+    TextView seekText;
+    //원하는 반경 값
+    String radius;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select);
+
 
         // 체크박스 접근
         mountain = (CheckBox) findViewById(R.id.mountain);
@@ -110,6 +118,26 @@ public class SelectActivity extends AppCompatActivity
 
         tMapGPS.OpenGps();
 
+        // 시크바 접근 및 이벤트 등록
+        seekBar = (SeekBar)findViewById(R.id.radiusSeekbar);
+        seekText = (TextView)findViewById(R.id.seekbarText);
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                seekText.setText(String.format("%dkm", seekBar.getProgress()));
+                radius = Integer.toString(seekBar.getProgress());
+            }
+        });
 
     }
 
@@ -166,7 +194,7 @@ public class SelectActivity extends AppCompatActivity
 
 
         // 인텐트 전달
-        /*
+
         Intent intentResult = new Intent(SelectActivity.this, ResultActivity.class);
         intentResult.putExtra("recentPosition", recentPosition);
 
@@ -176,7 +204,6 @@ public class SelectActivity extends AppCompatActivity
         startActivity(intentResult);
 
 
-         */
 
     }
 
@@ -190,7 +217,7 @@ public class SelectActivity extends AppCompatActivity
                 try {
                     String type;
                     type = spot.get(z);
-                    URL url = new URL("http://3.18.232.232:8080/spot?latitude=" + lat
+                    URL url = new URL("http://smwu.onjung.tk/spot/"+radius+"?latitude=" + lat
                             + "&longitude=" + lon + "&type=" + type);
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                     conn.setRequestMethod("GET");
@@ -209,8 +236,8 @@ public class SelectActivity extends AppCompatActivity
 
 
             Intent intentResult = new Intent(SelectActivity.this, ResultActivity.class);
+            intentResult.putExtra("mydata", data);
             intentResult.putExtra("recentPosition", recentPosition);
-
             intentResult.putExtra("spotName", spotName);
             intentResult.putExtra("spotLat", spotLat);
             intentResult.putExtra("spotLon", spotLon);

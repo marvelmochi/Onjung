@@ -82,7 +82,7 @@
     </ScrollView>
 
     <!--다이어리로 전환되는 버튼-->
-    <Button
+    <!--<Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -92,12 +92,15 @@
         android:padding="10dp"
         android:text="다이어리 작성"
         android:textSize="26dp" />
-
+-->
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="addScheduleClicked"
-        android:text="일정 추가" />
+        android:text=" "
+        android:layout_gravity="right"
+        android:background="#00ff0000"
+        />
 
 
 </LinearLayout>

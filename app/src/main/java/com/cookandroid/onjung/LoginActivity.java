@@ -44,7 +44,7 @@ public class LoginActivity extends AppCompatActivity {
     int birth_s;
 
 
-    // 로그인 성공 후 회원 정보를 저장하기 위한
+    // 로그인 성공 후 회원 정보를 저장하기 위한 프리퍼런스
     private SharedPreferences preferences;
 
     // Intent
@@ -93,7 +93,7 @@ public class LoginActivity extends AppCompatActivity {
                 data.put("id", id.getText().toString());
                 data.put("pw", pw.getText().toString());
                 System.out.println("로그: data: " + data);
-                url = new URL("http://3.18.232.232:8080/member/login");
+                url = new URL("http://smwu.onjung.tk/member/login");
                 conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestMethod("POST");
                 conn.setRequestProperty("Content-Type", "application/json");

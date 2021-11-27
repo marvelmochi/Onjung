@@ -9,6 +9,8 @@ import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -27,6 +29,8 @@ import java.util.TimerTask;
 public class ResultActivity extends AppCompatActivity
         implements TMapGpsManager.onLocationChangedCallback {
 
+    // 인텐트로 액티비티 간 데이터 전달
+    String myData;
     // T Map 앱 키 등록
     String API_Key = "l7xxa57022c9d2f9453db8f198c5ca511fdb";
     TMapView tMapView = null;
@@ -41,12 +45,32 @@ public class ResultActivity extends AppCompatActivity
 
     // 코스 정보를 보여줄 텍스트뷰
     TextView courseInfo;
+    // 경유지 이름을 저장할 문자열
+    String spotnameString ="";
+    // 산책코스 거리를 저장할 문자열
+    double distance;
+    String courseDistance = Double.toString(distance);
+    // 거리 km로 변환시킬 것!!
+
+
+    // 산책 일정 저장 다이얼로그
+    Dialog saveDialog;
+
+    // 회원 정보 불러오기 위한 SharedPreferences
+    //SharedPreferences preference = getPreferences(Context.MODE_PRIVATE);
+    //String userId;
+    //String idFromPrefer = preference.getString("id", "none");
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
-
+        //System.out.println("로그: 받아온 아이디 userId: " + userId);
+        //System.out.println("로그: 받아온 아이디: idFrom" + idFromPrefer);
+        saveDialog = new Dialog(ResultActivity.this);
+        saveDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        saveDialog.setContentView(R.layout.dialog_save_walk);
 
         // 로딩중 표시할 프로그레스 다이얼로그
         showDialog(1); // 대화상자 호출
@@ -72,8 +96,8 @@ public class ResultActivity extends AppCompatActivity
 
         // 이전 액티비티에서 데이터 받아오기
         Intent intent = getIntent();
-        String myData = intent.getStringExtra("mydata");
-        //System.out.println("로그: mydata: "+myData);
+        myData = intent.getStringExtra("mydata");
+        System.out.println("로그: mydata: "+myData);
         recentPosition = intent.getStringArrayListExtra("recentPosition");
         System.out.println("로그: 현위치: " + recentPosition.get(0) + ", " + recentPosition.get(1));
         spotName = intent.getStringArrayListExtra("spotName");
@@ -82,15 +106,21 @@ public class ResultActivity extends AppCompatActivity
 
 
 
-
-        // 코스 정보를 텍스트뷰에 표시하기
+        // 텍스트뷰에 코스 정보 표시하기
 
         for(int i=0; i<spotName.size();i++){
+            if (i==spotName.size()-1){
+                spotnameString += spotName.get(i) + "을(를) 경유하는 산책 코스입니다. \n";
+
+                break;
+            }
             System.out.println("로그: spotName: " + spotName.getClass().getName());
+            spotnameString += spotName.get(i) + ", " ;
         }
 
-        //courseInfo = (TextView)findViewById(R.id.courseInfo);
-        //courseInfo.setText("이름: "+ sb.toString());
+        courseInfo = (TextView)findViewById(R.id.courseInfo);
+        courseInfo.setText(spotnameString);
+
 
 
         // 티맵 관련
@@ -156,6 +186,8 @@ public class ResultActivity extends AppCompatActivity
             @Override
             public void onFindPathData(TMapPolyLine tMapPolyLine) {
                 tMapView.addTMapPath(tMapPolyLine);
+                distance = tMapPolyLine.getDistance();
+                courseInfo.append("총 거리: " + distance); // km 표시로 수정 필요
             }
         });
 
@@ -165,8 +197,16 @@ public class ResultActivity extends AppCompatActivity
 
 
     public void saveWalkClicked(View view) {
-        //Intent intent = new Intent(this, SaveWalkActivity.class);
-        //startActivity(intent);
+        /*
+        Intent intentResult = new Intent(ResultActivity.this, SaveWalkActivity.class);
+        intentResult.putExtra("mydata", myData);
+        intentResult.putExtra("recentPosition", recentPosition);
+        intentResult.putExtra("spotName", spotName);
+        intentResult.putExtra("spotLat", spotLat);
+        intentResult.putExtra("spotLon", spotLon);
+        startActivity(intentResult);
+        */
+        showSaveDialog();
     }
 
     // 로딩중 표시할 프로그레스 다이얼로그
@@ -185,6 +225,33 @@ public class ResultActivity extends AppCompatActivity
         );
 
         return dialog;
+    }
+
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+        Intent intent = new Intent(ResultActivity.this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
+    }
+
+    public void showSaveDialog(){
+        saveDialog.show();
+        Button noBtn = saveDialog.findViewById(R.id.noBtn);
+        noBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                saveDialog.dismiss();
+            }
+        });
+        Button saveBtn = saveDialog.findViewById(R.id.saveBtn);
+        saveBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+              // save 통신
+            };
+        });
     }
 }
 

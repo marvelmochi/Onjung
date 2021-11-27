@@ -3,7 +3,8 @@
     android:layout_width="350dp"
     android:layout_height="500dp"
     android:orientation="vertical"
-    android:layout_gravity="center">
+    android:layout_gravity="center"
+    android:weightSum="10">
 
     <!--산책 일정 등록 다이얼로그-->
 
@@ -50,7 +51,11 @@
                 android:layout_weight="3"
                 android:background="@drawable/border_line"
                 android:paddingHorizontal="5dp"
-                android:textSize="15sp" />
+                android:textSize="24sp"
+                android:text="2021-11-25"
+                android:textAlignment="center"
+                android:gravity="center"
+                />
 
             <!--버튼으로 쓸 이미지뷰-->
             <ImageView
@@ -91,14 +96,19 @@
                 android:background="@drawable/border_line"
                 android:padding="5dp" />
         </LinearLayout>
-        <!--구글맵 뷰-->
-        <fragment
-            android:id="@+id/map"
-            android:name="com.google.android.gms.maps.SupportMapFragment"
+        <TextView
+
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="3"
-            android:layout_margin="10dp" />
+            android:layout_weight="4"
+            android:background="#bbdfae"
+            android:layout_margin="20dp"
+            android:padding="25dp"
+            android:textSize="20sp"
+            android:text="우장산, 서서울호수공원, 까치산시장을 지나는 산책로
+                \n경유 시간: 약 1시간 35분
+                \n총 거리: 5.9km "
+            />;
 
         <!--버튼-->
         <LinearLayout
