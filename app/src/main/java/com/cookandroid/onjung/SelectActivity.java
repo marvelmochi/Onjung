@@ -58,6 +58,7 @@ public class SelectActivity extends AppCompatActivity
     ArrayList<String> spotName = new ArrayList<>(); // 경유지 이름 ArrayList
     ArrayList<String> spotLat = new ArrayList<>();  // 경유지 위도 ArrayList
     ArrayList<String> spotLon = new ArrayList<>(); // 경유지 경도 ArrayList
+    ArrayList spotId = new ArrayList(); //  경유지 아이디 ArrayList
 
     // 반경을 입력 받을 시크바
     SeekBar seekBar;
@@ -194,16 +195,16 @@ public class SelectActivity extends AppCompatActivity
 
 
         // 인텐트 전달
-
+/*
         Intent intentResult = new Intent(SelectActivity.this, ResultActivity.class);
         intentResult.putExtra("recentPosition", recentPosition);
-
-        intentResult.putExtra("spotName", spotName);
-        intentResult.putExtra("spotLat", spotLat);
-        intentResult.putExtra("spotLon", spotLon);
+        intentResult.putStringArrayListExtra("spotName", spotName);
+        intentResult.putStringArrayListExtra("spotLat", spotLat);
+        intentResult.putStringArrayListExtra("spotLon", spotLon);
+        intentResult.putExtra("spotId", spotId);
         startActivity(intentResult);
 
-
+*/
 
     }
 
@@ -228,6 +229,16 @@ public class SelectActivity extends AppCompatActivity
                     // 파싱 메소드 호출
                     jsonParser(returnMsg);
 
+                    Intent intentResult = new Intent(SelectActivity.this, ResultActivity.class);
+                    intentResult.putExtra("mydata", data);
+                    intentResult.putExtra("recentPosition", recentPosition);
+                    intentResult.putExtra("spotName", spotName);
+                    intentResult.putExtra("spotLat", spotLat);
+                    intentResult.putExtra("spotLon", spotLon);
+                    intentResult.putExtra("spotId", spotId);
+
+                    startActivity(intentResult);
+
                 } catch (Exception e) {
                     e.printStackTrace();
                     System.out.println("로그: 산책지 불러오기 예외발생");
@@ -235,13 +246,7 @@ public class SelectActivity extends AppCompatActivity
             }
 
 
-            Intent intentResult = new Intent(SelectActivity.this, ResultActivity.class);
-            intentResult.putExtra("mydata", data);
-            intentResult.putExtra("recentPosition", recentPosition);
-            intentResult.putExtra("spotName", spotName);
-            intentResult.putExtra("spotLat", spotLat);
-            intentResult.putExtra("spotLon", spotLon);
-            startActivity(intentResult);
+
         }
 
         public void jsonParser(String resultJson) {
@@ -259,9 +264,12 @@ public class SelectActivity extends AppCompatActivity
                 String name = spotObject.getString("name");
                 String lat = spotObject.getString("latitude");
                 String lon = spotObject.getString("longitude");
+                int spotid_int = spotObject.getInt("spotId");
+                String spotid = Integer.toString(spotid_int);
                 spotName.add(name);
                 spotLat.add(lat);
                 spotLon.add(lon);
+                spotId.add(spotid);
 
             /*
             for (int i = 0; i<spotName.size() ; i++){
@@ -279,7 +287,12 @@ public class SelectActivity extends AppCompatActivity
                 e.printStackTrace();
                 System.out.println("로그: 파싱 예외발생");
             }
+            /*
+            for (int i=0; i<spotId.size(); i++){
+                System.out.println("로그: 스팟아이디: "+spotId.get(i));
+            }
 
+             */
         }
     }
 

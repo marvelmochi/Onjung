@@ -4,7 +4,8 @@
     android:layout_height="500dp"
     android:orientation="vertical"
     android:layout_gravity="center"
-    android:weightSum="10">
+    android:weightSum="10"
+    >
 
     <!--산책 일정 등록 다이얼로그-->
 
@@ -43,8 +44,8 @@
                 android:text="  날짜"
                 android:textSize="20sp" />
 
-            <TextView
-                android:id="@+id/date_text"
+            <EditText
+                android:id="@+id/dateText"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:layout_gravity="center_vertical"
@@ -52,20 +53,21 @@
                 android:background="@drawable/border_line"
                 android:paddingHorizontal="5dp"
                 android:textSize="24sp"
-                android:text="2021-11-25"
+                android:text="20211128"
                 android:textAlignment="center"
                 android:gravity="center"
                 />
 
+
             <!--버튼으로 쓸 이미지뷰-->
             <ImageView
-                android:id="@+id/date"
                 android:layout_width="0dp"
-                android:layout_height="30dp"
+                android:layout_height="19dp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:clickable="true"
-                android:src="@drawable/ic_bottom_navigation_schedule" />
+                android:src="@drawable/ic_bottom_navigation_schedule"
+                />
         </LinearLayout>
 
         <!--제목-->
@@ -87,6 +89,7 @@
                 android:textSize="20sp" />
 
             <EditText
+                android:id="@+id/titleText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="3dp"
@@ -97,7 +100,7 @@
                 android:padding="5dp" />
         </LinearLayout>
         <TextView
-
+            android:id="@+id/saveText"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="4"
@@ -105,9 +108,7 @@
             android:layout_margin="20dp"
             android:padding="25dp"
             android:textSize="20sp"
-            android:text="우장산, 서서울호수공원, 까치산시장을 지나는 산책로
-                \n경유 시간: 약 1시간 35분
-                \n총 거리: 5.9km "
+
             />;
 
         <!--버튼-->

@@ -47,6 +47,7 @@ public class LoginActivity extends AppCompatActivity {
     // 로그인 성공 후 회원 정보를 저장하기 위한 프리퍼런스
     private SharedPreferences preferences;
 
+
     // Intent
     //Intent intentlogin = new Intent(LoginActivity.this, MainActivity.class);
 
@@ -61,7 +62,8 @@ public class LoginActivity extends AppCompatActivity {
         // 토스트 온 스레드
         toastHandler = new Handler(Looper.getMainLooper());
 
-        preferences = getSharedPreferences("UserInfo", MODE_MULTI_PROCESS);
+        //
+        preferences = getSharedPreferences("UserInfo", MODE_PRIVATE);
 
 
     }

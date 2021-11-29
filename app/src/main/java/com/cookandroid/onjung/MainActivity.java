@@ -1,6 +1,7 @@
 package com.cookandroid.onjung;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -34,13 +35,18 @@ public class MainActivity extends AppCompatActivity {
     LinearLayout scheduleView; // 동적 뷰(일정) 추가할 부모 레이아웃
 
     // 저장된 유저 정보 가져오기
-    //private SharedPreferences preferences;
+
     //TextView UserId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // SharedPreferences Test
+        SharedPreferences preferences = getSharedPreferences("UserInfo", MODE_PRIVATE);
+        String test = preferences.getString("id","");
+        System.out.println("로그: 아이디 불러오기 Main: " +test);
 
         // 하단 내비게이션 바 생성
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
