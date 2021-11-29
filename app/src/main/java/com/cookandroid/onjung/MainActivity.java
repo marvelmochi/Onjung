@@ -45,8 +45,8 @@ public class MainActivity extends AppCompatActivity {
 
         // SharedPreferences Test
         SharedPreferences preferences = getSharedPreferences("UserInfo", MODE_PRIVATE);
-        String test = preferences.getString("id","");
-        System.out.println("로그: 아이디 불러오기 Main: " +test);
+        String test = preferences.getString("memberId","");
+        System.out.println("로그: 멤버아이디 불러오기 Main: " +test);
 
         // 하단 내비게이션 바 생성
         bottomNavigationView = findViewById(R.id.bottomNavigationView);

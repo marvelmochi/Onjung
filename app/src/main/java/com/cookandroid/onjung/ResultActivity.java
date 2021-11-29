@@ -24,6 +24,15 @@ import com.skt.Tmap.TMapPoint;
 import com.skt.Tmap.TMapPolyLine;
 import com.skt.Tmap.TMapView;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -64,7 +73,7 @@ public class ResultActivity extends AppCompatActivity
     // 회원 정보(유저 아이디) 불러오기 위한 SharedPreferences
     //SharedPreferences preference = getSharedPreferences("UserInfo", MODE_PRIVATE);
 
-    String userId;
+    String memberId;
 
     // DatePicker 띄울 다이얼로그
     //Dialog dateDialog;
@@ -83,8 +92,8 @@ public class ResultActivity extends AppCompatActivity
 
         // SharedPreferences Test
         SharedPreferences preferences = getSharedPreferences("UserInfo", MODE_PRIVATE);
-        userId = preferences.getString("id", "");
-        System.out.println("로그: 아이디 불러오기 Result: " + userId);
+        memberId = preferences.getString("memberId", "");
+        System.out.println("로그: 아이디 불러오기 Result: " + memberId);
 
         // 다이얼로그
         saveDialog = new Dialog(ResultActivity.this);
@@ -283,19 +292,17 @@ public class ResultActivity extends AppCompatActivity
                 // save 통신
                 // 날짜, 산책 제목 받아오기
 
-                //
-
                 date = dateText.getText().toString();
                 title = titleText.getText().toString();
                 System.out.println("로그: save 클릭");
                 System.out.println("로그: date: "+date);
                 System.out.println("로그: title: "+title);
 
-
+                HttpConnectorSaveCourse saveCourseThread = new HttpConnectorSaveCourse();
+                saveCourseThread.start();
 
             }
 
-            ;
         });
 
 
@@ -311,10 +318,55 @@ public class ResultActivity extends AppCompatActivity
 
     // 서버 통신부
 
+    class HttpConnectorSaveCourse extends Thread {
+        JSONObject data;
+        URL url;
+        HttpURLConnection conn;
+        public HttpConnectorSaveCourse(){
+            try{
+                data = new JSONObject();
+                data.put("userId", memberId);
+                data.put("walkDate", date);
+                data.put("title", title);
+                // jsonArray에 경유지 넣기
+                JSONArray jsonArray = new JSONArray();
+                for (int i=0; i<spotId.size(); i++){
+                    jsonArray.put(spotId.get(i));
+                }
+                data.put("wayPoint", jsonArray);
+                data.put("latitude", recentPosition.get(0));
+                data.put("longitude", recentPosition.get(1));
+                System.out.println("로그: 산책로 저장 post data: "+data);
+                url = new URL("http://smwu.onjung.tk/walk");
+                conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("POST");
+                conn.setRequestProperty("Content-Type", "application/json");
 
-    // Json 파싱
+            }catch (Exception e){
+                e.printStackTrace();
+                System.out.println("로그: 산책 코스 POST 예외 발생");
+            }
+        }
+        @Override
+        public void run(){
+            try{
+                conn.setDoOutput(true);
+                BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
+                bw.write(data.toString());
+                bw.flush();
+                bw.close();
+                BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                String returnMsg = in.readLine();
+                int responseCode = conn.getResponseCode();
+                System.out.println("로그: 응답 메시지: "+returnMsg);
+                System.out.println("로그: responseCode: "+responseCode);
 
-
+            } catch (Exception e){
+                e.printStackTrace();
+                System.out.println("로그: 산책 코스 저장 연결 예외 발생");
+            }
+        }
+    }
 
 }
 
