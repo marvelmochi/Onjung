@@ -145,7 +145,7 @@
                 <ImageView
                     android:layout_width="40dp"
                     android:layout_height="match_parent"
-                    android:src="@drawable/ic_temp" />
+                    android:src="@drawable/walking" />
 
                 <TextView
                     android:layout_width="0dp"
@@ -177,7 +177,7 @@
                 <ImageView
                     android:layout_width="40dp"
                     android:layout_height="match_parent"
-                    android:src="@drawable/ic_temp" />
+                    android:src="@drawable/track" />
 
                 <TextView
                     android:layout_width="0dp"
@@ -209,7 +209,7 @@
                 <ImageView
                     android:layout_width="40dp"
                     android:layout_height="match_parent"
-                    android:src="@drawable/ic_temp" />
+                    android:src="@drawable/stopwatch" />
 
                 <TextView
                     android:layout_width="0dp"
@@ -241,7 +241,7 @@
                 <ImageView
                     android:layout_width="40dp"
                     android:layout_height="match_parent"
-                    android:src="@drawable/ic_temp" />
+                    android:src="@drawable/smartwatch" />
 
                 <TextView
                     android:layout_width="0dp"

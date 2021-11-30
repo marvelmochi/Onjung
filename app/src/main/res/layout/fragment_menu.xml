@@ -38,7 +38,7 @@
                 android:layout_height="50dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginRight="10dp"
-                android:src="@drawable/ic_temp" />
+                android:src="@drawable/settings" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -61,7 +61,7 @@
                 android:layout_height="50dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginRight="10dp"
-                android:src="@drawable/ic_temp" />
+                android:src="@drawable/calendar" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -84,7 +84,7 @@
                 android:layout_height="50dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginRight="10dp"
-                android:src="@drawable/ic_temp" />
+                android:src="@drawable/diary" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -107,7 +107,7 @@
                 android:layout_height="50dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginRight="10dp"
-                android:src="@drawable/ic_temp" />
+                android:src="@drawable/condition" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -131,7 +131,7 @@
                 android:layout_height="50dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginRight="10dp"
-                android:src="@drawable/ic_temp" />
+                android:src="@drawable/mood" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -152,10 +152,10 @@
 
             <ImageView
                 android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_height="44dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginRight="10dp"
-                android:src="@drawable/ic_temp" />
+                android:src="@drawable/users" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -168,12 +168,13 @@
 
         <!--로그아웃 버튼-->
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="30dp"
             android:onClick="logoutClicked"
-            android:text="로그아웃" />
+            android:text="로그아웃"
+            android:background="@drawable/button_deco"/>
     </LinearLayout>
 
 

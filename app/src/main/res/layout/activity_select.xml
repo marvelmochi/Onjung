@@ -7,7 +7,7 @@
     android:orientation="vertical"
     tools:context=".SelectActivity">
 
-    <!--타이틀-->
+    <!--타이틀
     <TextView
         android:layout_width="match_parent"
         android:layout_height="54dp"
@@ -17,6 +17,23 @@
         android:text="조건에 맞는 산책로 추천"
         android:textColor="#ffffff"
         android:textSize="28sp" />
+        -->
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="조건에 맞는 산책로 추천"
+            android:textColor="#ffffff"
+            android:textSize="28sp" />
+    </androidx.appcompat.widget.Toolbar>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -42,7 +59,7 @@
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_marginRight="10dp"
-                    android:src="@drawable/ic_temp" />
+                    android:src="@drawable/clock" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -103,7 +120,7 @@
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_marginRight="10dp"
-                    android:src="@drawable/ic_temp" />
+                    android:src="@drawable/light" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -180,7 +197,7 @@
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_marginRight="10dp"
-                    android:src="@drawable/ic_temp" />
+                    android:src="@drawable/mountain" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -241,14 +258,14 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="한강대교" />
+                    android:text="대교" />
 
                 <CheckBox
                     android:id="@+id/river"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="한강공원" />
+                    android:text="강/하천" />
 
 
             </LinearLayout>
@@ -272,7 +289,7 @@
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_marginRight="10dp"
-                    android:src="@drawable/ic_temp" />
+                    android:src="@drawable/market" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -354,7 +371,7 @@
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_marginRight="10dp"
-                    android:src="@drawable/ic_temp" />
+                    android:src="@drawable/map" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -365,6 +382,8 @@
 
             </LinearLayout>
             <SeekBar
+                android:progressDrawable="@drawable/seekbar_deco"
+                android:thumb="@drawable/run"
                 android:layout_marginHorizontal="30dp"
                 android:layout_marginVertical="10dp"
                 android:layout_width="match_parent"
@@ -377,12 +396,13 @@
 
         <Button
             android:id="@+id/okBtn"
-            android:layout_width="wrap_content"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:onClick="resultbtnClicked"
-            android:text="OK" />
+            android:text="OK"
+            android:background="@drawable/button_deco"/>
     </LinearLayout>
 
 </LinearLayout>

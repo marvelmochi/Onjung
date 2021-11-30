@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -36,6 +37,9 @@ public class MainActivity extends AppCompatActivity {
     // 저장된 유저 정보 가져오기
     //private SharedPreferences preferences;
     //TextView UserId;
+
+    // 뷰페이저 객체생성
+    ViewPager pager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
 
          */
 
-
+        // 스와이프 화면전환
     }
 
     // 조건에 맞는 산책로 추천 클릭
@@ -201,6 +205,7 @@ public class MainActivity extends AppCompatActivity {
         scheduleView.addView(schedule);
     }
 }
+
 
 
 

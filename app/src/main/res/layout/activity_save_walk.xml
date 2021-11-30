@@ -111,17 +111,19 @@
 
             <Button
                 android:id="@+id/save_schedule_btn"
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="저장" />
+                android:text="저장"
+                android:background="@drawable/button_deco"/>
 
             <Button
                 android:id="@+id/cancel_save_schedule"
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="취소" />
+                android:text="취소"
+                android:background="@drawable/button_deco"/>
 
         </LinearLayout>
 

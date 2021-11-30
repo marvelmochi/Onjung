@@ -8,7 +8,7 @@
     android:orientation="vertical"
     tools:context=".ResultActivity">
 
-    <!--타이틀-->
+    <!--타이틀
     <TextView
         android:layout_width="match_parent"
         android:layout_height="54dp"
@@ -18,6 +18,23 @@
         android:text="산책로 추천 결과"
         android:textColor="#ffffff"
         android:textSize="28sp" />
+        -->
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="산책로 추천 결과"
+            android:textColor="#ffffff"
+            android:textSize="28sp" />
+    </androidx.appcompat.widget.Toolbar>
 
     <!--전체 레이아웃-->
     <LinearLayout
@@ -36,14 +53,14 @@
 
             <ImageView
                 android:layout_width="0dp"
-                android:layout_height="50dp"
+                android:layout_height="40dp"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
-                android:src="@drawable/ic_temp" />
+                android:src="@drawable/location" />
 
             <TextView
-                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_width="0dp"
                 android:layout_weight="5"
                 android:background="#bbdfae"
                 android:padding="10dp"
@@ -60,18 +77,20 @@
             android:id="@+id/map"
             android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
-            android:layout_height="357dp"
+            android:layout_height="0dp"
             android:orientation="vertical"
             android:layout_margin="20dp"
+            android:layout_weight="1"
             tools:context=".MapsActivity" />
 
-        <!--하단 부분-->
+        <!--하단
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
             android:weightSum="4">
-            <!--루트 정보 요약-->
+            -->
+            <!--루트 정보 요약
             <TextView
                 android:id="@+id/courseInfo"
                 android:layout_width="0dp"
@@ -84,8 +103,9 @@
                 android:text="우장산, 서서울호수공원, 까치산시장을 지나는 산책로입니다.
                 \n경유 시간: 약 1시간 35분
                 \n총 거리: 5.9km "
-                 />
-            <!--버튼 2개-->
+                />
+                -->
+            <!--버튼 2개
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -113,7 +133,55 @@
             </LinearLayout>
 
         </LinearLayout>
+        -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:weightSum="4">
+            <!--루트 정보 요약-->
+            <TextView
+                android:id="@+id/courseInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:layout_weight="3"
+                android:padding="20dp"
+                android:background="#bbdfae"
+                android:textSize="16dp"
+                android:text="우장산, 서서울호수공원, 까치산시장을 지나는 산책로입니다.
+                \n경유 시간: 약 1시간 35분
+                \n총 거리: 5.9km " />
+        </LinearLayout>
+        />
+        <!--버튼 2개-->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
 
+            <Button
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:text="다시"
+                android:background="@drawable/button_deco"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="30dp"
+                android:layout_marginRight="15dp"/>
+
+            <Button
+                android:id="@+id/save_walk_btn"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:onClick="saveWalkClicked"
+                android:text="OK"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="30dp"
+                android:layout_marginLeft="15dp"
+                android:background="@drawable/button_deco" />
+
+        </LinearLayout>
 
     </LinearLayout>
 

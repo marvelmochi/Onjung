@@ -24,5 +24,6 @@
         app:itemTextColor="@drawable/item_color"
         app:labelVisibilityMode="unlabeled"
         app:menu="@menu/menu_bottom" />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

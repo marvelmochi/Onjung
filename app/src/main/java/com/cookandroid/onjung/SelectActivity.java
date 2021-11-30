@@ -6,10 +6,12 @@ import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Message;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.skt.Tmap.TMapGpsManager;
 import com.skt.Tmap.TMapPoint;
@@ -110,7 +112,11 @@ public class SelectActivity extends AppCompatActivity
 
         tMapGPS.OpenGps();
 
-
+        // 툴바: 뒤로가기 버튼
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
     }
 
     @Override
@@ -127,6 +133,18 @@ public class SelectActivity extends AppCompatActivity
         recentPosition.add(lon);
 
         System.out.println("로그: 현위치 좌표 " + lat + ", " + lon);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:{ //toolbar의 back키 눌렀을 때 동작
+                // 액티비티 이동
+                finish();
+                return true;
+            }
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     public void resultbtnClicked(View view) {
@@ -255,6 +273,4 @@ public class SelectActivity extends AppCompatActivity
 
         }
     }
-
-
 }

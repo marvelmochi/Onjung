@@ -7,7 +7,7 @@
     android:orientation="vertical"
     tools:context=".DiaryCreateActivity">
 
-    <!--타이틀-->
+    <!--타이틀
     <TextView
         android:layout_width="match_parent"
         android:layout_height="54dp"
@@ -17,6 +17,23 @@
         android:text="산책 다이어리"
         android:textColor="#ffffff"
         android:textSize="28sp" />
+        -->
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="산책 다이어리"
+            android:textColor="#ffffff"
+            android:textSize="28sp" />
+    </androidx.appcompat.widget.Toolbar>
 
     <!--감싸는 레이아웃-->
     <LinearLayout
@@ -111,20 +128,22 @@
             android:orientation="horizontal">
 
             <Button
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="10dp"
                 android:text="수정"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:background="@drawable/button_deco"/>
 
             <Button
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="10dp"
                 android:text="삭제"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:background="@drawable/button_deco"/>
         </LinearLayout>
     </LinearLayout>
 
