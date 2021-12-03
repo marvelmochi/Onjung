@@ -89,11 +89,10 @@ public class ResultActivity extends AppCompatActivity
         setContentView(R.layout.activity_result);
 
 
-
         // SharedPreferences Test
         SharedPreferences preferences = getSharedPreferences("UserInfo", MODE_PRIVATE);
         memberId = preferences.getString("memberId", "");
-        System.out.println("로그: 아이디 불러오기 Result: " + memberId);
+        System.out.println("로그: 멤버아이디 불러오기(Result): " + memberId);
 
         // 다이얼로그
         saveDialog = new Dialog(ResultActivity.this);

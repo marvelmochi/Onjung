@@ -21,7 +21,7 @@
 
     <!--캘린더 뷰-->
     <CalendarView
-        android:id="@+id/calendarView"
+        android:id="@+id/calendar"
         android:layout_width="match_parent"
         android:layout_height="310dp" />
 
@@ -50,33 +50,15 @@
             android:orientation="vertical"
             android:padding="5dp">
 
-            <!--<TextView
-                android:id="@+id/schedule1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="3dp"
-                android:background="@drawable/border_line"
-                android:padding="10dp"
-                android:text="여의도한강공원 30분 산책"
-                android:textSize="20sp" />
             <TextView
-                android:id="@+id/schedule2"
+                android:id="@+id/scheduleText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="3dp"
                 android:background="@drawable/border_line"
                 android:padding="10dp"
-                android:text="유미랑 강아지 산책"
                 android:textSize="20sp" />
-            <TextView
-                android:id="@+id/schedule3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="3dp"
-                android:background="@drawable/border_line"
-                android:padding="10dp"
-                android:text="일산호수공원 산책"
-                android:textSize="20sp" /> -->
+
 
         </LinearLayout>
     </ScrollView>
@@ -93,14 +75,7 @@
         android:text="다이어리 작성"
         android:textSize="26dp" />
 -->
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="addScheduleClicked"
-        android:text=" "
-        android:layout_gravity="right"
-        android:background="#00ff0000"
-        />
+
 
 
 </LinearLayout>
