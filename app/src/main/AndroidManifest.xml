@@ -28,7 +28,6 @@
         <activity android:name=".EditUserInfoActivity" />
         <activity android:name=".SignUpActivity" />
         <activity android:name=".FriendActivity" />
-        <activity android:name=".SaveWalkActivity" />
         <activity android:name=".DiaryReadActivity" />
         <activity android:name=".DiaryCreateActivity" />
         <activity android:name=".DiaryActivity" />

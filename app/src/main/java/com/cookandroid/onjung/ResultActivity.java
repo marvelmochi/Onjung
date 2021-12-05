@@ -1,6 +1,7 @@
 package com.cookandroid.onjung;
 
 import android.Manifest;
+import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -12,14 +13,19 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.skt.Tmap.TMapData;
 import com.skt.Tmap.TMapGpsManager;
 import com.skt.Tmap.TMapPoint;
@@ -36,6 +42,7 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -79,23 +86,30 @@ public class ResultActivity extends AppCompatActivity
 
     // DatePicker 띄울 다이얼로그
     //Dialog dateDialog;
-    EditText dateText;
+    TextView dateText;
     EditText titleText;
     String date;
     String title;
 
+    DatePickerDialog datePickerDialog;
+
+    int mYear, mMonth, mDay;
+    String sYear, sMonth, sDay;
+
+    //플로팅
+    private Animation fab_open, fab_close, fab_rotate_open, fab_rotate_close;
+    private Boolean isFabOpen = false;
+    private FloatingActionButton fab, fab1, fab2, fab3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
 
-
-
         // SharedPreferences Test
         SharedPreferences preferences = getSharedPreferences("UserInfo", MODE_PRIVATE);
         memberId = preferences.getString("memberId", "");
-        System.out.println("로그: 아이디 불러오기 Result: " + memberId);
+        System.out.println("로그: 멤버아이디 불러오기(Result): " + memberId);
 
         // 다이얼로그
         saveDialog = new Dialog(ResultActivity.this);
@@ -105,8 +119,8 @@ public class ResultActivity extends AppCompatActivity
         // 다이얼로그
         // dateText = (EditText)saveDialog.findViewById(R.id.dateText);
         // 날짜, 산책 제목 받아올 변수 선언
-        dateText = saveDialog.findViewById(R.id.dateText);
-        titleText = saveDialog.findViewById(R.id.titleText);
+        dateText = (TextView) saveDialog.findViewById(R.id.dateText);
+        titleText = (EditText) saveDialog.findViewById(R.id.titleText);
 
         // 로딩중 표시할 프로그레스 다이얼로그
         showDialog(1); // 대화상자 호출
@@ -202,6 +216,51 @@ public class ResultActivity extends AppCompatActivity
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
+        //플로팅버튼
+        fab_rotate_open = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_rotate_open);
+        fab_rotate_close = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_rotate_close);
+        fab_open = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_open);
+        fab_close = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_close);
+
+        fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab1 = (FloatingActionButton) findViewById(R.id.fab1);
+        fab2 = (FloatingActionButton) findViewById(R.id.fab2);
+        fab3 = (FloatingActionButton) findViewById(R.id.fab3);
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                anim();
+                Toast.makeText(ResultActivity.this, "Floating Action Button", Toast.LENGTH_SHORT).show();
+            }
+        });
+        fab1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                anim();
+                Toast.makeText(ResultActivity.this, "친구 목록", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(ResultActivity.this, FriendActivity.class);
+                startActivity(intent);
+            }
+        });
+        fab2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                anim();
+                Toast.makeText(ResultActivity.this, "산책 다이어리", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(ResultActivity.this, DiaryActivity.class);
+                startActivity(intent);
+            }
+        });
+        fab3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                anim();
+                Toast.makeText(ResultActivity.this, "산책 일정", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
     }
 
     @Override
@@ -260,7 +319,69 @@ public class ResultActivity extends AppCompatActivity
         intentResult.putExtra("spotLon", spotLon);
         startActivity(intentResult);
         */
-        showSaveDialog();
+
+        saveDialog.show();
+
+        saveInfo = saveDialog.findViewById(R.id.saveText);
+        saveInfo.setText(courseInformation);
+
+        Calendar c = Calendar.getInstance();
+        mYear = c.get(Calendar.YEAR);
+        mMonth = c.get(Calendar.MONTH);
+        mDay = c.get(Calendar.DAY_OF_MONTH);
+
+        datePickerDialog = new DatePickerDialog(ResultActivity.this, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                dateText.setText(year + "/" + (month+1) + "/" + dayOfMonth);
+                sYear = Integer.toString(year);
+                sMonth = Integer.toString((month+1));
+                sDay = Integer.toString(dayOfMonth);
+
+            }
+        }, mYear, mMonth, mDay);
+
+        Button noBtn = saveDialog.findViewById(R.id.noBtn);
+        noBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                System.out.println("로그: 저장 다이얼로그 닫음");
+                saveDialog.dismiss();
+            }
+        });
+        Button saveBtn = saveDialog.findViewById(R.id.saveBtn);
+        saveBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // save 통신
+                // 날짜, 산책 제목 받아오기
+
+                // date String으로 변경하기
+                if (sMonth.length()==1){
+                    sMonth = "0"+sMonth;
+                }
+                if (sDay.length()==1){
+                    sDay = "0"+sDay;
+                }
+                date = sYear+sMonth+sDay;
+
+                title = titleText.getText().toString();
+                System.out.println("로그: save 클릭");
+                System.out.println("로그: date: "+date);
+                System.out.println("로그: title: "+title);
+
+                HttpConnectorSaveCourse saveCourseThread = new HttpConnectorSaveCourse();
+                saveCourseThread.start();
+
+            }
+
+        });
+
+
+    }
+
+    public void dateTextClicked(View view) {
+        datePickerDialog.show();
     }
 
     // 로딩중 표시할 프로그레스 다이얼로그
@@ -290,42 +411,6 @@ public class ResultActivity extends AppCompatActivity
         finish();
     }
 
-
-    public void showSaveDialog() {
-        saveDialog.show();
-        saveInfo = saveDialog.findViewById(R.id.saveText);
-        saveInfo.setText(courseInformation);
-
-        Button noBtn = saveDialog.findViewById(R.id.noBtn);
-        noBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                System.out.println("로그: 저장 다이얼로그 닫음");
-                saveDialog.dismiss();
-            }
-        });
-        Button saveBtn = saveDialog.findViewById(R.id.saveBtn);
-        saveBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // save 통신
-                // 날짜, 산책 제목 받아오기
-
-                date = dateText.getText().toString();
-                title = titleText.getText().toString();
-                System.out.println("로그: save 클릭");
-                System.out.println("로그: date: "+date);
-                System.out.println("로그: title: "+title);
-
-                HttpConnectorSaveCourse saveCourseThread = new HttpConnectorSaveCourse();
-                saveCourseThread.start();
-
-            }
-
-        });
-
-
-    }
 
     /*
     public void dateClicked(View view) {
@@ -384,6 +469,29 @@ public class ResultActivity extends AppCompatActivity
                 e.printStackTrace();
                 System.out.println("로그: 산책 코스 저장 연결 예외 발생");
             }
+        }
+    }
+
+    public void anim() {
+
+        if (isFabOpen) {
+            fab.startAnimation(fab_rotate_close);
+            fab1.startAnimation(fab_close);
+            fab2.startAnimation(fab_close);
+            fab3.startAnimation(fab_close);
+            fab1.setClickable(false);
+            fab2.setClickable(false);
+            fab3.setClickable(false);
+            isFabOpen = false;
+        } else {
+            fab.startAnimation(fab_rotate_open);
+            fab1.startAnimation(fab_open);
+            fab2.startAnimation(fab_open);
+            fab3.startAnimation(fab_open);
+            fab1.setClickable(true);
+            fab2.setClickable(true);
+            fab3.setClickable(true);
+            isFabOpen = true;
         }
     }
 

@@ -31,7 +31,7 @@ public class PreferenceTestResultActivity extends AppCompatActivity implements T
     //플로팅
     private Animation fab_open, fab_close, fab_rotate_open, fab_rotate_close;
     private Boolean isFabOpen = false;
-    private FloatingActionButton fab, fab1, fab2;
+    private FloatingActionButton fab, fab1, fab2, fab3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +89,10 @@ public class PreferenceTestResultActivity extends AppCompatActivity implements T
         fab = (FloatingActionButton) findViewById(R.id.fab);
         fab1 = (FloatingActionButton) findViewById(R.id.fab1);
         fab2 = (FloatingActionButton) findViewById(R.id.fab2);
+        fab3 = (FloatingActionButton) findViewById(R.id.fab3);
+
+        ScheduleFragment fragment1;
+        fragment1 = new ScheduleFragment();
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,6 +117,13 @@ public class PreferenceTestResultActivity extends AppCompatActivity implements T
                 Toast.makeText(PreferenceTestResultActivity.this, "산책 다이어리", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(PreferenceTestResultActivity.this, DiaryActivity.class);
                 startActivity(intent);
+            }
+        });
+        fab3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                anim();
+                Toast.makeText(PreferenceTestResultActivity.this, "산책 일정", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -141,15 +152,19 @@ public class PreferenceTestResultActivity extends AppCompatActivity implements T
             fab.startAnimation(fab_rotate_close);
             fab1.startAnimation(fab_close);
             fab2.startAnimation(fab_close);
+            fab3.startAnimation(fab_close);
             fab1.setClickable(false);
             fab2.setClickable(false);
+            fab3.setClickable(false);
             isFabOpen = false;
         } else {
             fab.startAnimation(fab_rotate_open);
             fab1.startAnimation(fab_open);
             fab2.startAnimation(fab_open);
+            fab3.startAnimation(fab_open);
             fab1.setClickable(true);
             fab2.setClickable(true);
+            fab3.setClickable(true);
             isFabOpen = true;
         }
     }

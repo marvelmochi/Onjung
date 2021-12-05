@@ -5,15 +5,11 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -25,22 +21,14 @@ public class MainActivity extends AppCompatActivity {
     HomeFragment fragment2;
     MenuFragment fragment3;
 
-    // 앱 종료 다이얼로그 선언
-    //Dialog quitDialog;
 
     // 뒤로가기 두 번 눌러 종료
     private long backKeyPressedTime = 0;
     private Toast toast;
 
-    // 산책일정 추가 (동적뷰)
-    LinearLayout scheduleView; // 동적 뷰(일정) 추가할 부모 레이아웃
-
-    // 저장된 유저 정보 가져오기
-
-    //TextView UserId;
 
     // 뷰페이저 객체생성
-    ViewPager pager;
+    //ViewPager pager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,11 +38,12 @@ public class MainActivity extends AppCompatActivity {
         // SharedPreferences Test
         SharedPreferences preferences = getSharedPreferences("UserInfo", MODE_PRIVATE);
         String test = preferences.getString("memberId","");
-        System.out.println("로그: 멤버아이디 불러오기 Main: " +test);
+        System.out.println("로그: 멤버아이디 불러오기(Main): " +test);
 
         // 하단 내비게이션 바 생성
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
 
+        // 프래그먼트 생성 (캘린더/홈/메뉴)
         fragment1 = new ScheduleFragment();
         fragment2 = new HomeFragment();
         fragment3 = new MenuFragment();
@@ -83,12 +72,17 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+
+
+
+
+
         /*
         preferences = getSharedPreferences("UserInfo", MODE_MULTI_PROCESS);
         TextView UserId = (TextView) findViewById(R.id.UserId);
         String id = preferences.getString("id", "");
         UserId.setText(id);
-
          */
 
         // 스와이프 화면전환
@@ -207,20 +201,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void addScheduleClicked(View view) {
-        scheduleView = findViewById(R.id.scheduleView);
-        TextView schedule = new TextView(getApplicationContext());
-        schedule.setText("뽀삐와 산책");
-        schedule.setTextSize(22);
-        LinearLayout.LayoutParams param = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        param.setMargins(10, 10, 10, 10);
-        schedule.setPadding(20, 30, 20, 30);
 
-
-        schedule.setBackground(ContextCompat.getDrawable(this, R.drawable.border_line));
-        schedule.setLayoutParams(param);
-        scheduleView.addView(schedule);
-    }
 }
 
 
