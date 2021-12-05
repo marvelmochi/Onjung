@@ -9,6 +9,8 @@ import android.os.Message;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.SeekBar;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -58,12 +60,19 @@ public class SelectActivity extends AppCompatActivity
     ArrayList<String> spotName = new ArrayList<>(); // 경유지 이름 ArrayList
     ArrayList<String> spotLat = new ArrayList<>();  // 경유지 위도 ArrayList
     ArrayList<String> spotLon = new ArrayList<>(); // 경유지 경도 ArrayList
+    ArrayList spotId = new ArrayList(); //  경유지 아이디 ArrayList
 
+    // 반경을 입력 받을 시크바
+    SeekBar seekBar;
+    TextView seekText;
+    //원하는 반경 값
+    String radius;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select);
+
 
         // 체크박스 접근
         mountain = (CheckBox) findViewById(R.id.mountain);
@@ -112,11 +121,45 @@ public class SelectActivity extends AppCompatActivity
 
         tMapGPS.OpenGps();
 
+        // 시크바 접근 및 이벤트 등록
+        seekBar = (SeekBar)findViewById(R.id.radiusSeekbar);
+        seekText = (TextView)findViewById(R.id.seekbarText);
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                seekText.setText(String.format("%dkm", seekBar.getProgress()));
+                radius = Integer.toString(seekBar.getProgress());
+            }
+        });
+
         // 툴바: 뒤로가기 버튼
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:{ //toolbar의 back키 눌렀을 때 동작
+                // 액티비티 이동
+                finish();
+                return true;
+            }
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -133,18 +176,6 @@ public class SelectActivity extends AppCompatActivity
         recentPosition.add(lon);
 
         System.out.println("로그: 현위치 좌표 " + lat + ", " + lon);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case android.R.id.home:{ //toolbar의 back키 눌렀을 때 동작
-                // 액티비티 이동
-                finish();
-                return true;
-            }
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     public void resultbtnClicked(View view) {
@@ -184,17 +215,16 @@ public class SelectActivity extends AppCompatActivity
 
 
         // 인텐트 전달
-        /*
+/*
         Intent intentResult = new Intent(SelectActivity.this, ResultActivity.class);
         intentResult.putExtra("recentPosition", recentPosition);
-
-        intentResult.putExtra("spotName", spotName);
-        intentResult.putExtra("spotLat", spotLat);
-        intentResult.putExtra("spotLon", spotLon);
+        intentResult.putStringArrayListExtra("spotName", spotName);
+        intentResult.putStringArrayListExtra("spotLat", spotLat);
+        intentResult.putStringArrayListExtra("spotLon", spotLon);
+        intentResult.putExtra("spotId", spotId);
         startActivity(intentResult);
 
-
-         */
+*/
 
     }
 
@@ -208,7 +238,7 @@ public class SelectActivity extends AppCompatActivity
                 try {
                     String type;
                     type = spot.get(z);
-                    URL url = new URL("http://smwu.onjung.tk/spot?latitude=" + lat
+                    URL url = new URL("http://smwu.onjung.tk/spot/"+radius+"?latitude=" + lat
                             + "&longitude=" + lon + "&type=" + type);
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                     conn.setRequestMethod("GET");
@@ -219,6 +249,16 @@ public class SelectActivity extends AppCompatActivity
                     // 파싱 메소드 호출
                     jsonParser(returnMsg);
 
+                    Intent intentResult = new Intent(SelectActivity.this, ResultActivity.class);
+                    intentResult.putExtra("mydata", data);
+                    intentResult.putExtra("recentPosition", recentPosition);
+                    intentResult.putExtra("spotName", spotName);
+                    intentResult.putExtra("spotLat", spotLat);
+                    intentResult.putExtra("spotLon", spotLon);
+                    intentResult.putExtra("spotId", spotId);
+
+                    startActivity(intentResult);
+
                 } catch (Exception e) {
                     e.printStackTrace();
                     System.out.println("로그: 산책지 불러오기 예외발생");
@@ -226,13 +266,7 @@ public class SelectActivity extends AppCompatActivity
             }
 
 
-            Intent intentResult = new Intent(SelectActivity.this, ResultActivity.class);
-            intentResult.putExtra("mydata", data);
-            intentResult.putExtra("recentPosition", recentPosition);
-            intentResult.putExtra("spotName", spotName);
-            intentResult.putExtra("spotLat", spotLat);
-            intentResult.putExtra("spotLon", spotLon);
-            startActivity(intentResult);
+
         }
 
         public void jsonParser(String resultJson) {
@@ -250,9 +284,12 @@ public class SelectActivity extends AppCompatActivity
                 String name = spotObject.getString("name");
                 String lat = spotObject.getString("latitude");
                 String lon = spotObject.getString("longitude");
+                int spotid_int = spotObject.getInt("spotId");
+                String spotid = Integer.toString(spotid_int);
                 spotName.add(name);
                 spotLat.add(lat);
                 spotLon.add(lon);
+                spotId.add(spotid);
 
             /*
             for (int i = 0; i<spotName.size() ; i++){
@@ -270,7 +307,14 @@ public class SelectActivity extends AppCompatActivity
                 e.printStackTrace();
                 System.out.println("로그: 파싱 예외발생");
             }
+            /*
+            for (int i=0; i<spotId.size(); i++){
+                System.out.println("로그: 스팟아이디: "+spotId.get(i));
+            }
 
+             */
         }
     }
+
+
 }

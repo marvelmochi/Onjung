@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -24,6 +26,15 @@ import com.skt.Tmap.TMapPoint;
 import com.skt.Tmap.TMapPolyLine;
 import com.skt.Tmap.TMapView;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -44,28 +55,58 @@ public class ResultActivity extends AppCompatActivity
     ArrayList<String> spotName;
     ArrayList<String> spotLat;
     ArrayList<String> spotLon;
+    ArrayList<String> spotId;
 
     // 코스 정보를 보여줄 텍스트뷰
     TextView courseInfo;
+    TextView saveInfo;
+    // 경유지 이름을 저장할 문자열
+    String spotnameString = "";
+    // 산책코스 거리를 저장할 문자열
+    double distance;
+    String courseDistance = Double.toString(distance);
+    // 거리 km로 변환시킬 것!!
+    // 산책 정보를 저장할 문자열 전체
+    String courseInformation;
 
     // 산책 일정 저장 다이얼로그
     Dialog saveDialog;
 
-    // 회원 정보 불러오기 위한 SharedPreferences
-    //SharedPreferences preference = getPreferences(Context.MODE_PRIVATE);
-    //String userId;
-    //String idFromPrefer = preference.getString("id", "none");
+    // 회원 정보(유저 아이디) 불러오기 위한 SharedPreferences
+    //SharedPreferences preference = getSharedPreferences("UserInfo", MODE_PRIVATE);
+
+    String memberId;
+
+    // DatePicker 띄울 다이얼로그
+    //Dialog dateDialog;
+    EditText dateText;
+    EditText titleText;
+    String date;
+    String title;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
-        //System.out.println("로그: 받아온 아이디 userId: " + userId);
-        //System.out.println("로그: 받아온 아이디: idFrom" + idFromPrefer);
+
+
+
+        // SharedPreferences Test
+        SharedPreferences preferences = getSharedPreferences("UserInfo", MODE_PRIVATE);
+        memberId = preferences.getString("memberId", "");
+        System.out.println("로그: 아이디 불러오기 Result: " + memberId);
+
+        // 다이얼로그
         saveDialog = new Dialog(ResultActivity.this);
         saveDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         saveDialog.setContentView(R.layout.dialog_save_walk);
+
+        // 다이얼로그
+        // dateText = (EditText)saveDialog.findViewById(R.id.dateText);
+        // 날짜, 산책 제목 받아올 변수 선언
+        dateText = saveDialog.findViewById(R.id.dateText);
+        titleText = saveDialog.findViewById(R.id.titleText);
 
         // 로딩중 표시할 프로그레스 다이얼로그
         showDialog(1); // 대화상자 호출
@@ -73,8 +114,8 @@ public class ResultActivity extends AppCompatActivity
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
-                // 3초가 지나면 다이얼로그 닫기
-                TimerTask task = new TimerTask(){
+                // 20초가 지나면 다이얼로그 닫기
+                TimerTask task = new TimerTask() {
                     @Override
                     public void run() {
                         removeDialog(1);
@@ -92,24 +133,33 @@ public class ResultActivity extends AppCompatActivity
         // 이전 액티비티에서 데이터 받아오기
         Intent intent = getIntent();
         myData = intent.getStringExtra("mydata");
-        System.out.println("로그: mydata: "+myData);
+        System.out.println("로그: mydata: " + myData);
         recentPosition = intent.getStringArrayListExtra("recentPosition");
         System.out.println("로그: 현위치: " + recentPosition.get(0) + ", " + recentPosition.get(1));
         spotName = intent.getStringArrayListExtra("spotName");
         spotLat = intent.getStringArrayListExtra("spotLat");
         spotLon = intent.getStringArrayListExtra("spotLon");
+        spotId = intent.getStringArrayListExtra("spotId");
 
+        for (int i=0; i<spotId.size(); i++) {
+            System.out.println("로그: 전달받은 인텐트: " + spotId.get(i));
+        }
+        // 텍스트뷰에 코스 정보 표시하기
+        for (int i = 0; i < spotName.size(); i++) {
+            if (i == spotName.size() - 1) {
+                spotnameString += spotName.get(i) + "을(를) 경유하는 산책 코스입니다. \n";
 
-
-
-        // 코스 정보를 텍스트뷰에 표시하기
-
-        for(int i=0; i<spotName.size();i++){
-            System.out.println("로그: spotName: " + spotName.getClass().getName());
+                break;
+            }
+            //System.out.println("로그: spotName: " + spotName.getClass().getName());
+            spotnameString += spotName.get(i) + ", ";
         }
 
-        //courseInfo = (TextView)findViewById(R.id.courseInfo);
-        //courseInfo.setText("이름: "+ sb.toString());
+        courseInfo = (TextView) findViewById(R.id.courseInfo);
+        courseInfo.setText(spotnameString);
+
+        //saveInfo = (TextView)findViewById(R.id.saveText);
+        //saveInfo.setText(spotnameString);
 
 
         // 티맵 관련
@@ -146,12 +196,24 @@ public class ResultActivity extends AppCompatActivity
 
         tMapGPS.OpenGps();
 
-        // 툴바
+        // 툴바: 뒤로가기 버튼
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:{ //toolbar의 back키 눌렀을 때 동작
+                // 액티비티 이동
+                finish();
+                return true;
+            }
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -162,14 +224,13 @@ public class ResultActivity extends AppCompatActivity
 
         // 현 위치, 경유지 티맵포인트 설정
 
-        TMapPoint home = new TMapPoint(Double.parseDouble(recentPosition.get(0)),Double.parseDouble(recentPosition.get(1)));
+        TMapPoint home = new TMapPoint(Double.parseDouble(recentPosition.get(0)), Double.parseDouble(recentPosition.get(1)));
 
-        
 
         ArrayList<TMapPoint> spots = new ArrayList<>();
         TMapData tmapdata = new TMapData();
 
-        for(int i=0; i<spotName.size(); i++){
+        for (int i = 0; i < spotName.size(); i++) {
             TMapPoint spot = new TMapPoint(Double.parseDouble(spotLat.get(i)), Double.parseDouble(spotLon.get(i)));
             spots.add(spot);
         }
@@ -179,12 +240,14 @@ public class ResultActivity extends AppCompatActivity
             @Override
             public void onFindPathData(TMapPolyLine tMapPolyLine) {
                 tMapView.addTMapPath(tMapPolyLine);
+                distance = tMapPolyLine.getDistance();
+                courseInfo.append("총 거리: " + distance); // km 표시로 수정 필요
+                //saveInfo.append("총 거리: " + distance); // km 표시로 수정 필요
+                courseInformation = courseInfo.getText().toString();
             }
         });
 
     }
-
-
 
 
     public void saveWalkClicked(View view) {
@@ -219,7 +282,7 @@ public class ResultActivity extends AppCompatActivity
     }
 
     @Override
-    public void onBackPressed(){
+    public void onBackPressed() {
         super.onBackPressed();
         Intent intent = new Intent(ResultActivity.this, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -227,34 +290,102 @@ public class ResultActivity extends AppCompatActivity
         finish();
     }
 
-    public void showSaveDialog(){
+
+    public void showSaveDialog() {
         saveDialog.show();
+        saveInfo = saveDialog.findViewById(R.id.saveText);
+        saveInfo.setText(courseInformation);
+
         Button noBtn = saveDialog.findViewById(R.id.noBtn);
-        noBtn.setOnClickListener(new View.OnClickListener(){
+        noBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view){
+            public void onClick(View view) {
+                System.out.println("로그: 저장 다이얼로그 닫음");
                 saveDialog.dismiss();
             }
         });
         Button saveBtn = saveDialog.findViewById(R.id.saveBtn);
-        saveBtn.setOnClickListener(new View.OnClickListener(){
+        saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view){
-              // save 통신
-            };
+            public void onClick(View view) {
+                // save 통신
+                // 날짜, 산책 제목 받아오기
+
+                date = dateText.getText().toString();
+                title = titleText.getText().toString();
+                System.out.println("로그: save 클릭");
+                System.out.println("로그: date: "+date);
+                System.out.println("로그: title: "+title);
+
+                HttpConnectorSaveCourse saveCourseThread = new HttpConnectorSaveCourse();
+                saveCourseThread.start();
+
+            }
+
         });
+
+
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case android.R.id.home:{ //toolbar의 back키 눌렀을 때 동작
-                // 액티비티 이동
-                finish();
-                return true;
+    /*
+    public void dateClicked(View view) {
+        dateDialog = new Dialog(ResultActivity.this);
+        dateDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dateDialog.setContentView(R.layout.dialog_date_picker);
+        dateDialog.show();
+    }*/
+
+    // 서버 통신부
+
+    class HttpConnectorSaveCourse extends Thread {
+        JSONObject data;
+        URL url;
+        HttpURLConnection conn;
+        public HttpConnectorSaveCourse(){
+            try{
+                data = new JSONObject();
+                data.put("userId", memberId);
+                data.put("walkDate", date);
+                data.put("title", title);
+                // jsonArray에 경유지 넣기
+                JSONArray jsonArray = new JSONArray();
+                for (int i=0; i<spotId.size(); i++){
+                    jsonArray.put(spotId.get(i));
+                }
+                data.put("wayPoint", jsonArray);
+                data.put("latitude", recentPosition.get(0));
+                data.put("longitude", recentPosition.get(1));
+                System.out.println("로그: 산책로 저장 post data: "+data);
+                url = new URL("http://smwu.onjung.tk/walk");
+                conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("POST");
+                conn.setRequestProperty("Content-Type", "application/json");
+
+            }catch (Exception e){
+                e.printStackTrace();
+                System.out.println("로그: 산책 코스 POST 예외 발생");
             }
         }
-        return super.onOptionsItemSelected(item);
+        @Override
+        public void run(){
+            try{
+                conn.setDoOutput(true);
+                BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
+                bw.write(data.toString());
+                bw.flush();
+                bw.close();
+                BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                String returnMsg = in.readLine();
+                int responseCode = conn.getResponseCode();
+                System.out.println("로그: 응답 메시지: "+returnMsg);
+                System.out.println("로그: responseCode: "+responseCode);
+
+            } catch (Exception e){
+                e.printStackTrace();
+                System.out.println("로그: 산책 코스 저장 연결 예외 발생");
+            }
+        }
     }
+
 }
 

@@ -35,13 +35,11 @@
             android:textSize="28sp" />
     </androidx.appcompat.widget.Toolbar>
 
-    <LinearLayout
+    <!--감싸는 레이아웃-->
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
-
-        <!--감싸는 레이아웃-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -213,71 +211,67 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:orientation="horizontal"
-                android:weightSum="3">
-
-                <CheckBox
-                    android:id="@+id/mountain"
-                    android:layout_width="0dp"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="산" />
+                    android:layout_margin="5dp"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
 
-                <CheckBox
-                    android:id="@+id/park"
-                    android:layout_width="0dp"
+                    <CheckBox
+                        android:id="@+id/mountain"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="산" />
+
+                    <CheckBox
+                        android:id="@+id/park"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="공원" />
+
+                    <CheckBox
+                        android:id="@+id/lake"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="호수/저수지" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="공원" />
+                    android:layout_margin="5dp"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
 
-                <CheckBox
-                    android:id="@+id/lake"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="호수/저수지" />
+                    <CheckBox
+                        android:id="@+id/forest"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="숲" />
 
+                    <CheckBox
+                        android:id="@+id/bridge"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="대교" />
+
+                    <CheckBox
+                        android:id="@+id/river"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="강/하천" />
+                </LinearLayout>
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:orientation="horizontal"
-                android:weightSum="3">
-
-                <CheckBox
-                    android:id="@+id/forest"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="숲" />
-
-                <CheckBox
-                    android:id="@+id/bridge"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="대교" />
-
-                <CheckBox
-                    android:id="@+id/river"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="강/하천" />
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:orientation="horizontal">
-
-
-            </LinearLayout>
             <!--특별 산책지-->
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -302,6 +296,11 @@
 
             <!--체크박스-->
             <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="vertical">
+                `<LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
@@ -331,33 +330,34 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:orientation="horizontal"
-                android:weightSum="3">
-
-                <CheckBox
-                    android:id="@+id/market"
-                    android:layout_width="0dp"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="시장" />
+                    android:layout_margin="5dp"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
 
-                <CheckBox
-                    android:id="@+id/castle"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="성곽" />
+                    <CheckBox
+                        android:id="@+id/market"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="시장" />
 
-                <CheckBox
-                    android:id="@+id/stonewall"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="돌담길" />
+                    <CheckBox
+                        android:id="@+id/castle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="성곽" />
+
+                    <CheckBox
+                        android:id="@+id/stonewall"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="돌담길" />
+                </LinearLayout>
             </LinearLayout>
 
             <!--반경 선택-->
@@ -382,27 +382,34 @@
 
             </LinearLayout>
             <SeekBar
-                android:progressDrawable="@drawable/seekbar_deco"
-                android:thumb="@drawable/run"
+                android:id="@+id/radiusSeekbar"
+                android:layout_width="match_parent"
+                android:layout_height="29dp"
                 android:layout_marginHorizontal="30dp"
                 android:layout_marginVertical="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:max="10"
-                android:progress="1"/>
+                android:min="0"
+                android:progress="0"
+                android:progressDrawable="@drawable/seekbar"
+                android:thumb="@drawable/run"
+                android:splitTrack="false" />
+            <TextView
+                android:id="@+id/seekbarText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="0km"
+                />
 
-
+            <Button
+                android:id="@+id/okBtn"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:onClick="resultbtnClicked"
+                android:text="OK"
+                android:background="@drawable/button_deco"/>
         </LinearLayout>
-
-        <Button
-            android:id="@+id/okBtn"
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:onClick="resultbtnClicked"
-            android:text="OK"
-            android:background="@drawable/button_deco"/>
-    </LinearLayout>
-
+    </ScrollView>
 </LinearLayout>

@@ -1,6 +1,7 @@
 package com.cookandroid.onjung;
 
 import android.Manifest;
+import android.content.Intent;
 import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
@@ -28,7 +29,7 @@ public class PreferenceTestResultActivity extends AppCompatActivity implements T
     TMapGpsManager tMapGPS = null;
 
     //플로팅
-    private Animation fab_open, fab_close;
+    private Animation fab_open, fab_close, fab_rotate_open, fab_rotate_close;
     private Boolean isFabOpen = false;
     private FloatingActionButton fab, fab1, fab2;
 
@@ -80,6 +81,8 @@ public class PreferenceTestResultActivity extends AppCompatActivity implements T
 
 
         //플로팅버튼
+        fab_rotate_open = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_rotate_open);
+        fab_rotate_close = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_rotate_close);
         fab_open = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_open);
         fab_close = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_close);
 
@@ -98,14 +101,18 @@ public class PreferenceTestResultActivity extends AppCompatActivity implements T
             @Override
             public void onClick(View v) {
                 anim();
-                Toast.makeText(PreferenceTestResultActivity.this, "Button1", Toast.LENGTH_SHORT).show();
+                Toast.makeText(PreferenceTestResultActivity.this, "친구 목록", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(PreferenceTestResultActivity.this, FriendActivity.class);
+                startActivity(intent);
             }
         });
         fab2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 anim();
-                Toast.makeText(PreferenceTestResultActivity.this, "Button2", Toast.LENGTH_SHORT).show();
+                Toast.makeText(PreferenceTestResultActivity.this, "산책 다이어리", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(PreferenceTestResultActivity.this, DiaryActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -131,12 +138,14 @@ public class PreferenceTestResultActivity extends AppCompatActivity implements T
     public void anim() {
 
         if (isFabOpen) {
+            fab.startAnimation(fab_rotate_close);
             fab1.startAnimation(fab_close);
             fab2.startAnimation(fab_close);
             fab1.setClickable(false);
             fab2.setClickable(false);
             isFabOpen = false;
         } else {
+            fab.startAnimation(fab_rotate_open);
             fab1.startAnimation(fab_open);
             fab2.startAnimation(fab_open);
             fab1.setClickable(true);

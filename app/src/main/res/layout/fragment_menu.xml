@@ -111,12 +111,11 @@
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginTop="5dp"
                 android:onClick="selectbtnClicked"
                 android:text="조건에 맞는 산책로 추천"
-                android:textSize="28sp" />
+                android:textSize="30sp" />
         </LinearLayout>
 
         <!--5. 취향 분석 산책로 추천-->
@@ -137,10 +136,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginTop="5dp"
                 android:onClick="tastebtnClicked"
                 android:text="취향을 분석한 산책로 추천"
-                android:textSize="28sp" />
+                android:textSize="28.5sp" />
         </LinearLayout>
 
         <!--6. 친구 찾기-->
@@ -152,7 +150,7 @@
 
             <ImageView
                 android:layout_width="50dp"
-                android:layout_height="44dp"
+                android:layout_height="50dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginRight="10dp"
                 android:src="@drawable/users" />
