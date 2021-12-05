@@ -44,19 +44,19 @@
                 android:text="  날짜"
                 android:textSize="20sp" />
 
-            <EditText
+            <TextView
                 android:id="@+id/dateText"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
+                android:layout_height="match_parent"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="3"
                 android:background="@drawable/border_line"
-                android:paddingHorizontal="5dp"
-                android:textSize="24sp"
-                android:text="20211128"
-                android:textAlignment="center"
                 android:gravity="center"
-                />
+                android:onClick="dateTextClicked"
+                android:paddingHorizontal="5dp"
+
+                android:textAlignment="center"
+                android:textSize="24sp" />
 
 
             <!--버튼으로 쓸 이미지뷰-->

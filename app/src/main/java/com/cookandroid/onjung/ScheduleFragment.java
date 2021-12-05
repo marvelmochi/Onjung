@@ -68,6 +68,7 @@ public class ScheduleFragment extends Fragment {
             }
         });
 
+
         // Using SharedPreferences on Fragment
         SharedPreferences preferences = this.getActivity().getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
         memberId = preferences.getString("memberId", "");

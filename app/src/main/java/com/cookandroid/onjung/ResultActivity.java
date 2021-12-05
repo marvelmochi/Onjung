@@ -1,6 +1,7 @@
 package com.cookandroid.onjung;
 
 import android.Manifest;
+import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -12,6 +13,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -34,6 +36,7 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -77,17 +80,20 @@ public class ResultActivity extends AppCompatActivity
 
     // DatePicker 띄울 다이얼로그
     //Dialog dateDialog;
-    EditText dateText;
+    TextView dateText;
     EditText titleText;
     String date;
     String title;
 
+    DatePickerDialog datePickerDialog;
+
+    int mYear, mMonth, mDay;
+    String sYear, sMonth, sDay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
-
 
         // SharedPreferences Test
         SharedPreferences preferences = getSharedPreferences("UserInfo", MODE_PRIVATE);
@@ -102,8 +108,8 @@ public class ResultActivity extends AppCompatActivity
         // 다이얼로그
         // dateText = (EditText)saveDialog.findViewById(R.id.dateText);
         // 날짜, 산책 제목 받아올 변수 선언
-        dateText = saveDialog.findViewById(R.id.dateText);
-        titleText = saveDialog.findViewById(R.id.titleText);
+        dateText = (TextView) saveDialog.findViewById(R.id.dateText);
+        titleText = (EditText) saveDialog.findViewById(R.id.titleText);
 
         // 로딩중 표시할 프로그레스 다이얼로그
         showDialog(1); // 대화상자 호출
@@ -193,7 +199,6 @@ public class ResultActivity extends AppCompatActivity
 
         tMapGPS.OpenGps();
 
-
     }
 
     @Override
@@ -240,7 +245,69 @@ public class ResultActivity extends AppCompatActivity
         intentResult.putExtra("spotLon", spotLon);
         startActivity(intentResult);
         */
-        showSaveDialog();
+
+        saveDialog.show();
+
+        saveInfo = saveDialog.findViewById(R.id.saveText);
+        saveInfo.setText(courseInformation);
+
+        Calendar c = Calendar.getInstance();
+        mYear = c.get(Calendar.YEAR);
+        mMonth = c.get(Calendar.MONTH);
+        mDay = c.get(Calendar.DAY_OF_MONTH);
+
+        datePickerDialog = new DatePickerDialog(ResultActivity.this, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                dateText.setText(year + "/" + (month+1) + "/" + dayOfMonth);
+                sYear = Integer.toString(year);
+                sMonth = Integer.toString((month+1));
+                sDay = Integer.toString(dayOfMonth);
+
+            }
+        }, mYear, mMonth, mDay);
+
+        Button noBtn = saveDialog.findViewById(R.id.noBtn);
+        noBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                System.out.println("로그: 저장 다이얼로그 닫음");
+                saveDialog.dismiss();
+            }
+        });
+        Button saveBtn = saveDialog.findViewById(R.id.saveBtn);
+        saveBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // save 통신
+                // 날짜, 산책 제목 받아오기
+
+                // date String으로 변경하기
+                if (sMonth.length()==1){
+                    sMonth = "0"+sMonth;
+                }
+                if (sDay.length()==1){
+                    sDay = "0"+sDay;
+                }
+                date = sYear+sMonth+sDay;
+
+                title = titleText.getText().toString();
+                System.out.println("로그: save 클릭");
+                System.out.println("로그: date: "+date);
+                System.out.println("로그: title: "+title);
+
+                HttpConnectorSaveCourse saveCourseThread = new HttpConnectorSaveCourse();
+                saveCourseThread.start();
+
+            }
+
+        });
+
+
+    }
+
+    public void dateTextClicked(View view) {
+        datePickerDialog.show();
     }
 
     // 로딩중 표시할 프로그레스 다이얼로그
@@ -270,42 +337,6 @@ public class ResultActivity extends AppCompatActivity
         finish();
     }
 
-
-    public void showSaveDialog() {
-        saveDialog.show();
-        saveInfo = saveDialog.findViewById(R.id.saveText);
-        saveInfo.setText(courseInformation);
-
-        Button noBtn = saveDialog.findViewById(R.id.noBtn);
-        noBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                System.out.println("로그: 저장 다이얼로그 닫음");
-                saveDialog.dismiss();
-            }
-        });
-        Button saveBtn = saveDialog.findViewById(R.id.saveBtn);
-        saveBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // save 통신
-                // 날짜, 산책 제목 받아오기
-
-                date = dateText.getText().toString();
-                title = titleText.getText().toString();
-                System.out.println("로그: save 클릭");
-                System.out.println("로그: date: "+date);
-                System.out.println("로그: title: "+title);
-
-                HttpConnectorSaveCourse saveCourseThread = new HttpConnectorSaveCourse();
-                saveCourseThread.start();
-
-            }
-
-        });
-
-
-    }
 
     /*
     public void dateClicked(View view) {
