@@ -10,6 +10,8 @@ import android.content.SharedPreferences;
 import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -17,6 +19,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -90,6 +93,9 @@ public class ResultActivity extends AppCompatActivity
     int mYear, mMonth, mDay;
     String sYear, sMonth, sDay;
 
+    // 토스트 온 스레드를 위한 핸들러
+    Handler toastHandler;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -110,6 +116,9 @@ public class ResultActivity extends AppCompatActivity
         // 날짜, 산책 제목 받아올 변수 선언
         dateText = (TextView) saveDialog.findViewById(R.id.dateText);
         titleText = (EditText) saveDialog.findViewById(R.id.titleText);
+
+        // 토스트 온 스레드
+        toastHandler = new Handler(Looper.getMainLooper());
 
         // 로딩중 표시할 프로그레스 다이얼로그
         showDialog(1); // 대화상자 호출
@@ -346,6 +355,17 @@ public class ResultActivity extends AppCompatActivity
         dateDialog.show();
     }*/
 
+    // 스레드 위에서 토스트 메시지를 띄우기 위한 메소드
+    public void ToastMessage(String message) {
+
+        toastHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
     // 서버 통신부
 
     class HttpConnectorSaveCourse extends Thread {
@@ -390,6 +410,11 @@ public class ResultActivity extends AppCompatActivity
                 int responseCode = conn.getResponseCode();
                 System.out.println("로그: 응답 메시지: "+returnMsg);
                 System.out.println("로그: responseCode: "+responseCode);
+
+                // Toast 띄우기
+                JSONObject jsonObject = new JSONObject(returnMsg);
+                String detail = jsonObject.getString("detail");
+                ToastMessage(detail);
 
             } catch (Exception e){
                 e.printStackTrace();
