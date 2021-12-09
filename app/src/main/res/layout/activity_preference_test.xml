@@ -66,6 +66,8 @@
                     android:layout_margin="5dp"
                     android:button="@android:color/transparent"
                     android:background="@drawable/check_mountain"
+                    android:text="mountain"
+                    android:textColor="@android:color/transparent"
                     />
                 <!--강-->
                 <CheckBox
@@ -74,7 +76,9 @@
                     android:layout_height="150dp"
                     android:layout_margin="5dp"
                     android:button="@android:color/transparent"
-                    android:background="@drawable/check_river" />
+                    android:background="@drawable/check_river"
+                    android:text="river"
+                    android:textColor="@android:color/transparent"/>
                 <!--공원-->
                 <CheckBox
                     android:id="@+id/park"
@@ -82,7 +86,9 @@
                     android:layout_height="150dp"
                     android:layout_margin="5dp"
                     android:button="@android:color/transparent"
-                    android:background="@drawable/check_park" />
+                    android:background="@drawable/check_park"
+                    android:text="park"
+                    android:textColor="@android:color/transparent"/>
                 <!--호수-->
                 <CheckBox
                     android:id="@+id/lake"
@@ -90,7 +96,9 @@
                     android:layout_height="150dp"
                     android:layout_margin="5dp"
                     android:button="@android:color/transparent"
-                    android:background="@drawable/check_lake" />
+                    android:background="@drawable/check_lake"
+                    android:text="lake"
+                    android:textColor="@android:color/transparent"/>
                 <!--숲-->
                 <CheckBox
                     android:id="@+id/forest"
@@ -98,7 +106,9 @@
                     android:layout_height="150dp"
                     android:layout_margin="5dp"
                     android:button="@android:color/transparent"
-                    android:background="@drawable/check_forest" />
+                    android:background="@drawable/check_forest"
+                    android:text="forest"
+                    android:textColor="@android:color/transparent"/>
 
             </LinearLayout>
         </HorizontalScrollView>
@@ -138,15 +148,19 @@
                         android:layout_height="150dp"
                         android:layout_margin="10dp"
                         android:button="@android:color/transparent"
-                        android:background="@drawable/check_crowded" />
+                        android:background="@drawable/check_crowded"
+                        android:text="crowded"
+                        android:textColor="@android:color/transparent"/>
 
                     <CheckBox
-                        android:id="@+id/show"
+                        android:id="@+id/statue"
                         android:layout_width="150dp"
                         android:layout_height="150dp"
                         android:layout_margin="10dp"
                         android:button="@android:color/transparent"
-                        android:background="@drawable/check_show" />
+                        android:background="@drawable/check_statue"
+                        android:text="statue"
+                        android:textColor="@android:color/transparent"/>
                 </LinearLayout>
 
                 <!--둘째 줄-->
@@ -161,7 +175,9 @@
                         android:layout_height="150dp"
                         android:layout_margin="10dp"
                         android:button="@android:color/transparent"
-                        android:background="@drawable/check_scenery" />
+                        android:background="@drawable/check_scenery"
+                        android:text="scenery"
+                        android:textColor="@android:color/transparent"/>
 
                     <CheckBox
                         android:id="@+id/pet"
@@ -169,7 +185,9 @@
                         android:layout_height="150dp"
                         android:layout_margin="10dp"
                         android:button="@android:color/transparent"
-                        android:background="@drawable/check_pet" />
+                        android:background="@drawable/check_pet"
+                        android:text="pet"
+                        android:textColor="@android:color/transparent"/>
                 </LinearLayout>
 
                 <!--셋째 줄-->
@@ -184,7 +202,9 @@
                         android:layout_height="150dp"
                         android:layout_margin="10dp"
                         android:button="@android:color/transparent"
-                        android:background="@drawable/check_exercise" />
+                        android:background="@drawable/check_exercise"
+                        android:text="exercise"
+                        android:textColor="@android:color/transparent"/>
 
                     <CheckBox
                         android:id="@+id/quiet"
@@ -192,7 +212,9 @@
                         android:layout_height="150dp"
                         android:layout_margin="10dp"
                         android:button="@android:color/transparent"
-                        android:background="@drawable/check_quiet" />
+                        android:background="@drawable/check_quiet"
+                        android:text="quiet"
+                        android:textColor="@android:color/transparent"/>
                 </LinearLayout>
 
                 <!--넷째 줄-->
@@ -207,15 +229,9 @@
                         android:layout_height="150dp"
                         android:layout_margin="10dp"
                         android:button="@android:color/transparent"
-                        android:background="@drawable/check_walk" />
-
-                    <CheckBox
-                        android:id="@+id/statue"
-                        android:layout_width="150dp"
-                        android:layout_height="150dp"
-                        android:layout_margin="10dp"
-                        android:button="@android:color/transparent"
-                        android:background="@drawable/check_statue" />
+                        android:background="@drawable/check_walk"
+                        android:text="walk"
+                        android:textColor="@android:color/transparent"/>
                 </LinearLayout>
 
             </LinearLayout>

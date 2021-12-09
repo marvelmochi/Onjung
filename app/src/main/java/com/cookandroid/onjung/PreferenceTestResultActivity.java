@@ -1,6 +1,9 @@
 package com.cookandroid.onjung;
 
 import android.Manifest;
+import android.app.Dialog;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.Location;
 import android.os.Build;
@@ -10,16 +13,27 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.skt.Tmap.TMapData;
 import com.skt.Tmap.TMapGpsManager;
+import com.skt.Tmap.TMapPoint;
+import com.skt.Tmap.TMapPolyLine;
 import com.skt.Tmap.TMapView;
 
+import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class PreferenceTestResultActivity extends AppCompatActivity implements TMapGpsManager.onLocationChangedCallback {
+
+    // 인텐트로 액티비티 간 데이터 전달
+    String myData;
 
     String API_Key = "l7xxa08e5b27d8fb417f9d09d0bc162c7df9";
 
@@ -27,6 +41,27 @@ public class PreferenceTestResultActivity extends AppCompatActivity implements T
     TMapView tMapView = null;
     // T Map GPS
     TMapGpsManager tMapGPS = null;
+
+    // 전역변수 선언
+    ArrayList<String> recentPosition;
+    ArrayList<String> spotName;
+    ArrayList<String> spotLat;
+    ArrayList<String> spotLon;
+    ArrayList<String> spotId;
+
+    // 코스 정보를 보여줄 텍스트뷰
+    TextView courseInfo;
+    TextView saveInfo;
+    // 경유지 이름을 저장할 문자열
+    String spotnameString = "";
+    // 산책코스 거리를 저장할 문자열
+    double distance;
+    String courseDistance = Double.toString(distance);
+    // 거리 km로 변환시킬 것!!
+    // 산책 정보를 저장할 문자열 전체
+    String courseInformation;
+
+    String memberId;
 
     //플로팅
     private Animation fab_open, fab_close, fab_rotate_open, fab_rotate_close;
@@ -98,7 +133,6 @@ public class PreferenceTestResultActivity extends AppCompatActivity implements T
             @Override
             public void onClick(View v) {
                 anim();
-                Toast.makeText(PreferenceTestResultActivity.this, "Floating Action Button", Toast.LENGTH_SHORT).show();
             }
         });
         fab1.setOnClickListener(new View.OnClickListener() {
@@ -126,12 +160,104 @@ public class PreferenceTestResultActivity extends AppCompatActivity implements T
                 Toast.makeText(PreferenceTestResultActivity.this, "산책 일정", Toast.LENGTH_SHORT).show();
             }
         });
+
+        // 로딩중 표시할 프로그레스 다이얼로그
+        showDialog(1); // 대화상자 호출
+
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                // 20초가 지나면 다이얼로그 닫기
+                TimerTask task = new TimerTask() {
+                    @Override
+                    public void run() {
+                        removeDialog(1);
+
+                    }
+                };
+
+                Timer timer = new Timer();
+                timer.schedule(task, 20000);
+            }
+        });
+        thread.start();
+
+        // 이전 액티비티에서 데이터 받아오기
+        Intent intent = getIntent();
+        myData = intent.getStringExtra("mydata");
+        System.out.println("로그: mydata: " + myData);
+        recentPosition = intent.getStringArrayListExtra("recentPosition");
+        System.out.println("로그: 현위치: " + recentPosition.get(0) + ", " + recentPosition.get(1));
+        spotName = intent.getStringArrayListExtra("spotName");
+        spotLat = intent.getStringArrayListExtra("spotLat");
+        spotLon = intent.getStringArrayListExtra("spotLon");
+        spotId = intent.getStringArrayListExtra("spotId");
+
+        for (int i=0; i<spotId.size(); i++) {
+            System.out.println("로그: 전달받은 인텐트: " + spotId.get(i));
+        }
+        // 텍스트뷰에 코스 정보 표시하기
+        for (int i = 0; i < spotName.size(); i++) {
+            if (i == spotName.size() - 1) {
+                spotnameString += spotName.get(i) + "을(를) 경유하는 산책 코스입니다. \n";
+
+                break;
+            }
+            //System.out.println("로그: spotName: " + spotName.getClass().getName());
+            spotnameString += spotName.get(i) + ", ";
+        }
+
+        courseInfo = (TextView) findViewById(R.id.courseInfo);
+        courseInfo.setText(spotnameString);
     }
 
     @Override
     public void onLocationChange(Location location) {
         tMapView.setLocationPoint(location.getLongitude(), location.getLatitude());
         tMapView.setCenterPoint(location.getLongitude(), location.getLatitude());
+
+        // 현 위치, 경유지 티맵포인트 설정
+
+        TMapPoint home = new TMapPoint(Double.parseDouble(recentPosition.get(0)), Double.parseDouble(recentPosition.get(1)));
+
+
+        ArrayList<TMapPoint> spots = new ArrayList<>();
+        TMapData tmapdata = new TMapData();
+
+        for (int i = 0; i < spotName.size(); i++) {
+            TMapPoint spot = new TMapPoint(Double.parseDouble(spotLat.get(i)), Double.parseDouble(spotLon.get(i)));
+            spots.add(spot);
+        }
+
+
+        tmapdata.findPathDataWithType(TMapData.TMapPathType.PEDESTRIAN_PATH, home, home, spots, 10, new TMapData.FindPathDataListenerCallback() {
+            @Override
+            public void onFindPathData(TMapPolyLine tMapPolyLine) {
+                tMapView.addTMapPath(tMapPolyLine);
+                distance = tMapPolyLine.getDistance();
+                courseInfo.append("총 거리: " + distance); // km 표시로 수정 필요
+                //saveInfo.append("총 거리: " + distance); // km 표시로 수정 필요
+                courseInformation = courseInfo.getText().toString();
+            }
+        });
+    }
+
+    // 로딩중 표시할 프로그레스 다이얼로그
+    @Override
+    protected Dialog onCreateDialog(int id) {
+        ProgressDialog dialog = new ProgressDialog(this); // 사용자에게 보여줄 대화상자
+        dialog.setTitle("산책 코스를 불러오는 중...");
+        dialog.setMessage("잠시만 기다려주세요...");
+        dialog.setButton(ProgressDialog.BUTTON_NEGATIVE, "취소",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                }
+        );
+
+        return dialog;
     }
 
     @Override

@@ -28,6 +28,8 @@
         <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/drawable/check_show.xml" value="0.26979166666666665" />
         <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/drawable/check_statue.xml" value="0.26979166666666665" />
         <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/drawable/check_walk.xml" value="0.26979166666666665" />
+        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/drawable/progress_bg.xml" value="0.1" />
+        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/drawable/progress_image.xml" value="0.1" />
         <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/drawable/round_border.xml" value="0.26979166666666665" />
         <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/drawable/seek_thumb.xml" value="0.14583333333333334" />
         <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/layout/activity_atest.xml" value="0.190234375" />
@@ -38,16 +40,17 @@
         <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/layout/activity_friend.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/layout/activity_login.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/layout/activity_preference_test.xml" value="0.264" />
-        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/layout/activity_preference_test_result.xml" value="0.12916666666666668" />
+        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/layout/activity_preference_test.xml" value="0.1" />
+        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/layout/activity_preference_test_result.xml" value="0.1" />
         <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/layout/activity_question.xml" value="0.264" />
         <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/layout/activity_result.xml" value="0.176" />
         <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/layout/activity_save_walk.xml" value="0.25364583333333335" />
-        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/layout/activity_select.xml" value="0.2" />
+        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/layout/activity_select.xml" value="0.1" />
         <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/layout/activity_sign_up.xml" value="0.2" />
         <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/layout/activity_splash.xml" value="0.1" />
         <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/layout/dialog_date_picker.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/layout/dialog_friend_location.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/layout/dialog_progress.xml" value="0.1" />
         <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/layout/dialog_quit.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/layout/dialog_satisfaction_score.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/layout/dialog_save_walk.xml" value="0.25364583333333335" />

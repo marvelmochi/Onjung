@@ -196,8 +196,8 @@ public class SelectActivity extends AppCompatActivity
             if (spot.get(i).equals("호수/저수지")) spot.set(i, "lake");
             if (spot.get(i).equals("공원"))spot.set(i,"park");
             if (spot.get(i).equals("숲"))spot.set(i,"forest");
-            if (spot.get(i).equals("한강대교"))spot.set(i,"bridge");
-            if (spot.get(i).equals("한강공원"))spot.set(i,"river");
+            if (spot.get(i).equals("대교"))spot.set(i,"bridge");
+            if (spot.get(i).equals("강/하천"))spot.set(i,"river");
 
             if (spot.get(i).equals("문화재"))spot.set(i,"heritage");
             if (spot.get(i).equals("한옥마을"))spot.set(i,"hanok");

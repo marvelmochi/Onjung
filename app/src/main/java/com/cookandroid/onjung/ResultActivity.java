@@ -231,7 +231,6 @@ public class ResultActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 anim();
-                Toast.makeText(ResultActivity.this, "Floating Action Button", Toast.LENGTH_SHORT).show();
             }
         });
         fab1.setOnClickListener(new View.OnClickListener() {
