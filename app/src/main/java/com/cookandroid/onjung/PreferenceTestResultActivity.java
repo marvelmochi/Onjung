@@ -2,8 +2,6 @@ package com.cookandroid.onjung;
 
 import android.Manifest;
 import android.app.Dialog;
-import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.Location;
 import android.os.Build;
@@ -30,7 +28,8 @@ import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class PreferenceTestResultActivity extends AppCompatActivity implements TMapGpsManager.onLocationChangedCallback {
+public class PreferenceTestResultActivity extends AppCompatActivity
+        implements TMapGpsManager.onLocationChangedCallback {
 
     // 인텐트로 액티비티 간 데이터 전달
     String myData;
@@ -67,6 +66,7 @@ public class PreferenceTestResultActivity extends AppCompatActivity implements T
     private Animation fab_open, fab_close, fab_rotate_open, fab_rotate_close;
     private Boolean isFabOpen = false;
     private FloatingActionButton fab, fab1, fab2, fab3;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -209,6 +209,7 @@ public class PreferenceTestResultActivity extends AppCompatActivity implements T
 
         courseInfo = (TextView) findViewById(R.id.courseInfo);
         courseInfo.setText(spotnameString);
+
     }
 
     @Override
@@ -245,7 +246,8 @@ public class PreferenceTestResultActivity extends AppCompatActivity implements T
     // 로딩중 표시할 프로그레스 다이얼로그
     @Override
     protected Dialog onCreateDialog(int id) {
-        ProgressDialog dialog = new ProgressDialog(this); // 사용자에게 보여줄 대화상자
+        LoadingDialog dialog = new LoadingDialog(this); // 사용자에게 보여줄 대화상자
+        /*
         dialog.setTitle("산책 코스를 불러오는 중...");
         dialog.setMessage("잠시만 기다려주세요...");
         dialog.setButton(ProgressDialog.BUTTON_NEGATIVE, "취소",
@@ -256,6 +258,8 @@ public class PreferenceTestResultActivity extends AppCompatActivity implements T
                     }
                 }
         );
+
+         */
 
         return dialog;
     }
