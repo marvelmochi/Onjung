@@ -13,6 +13,13 @@ import androidx.core.app.ActivityCompat;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
 public class MainActivity extends AppCompatActivity {
 
     // 하단 내비게이션 바 선언
@@ -26,16 +33,27 @@ public class MainActivity extends AppCompatActivity {
     private long backKeyPressedTime = 0;
     private Toast toast;
 
+    // 멤버 아이디
+    String memberId;
+
+    //
+    int ratingNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+
         // SharedPreferences Test
         SharedPreferences preferences = getSharedPreferences("UserInfo", MODE_PRIVATE);
-        String test = preferences.getString("memberId","");
-        System.out.println("로그: 멤버아이디 불러오기(Main): " +test);
+        memberId = preferences.getString("memberId", "");
+        System.out.println("로그: 멤버아이디 불러오기(Main): " + memberId);
+
+        // 평가 횟수 받아오기
+        HttpConnectorRatingNumber ratingNumberThread = new HttpConnectorRatingNumber();
+        ratingNumberThread.start();
 
         // 하단 내비게이션 바 생성
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
@@ -93,8 +111,56 @@ public class MainActivity extends AppCompatActivity {
 
     // 취향을 분석한 산책로 추천 클릭
     public void preferencebtnClicked(View view) {
-        Intent intent = new Intent(this, PreferenceTestResultActivity.class);
-        startActivity(intent);
+
+        if (ratingNumber == 0) {
+            // 평가 내역이 없을 경우
+            Intent intent = new Intent(this, PreferenceTestActivity.class);
+            startActivity(intent);
+        } else {
+            // 평가 내역이 있을 경우
+            Intent intent = new Intent(this, PreferenceTestResultActivity.class);
+            startActivity(intent);
+        }
+
+    }
+
+    class HttpConnectorRatingNumber extends Thread {
+        URL url;
+        HttpURLConnection conn;
+
+        @Override
+        public void run() {
+            try {
+                System.out.println("로그: memberId: " + memberId);
+                url = new URL("http://smwu.onjung.tk/rating/" + memberId);
+                conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("GET");
+                BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                String returnMsg = in.readLine();
+                System.out.println("로그: 응답 메시지: " + returnMsg);
+                jsonParserRatingNumber(returnMsg);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.out.println("로그: 평가 개수 확인 예외 발생");
+            }
+
+        }
+    }
+
+    public void jsonParserRatingNumber(String resultJson) {
+        try {
+            // 응답으로 받은 데이터를 JSONObject에 넣음
+            JSONObject dataObject = new JSONObject(resultJson);
+            ratingNumber = dataObject.getInt("data");
+            System.out.println("로그: data: " + ratingNumber);
+
+            // 평가 횟수를 핸들러로 전달
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     // 하단 내비게이션 -> 캘린더 프래그먼트 클릭
