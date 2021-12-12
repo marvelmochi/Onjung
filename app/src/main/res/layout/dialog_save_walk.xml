@@ -30,7 +30,7 @@
         <!--날짜 선택-->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_margin="10dp"
             android:background="@drawable/round_border"
             android:orientation="horizontal"
@@ -52,7 +52,7 @@
                 android:layout_weight="3"
                 android:background="@drawable/border_line"
                 android:gravity="center"
-                android:onClick="dateTextClicked"
+
                 android:paddingHorizontal="5dp"
 
                 android:textAlignment="center"
@@ -62,10 +62,10 @@
             <!--버튼으로 쓸 이미지뷰-->
             <ImageView
                 android:layout_width="0dp"
-                android:layout_height="19dp"
+                android:layout_height="35dp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:clickable="true"
+                android:onClick="dateTextClicked"
                 android:src="@drawable/ic_bottom_navigation_schedule"
                 />
         </LinearLayout>

@@ -40,7 +40,7 @@
     <ScrollView
         android:id="@+id/scroll"
         android:layout_width="match_parent"
-        android:layout_height="192dp"
+        android:layout_height="match_parent"
         android:background="@drawable/border_line">
 
         <LinearLayout

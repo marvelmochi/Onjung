@@ -71,7 +71,6 @@ public class SelectActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select);
 
-
         // 체크박스 접근
         mountain = (CheckBox) findViewById(R.id.mountain);
         park = (CheckBox) findViewById(R.id.park);
