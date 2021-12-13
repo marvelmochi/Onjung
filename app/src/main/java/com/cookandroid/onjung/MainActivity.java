@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -36,8 +37,11 @@ public class MainActivity extends AppCompatActivity {
     // 멤버 아이디
     String memberId;
 
-    //
+    // 평가 이력 개수
     int ratingNumber;
+
+    TextView userNameText;
+    String userName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,11 +49,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-
         // SharedPreferences Test
         SharedPreferences preferences = getSharedPreferences("UserInfo", MODE_PRIVATE);
         memberId = preferences.getString("memberId", "");
+
         System.out.println("로그: 멤버아이디 불러오기(Main): " + memberId);
+
+
 
         // 평가 횟수 받아오기
         HttpConnectorRatingNumber ratingNumberThread = new HttpConnectorRatingNumber();

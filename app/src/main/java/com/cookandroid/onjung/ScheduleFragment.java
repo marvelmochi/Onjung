@@ -2,13 +2,14 @@ package com.cookandroid.onjung;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
-import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,7 @@ import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -33,8 +35,6 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 public class ScheduleFragment extends Fragment {
     ViewGroup viewGroup;
@@ -65,18 +65,38 @@ public class ScheduleFragment extends Fragment {
     Dialog courseDialog;
     Button okBtn;
     TextView cdTitle;
+    // walkId 저장할 리스트
+    //ArrayList<String> walkIdList;
 
     // T Map 앱 키 등록
     String API_Key = "l7xxa57022c9d2f9453db8f198c5ca511fdb";
     TMapView tMapView = null;
 
-    // 받아온 위, 경도 정보를 저장할 HashMap
-    Map<String, ArrayList<ArrayList<String>>> locationMap = new HashMap<String, ArrayList<ArrayList<String>>>();
-
     // 산책 완료 버튼
     Button completeBtn;
-
     String walkId;
+
+    // 토스트 온 스레드를 위한 핸들러
+    Handler toastHandler;
+    String httpCompleteMsg;
+
+    // 만족도 조사 다이얼로그
+    Dialog satisfactionDialog;
+
+    // UserInfo(title) 전달할 SharedPrefereces
+    SharedPreferences preferences;
+
+    ArrayList<String> wnameList;
+    ArrayList<String> wlatList;
+    ArrayList<String> wlonList;
+
+    String home_lat;
+    String jname_s;
+    String jlat_s;
+    String jlon_s;
+
+    // Course 정보 핸들러
+    CourseHandler handlerCourse = new CourseHandler();
 
     @Nullable
     @Override
@@ -116,9 +136,10 @@ public class ScheduleFragment extends Fragment {
 
 
         // Using SharedPreferences on Fragment
-        SharedPreferences preferences = this.getActivity().getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
+        preferences = this.getActivity().getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
         memberId = preferences.getString("memberId", "");
         System.out.println("로그: 멤버아이디 불러오기(Schedule): " + memberId);
+
 
         // 리니어레이아웃 접근
         linearLayout = viewGroup.findViewById(R.id.scheduleView);
@@ -127,6 +148,9 @@ public class ScheduleFragment extends Fragment {
         courseDialog = new Dialog(getContext());
         courseDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         courseDialog.setContentView(R.layout.dialog_show_course);
+
+        // walkId 저장할 리스트
+        ArrayList<String> walkIdList = new ArrayList<>();
 
         // 경로 다이얼로그에 있는 요소 접근
         okBtn = courseDialog.findViewById(R.id.cd_okBtn);
@@ -151,38 +175,39 @@ public class ScheduleFragment extends Fragment {
         LinearLayout Tmap = (LinearLayout) courseDialog.findViewById(R.id.map);
         Tmap.addView(tMapView);
 
+        /*
         // 산책 완료 버튼
         completeBtn = courseDialog.findViewById(R.id.completeBtn);
         completeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // 산책 완료 통신
                 HttpConnectorComplete completeThread = new HttpConnectorComplete();
                 completeThread.start();
+
+                // 만족도 조사 다이얼로그 띄우기
+                satisfactionDialog = new Dialog(getContext());
+                satisfactionDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                satisfactionDialog.setContentView(R.layout.dialog_satisfaction);
+                satisfactionDialog.show();
+
+
             }
-        });
+        });*/
+
+        // 토스트 온 스레드
+        toastHandler = new Handler(Looper.getMainLooper());
+
+        // CourseInfo 전달을 위한 ArrayList 생성;
+        wnameList = new ArrayList<>();
+        wlatList = new ArrayList<>();
+        wlonList = new ArrayList<>();
 
         return viewGroup;
 
     }
 
-    class HttpConnectorComplete extends Thread{
-        URL url;
-        HttpURLConnection conn;
-        @Override
-        public void run(){
-            try{
-                System.out.println("로그: walkId: "+ walkId);
-                url = new URL("http://smwu.onjung.tk/walk/toggle/"+walkId);
-                conn = (HttpURLConnection) url.openConnection();
-                conn.setRequestMethod("GET");
-                BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-                String returnMsg = in.readLine();
-                System.out.println("로그: 응답 메시지: " + returnMsg);
 
-
-            }catch (Exception e){e.printStackTrace(); System.out.println("로그: 산책 저장 예외 발생");}
-        }
-    }
 
     class HttpConnectorSchedule extends Thread {
         URL url;
@@ -214,6 +239,30 @@ public class ScheduleFragment extends Fragment {
         }
     }
 
+    class HttpConectorCourse extends Thread {
+        URL url;
+        HttpURLConnection conn;
+
+        @Override
+        public void run() {
+            try {
+                url = new URL("http://smwu.onjung.tk/walk/" + walkId);
+                conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("GET");
+                BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                String returnMsg = in.readLine();
+                System.out.println("로그: 응답 메시지: " + returnMsg);
+                System.out.println("로그: 코스 아이디: " + walkId);
+                jsonParserCourse(returnMsg);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.out.println("로그: 개별 산책일정 불러오기 예외 발생");
+            }
+        }
+
+    }
+
     public void jsonParser(String resultJson) {
         try {
 
@@ -237,12 +286,8 @@ public class ScheduleFragment extends Fragment {
                 // 산책 제목 저장할 ArrayList
                 ArrayList<String> title_List = new ArrayList<>();
 
-                // home 위도, 경도 저장할 ArrayList
-                ArrayList<String> home_List = new ArrayList<>();
-
-                // 전체 정보를 담아서 해쉬맵에 넣기 위한 ArrayList
-                ArrayList<ArrayList<String>> wholeList = new ArrayList<>();
-
+                // walkId 저장할 리스트
+                ArrayList<String> walkIdList = new ArrayList<>();
                 for (int i = 0; i < jsonArray.length(); i++) {
 
                     // 각 일정을 String으로 변환
@@ -254,52 +299,17 @@ public class ScheduleFragment extends Fragment {
                     //System.out.println("로그: 산책 제목: " + schedule_title);
                     title_List.add(schedule_title);
 
-                    String home_lat = jsonObject.getString("latitude");
-                    String home_lon = jsonObject.getString("longitude");
-
                     walkId = jsonObject.getString("walkId");
+                    walkIdList.add(walkId);
+                    System.out.println("로그: walkId리스트 " + i + "번째: " + walkIdList.get(i));
 
-                    home_List.add(home_lat);
-                    home_List.add(home_lon);
-                    System.out.println("로그: 받아온 홈 위도, 경도: " + home_lat + ", " + home_lon);
-                    wholeList.add(home_List); // 전체 어레이리스트에 현위치 위,경도 담음
-
-                    JSONArray wayPointArray = jsonObject.getJSONArray("wayPoint");
-
-                    // 경유지 위도, 경도, 이름 리스트
-                    ArrayList<String> latList = new ArrayList<>();
-                    ArrayList<String> lonList = new ArrayList<>();
-                    ArrayList<String> nameList = new ArrayList<>();
-                    for (int j = 0; j < wayPointArray.length(); j++) {
-                        System.out.println("로그: 경유지 저장 확인: " + j + "번째: " + wayPointArray.get(j));
-                        String wayPointString = wayPointArray.get(j).toString();
-                        JSONObject jsonObject1 = new JSONObject(wayPointString);
-                        String wlat = jsonObject1.getString("latitude");
-                        String wlon = jsonObject1.getString("longitude");
-                        String wname = jsonObject1.getString("name");
-                        System.out.println("로그: wname: "+wname);
-
-                        latList.add(wlat);
-                        lonList.add(wlon);
-                        nameList.add(wname);
-                    }
-                    wholeList.add(latList); // 전체 어레이리스트에 경유지 위도 리스트 담음
-                    wholeList.add(lonList); // 전체 어레이리스트에 경유지 경도 리스트 담음
-                    wholeList.add(nameList); // 전체 어레이리스트에 경유지 산책지이름 리스트 담음
-
-                    locationMap.put(schedule_title, wholeList); // 해쉬맵에 전체 리스트 담음
                 }
-
-                //해쉬맵 테스트
-
-                // 해쉬맵 보류 -> API 추가할 수 있을까..?
-                System.out.println("로그 해쉬맵: "+ locationMap.get("서서울"));
-
 
                 // 산책 제목을 핸들러로 전달하기 위해
                 Message message = handler.obtainMessage();
                 Bundle bundle = new Bundle();
                 bundle.putStringArrayList("title", title_List);
+                bundle.putStringArrayList("walkIdList", walkIdList);
                 message.setData(bundle);
                 handler.sendMessage(message);
             }
@@ -311,6 +321,66 @@ public class ScheduleFragment extends Fragment {
         }
     }
 
+    public void jsonParserCourse(String resultJson) {
+        try {
+            // 응답으로 받은 데이터를 JSONObject에 넣음
+            JSONObject jsonObject = new JSONObject(resultJson);
+            // JSONObject에서 "data" 부분을 추출
+            String data = jsonObject.getString("data");
+            JSONObject dataObject = new JSONObject(data);
+            String home_lat = dataObject.getString("latitude");
+            String home_lon = dataObject.getString("longitude");
+
+            JSONArray wayArray = dataObject.getJSONArray("wayPoint");
+            System.out.println("로그: 홈 위경도: "+home_lat+", "+home_lon);
+
+            for(int i=0; i<wayArray.length(); i++){
+                System.out.println("로그: wayArray.get("+i+")"+wayArray.get(i));
+                String way = wayArray.get(i).toString();
+                JSONObject jsonObject1 = new JSONObject(way);
+                String wname = jsonObject1.getString("name");
+                wnameList.add(wname);
+                String wlat = jsonObject1.getString("latitude");
+                wlatList.add(wlat);
+                String wlon = jsonObject1.getString("longitude");
+                wlonList.add(wlon);
+                System.out.println("로그: 이름/위/경도: "+wname+", "+wlat+", "+ wlon);
+
+            }
+
+            JSONArray jname = new JSONArray();
+            JSONArray jlat = new JSONArray();
+            JSONArray jlon = new JSONArray();
+
+            for(int i=0; i<wnameList.size(); i++){
+                jname.put(wnameList.get(i));
+                jlat.put(wlatList.get(i));
+                jlon.put(wlonList.get(i));
+            }
+            jname_s = jname.toString();
+            jlat_s = jlat.toString();
+            jlon_s = jlon.toString();
+
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putString("home_lat", home_lat);
+            editor.putString("home_lon", home_lon);
+            editor.putString("jname", jname_s);
+            editor.putString("jlat", jlat_s);
+            editor.putString("jlon", jlon_s);
+            editor.apply();
+
+            Intent intent = new Intent(getActivity(), ShowCourseActivity.class);
+            startActivity(intent);
+
+
+
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("로그: 파싱 예외 발생2");
+        }
+    }
 
     class ValueHandler extends Handler {
         @Override
@@ -321,6 +391,8 @@ public class ScheduleFragment extends Fragment {
             //String returnmsg = bundle.getString("returnMsg");
             ArrayList<String> titleArrayList = new ArrayList<>();
             titleArrayList = bundle.getStringArrayList("title");
+            ArrayList<String> walkIdArrayList = new ArrayList<>();
+            walkIdArrayList = bundle.getStringArrayList("walkIdList");
 
             //System.out.println("로그: 핸들러에서 전달된 제목 리스트: "+titleArrayList.get(0));
 
@@ -334,8 +406,13 @@ public class ScheduleFragment extends Fragment {
                 textView.setTypeface(null, Typeface.BOLD);
                 textView.setBackgroundColor(Color.rgb(169, 214, 151));
 
-                DisplayMetrics dm = getResources().getDisplayMetrics();
-                int size = Math.round(20 * dm.density);
+                // 임시로 버튼 처리
+                Button button = new Button(getContext());
+                button.setText("walkId: " + walkIdArrayList.get(i));
+                //button.setTextColor(0x707070); // 투명 텍스트
+
+                //DisplayMetrics dm = getResources().getDisplayMetrics();
+                //int size = Math.round(20 * dm.density);
                 textView.setPadding(20, 20, 20, 20);
                 LinearLayout.LayoutParams param = new LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.MATCH_PARENT,
@@ -344,28 +421,80 @@ public class ScheduleFragment extends Fragment {
                 param.leftMargin = 20;
                 param.rightMargin = 20;
                 param.gravity = Gravity.CENTER;
-
                 textView.setLayoutParams(param);
 
 
                 textView.setText(titleArrayList.get(i));
+
                 linearLayout.addView(textView);
+                linearLayout.addView(button);
                 //System.out.println("로그: add TextView");
 
-                textView.setOnClickListener(new View.OnClickListener() {
+                button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        courseDialog.show();
+                        //courseDialog.show();
                         //System.out.println("로그: 클릭 이벤트 발생");
-                        cdTitle.setText(textView.getText().toString());
+                        //cdTitle.setText(textView.getText().toString());
 
+                        // Using SharedPreferences on Fragment
+                        SharedPreferences.Editor editor = preferences.edit();
+                        editor.putString("title", textView.getText().toString());
+                        editor.apply();
+
+                        HttpConectorCourse courseThread = new HttpConectorCourse();
+                        courseThread.start();
 
                     }
                 });
             }
 
 
+
+
+
         }
+    }
+
+    class CourseHandler extends Handler{
+        @Override
+        public void handleMessage(@NonNull Message msg){
+            super.handleMessage(msg);
+            Bundle bundle = msg.getData();
+            home_lat = bundle.getString("home_lat");
+            System.out.println("로그: 핸들러 전달(home_lat): "+home_lat);
+
+
+            /*
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putString("home_lat", home_lat);
+            editor.putString("jname", jname_s);
+            editor.apply();
+
+            Intent intent = new Intent(getActivity(), ShowCourseActivity.class);
+            startActivity(intent);
+
+
+             */
+
+            /*
+
+            editor.commit();
+
+             */
+
+        }
+    }
+
+    // 스레드 위에서 토스트 메시지를 띄우기 위한 메소드
+    public void ToastMessage(String message) {
+
+        toastHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
+            }
+        });
     }
 }
 
