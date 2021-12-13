@@ -5,10 +5,13 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -18,7 +21,10 @@ import com.skt.Tmap.TMapPolyLine;
 import com.skt.Tmap.TMapView;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
@@ -36,13 +42,18 @@ public class ShowCourseActivity extends AppCompatActivity  {
     String title;
     String home_lat, home_lon;
     String jname_s, jlat_s, jlon_s;
-
+    String completeFlag;
     // 경로 정보 저장할 ArrayList
     ArrayList<String> nameList, latList, lonList;
 
-
-    //
+    // 산책 완료
     Button completeBtn;
+    String httpCompleteMsg;
+    String walkId;
+
+    // 토스트 온 스레드를 위한 핸들러
+    Handler toastHandler;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -69,6 +80,8 @@ public class ShowCourseActivity extends AppCompatActivity  {
         jname_s = preferences.getString("jname", "");
         jlat_s = preferences.getString("jlat", "");
         jlon_s = preferences.getString("jlon", "");
+        walkId = preferences.getString("walkId","");
+        //completeFlag = preferences.getString("completeFlag", "");
 
         System.out.println("로그: 홈 위도 불러오기: " + home_lat);
         System.out.println("로그: 경유지명 불러오기: " + jname_s);
@@ -153,6 +166,9 @@ public class ShowCourseActivity extends AppCompatActivity  {
             }
         });
 
+        // 토스트 온 스레드
+        toastHandler = new Handler(Looper.getMainLooper());
+
     }
 
 
@@ -189,7 +205,7 @@ public class ShowCourseActivity extends AppCompatActivity  {
         @Override
         public void run() {
             try {
-                /*
+
                 System.out.println("로그: walkId: " + walkId);
                 url = new URL("http://smwu.onjung.tk/walk/toggle/" + walkId);
                 conn = (HttpURLConnection) url.openConnection();
@@ -202,7 +218,6 @@ public class ShowCourseActivity extends AppCompatActivity  {
                 httpCompleteMsg = jsonObject.getString("detail");
                 ToastMessage(httpCompleteMsg);
 
-                 */
 
 
             } catch (Exception e) {
@@ -210,5 +225,16 @@ public class ShowCourseActivity extends AppCompatActivity  {
                 System.out.println("로그: 산책 저장 예외 발생");
             }
         }
+    }
+
+    // 스레드 위에서 토스트 메시지를 띄우기 위한 메소드
+    public void ToastMessage(String message) {
+
+        toastHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
+            }
+        });
     }
 }

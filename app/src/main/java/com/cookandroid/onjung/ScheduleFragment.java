@@ -48,6 +48,7 @@ public class ScheduleFragment extends Fragment {
     String memberId;
 
     ValueHandler handler = new ValueHandler();
+
     String returnMsg;
 
     LinearLayout linearLayout;
@@ -78,10 +79,8 @@ public class ScheduleFragment extends Fragment {
 
     // 토스트 온 스레드를 위한 핸들러
     Handler toastHandler;
-    String httpCompleteMsg;
 
-    // 만족도 조사 다이얼로그
-    Dialog satisfactionDialog;
+
 
     // UserInfo(title) 전달할 SharedPrefereces
     SharedPreferences preferences;
@@ -90,14 +89,10 @@ public class ScheduleFragment extends Fragment {
     ArrayList<String> wlatList;
     ArrayList<String> wlonList;
 
-    String home_lat;
     String jname_s;
     String jlat_s;
     String jlon_s;
-
-    // Course 정보 핸들러
-    CourseHandler handlerCourse = new CourseHandler();
-
+    
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -208,7 +203,6 @@ public class ScheduleFragment extends Fragment {
     }
 
 
-
     class HttpConnectorSchedule extends Thread {
         URL url;
         HttpURLConnection conn;
@@ -274,6 +268,8 @@ public class ScheduleFragment extends Fragment {
             if (code == 400) {
                 System.out.println("로그: 코드 400");
                 linearLayout.removeAllViewsInLayout();
+                //linearLayout.removeAllViews();
+
                 System.out.println("로그: remove on 400");
             } else {
 
@@ -288,6 +284,10 @@ public class ScheduleFragment extends Fragment {
 
                 // walkId 저장할 리스트
                 ArrayList<String> walkIdList = new ArrayList<>();
+
+                // completeFlag 저장할 리스트
+                ArrayList<Integer> flagList = new ArrayList<>();
+
                 for (int i = 0; i < jsonArray.length(); i++) {
 
                     // 각 일정을 String으로 변환
@@ -303,6 +303,8 @@ public class ScheduleFragment extends Fragment {
                     walkIdList.add(walkId);
                     System.out.println("로그: walkId리스트 " + i + "번째: " + walkIdList.get(i));
 
+                    int complete_flag = jsonObject.getInt("completeFlag");
+                    flagList.add(complete_flag);
                 }
 
                 // 산책 제목을 핸들러로 전달하기 위해
@@ -310,6 +312,7 @@ public class ScheduleFragment extends Fragment {
                 Bundle bundle = new Bundle();
                 bundle.putStringArrayList("title", title_List);
                 bundle.putStringArrayList("walkIdList", walkIdList);
+                bundle.putIntegerArrayList("completeFlag", flagList);
                 message.setData(bundle);
                 handler.sendMessage(message);
             }
@@ -331,11 +334,15 @@ public class ScheduleFragment extends Fragment {
             String home_lat = dataObject.getString("latitude");
             String home_lon = dataObject.getString("longitude");
 
-            JSONArray wayArray = dataObject.getJSONArray("wayPoint");
-            System.out.println("로그: 홈 위경도: "+home_lat+", "+home_lon);
+            ArrayList<Integer> flagList = new ArrayList<>();
+            int completeFlag = dataObject.getInt("completeFlag");
+            flagList.add(completeFlag);
 
-            for(int i=0; i<wayArray.length(); i++){
-                System.out.println("로그: wayArray.get("+i+")"+wayArray.get(i));
+            JSONArray wayArray = dataObject.getJSONArray("wayPoint");
+            System.out.println("로그: 홈 위경도: " + home_lat + ", " + home_lon);
+
+            for (int i = 0; i < wayArray.length(); i++) {
+                System.out.println("로그: wayArray.get(" + i + ")" + wayArray.get(i));
                 String way = wayArray.get(i).toString();
                 JSONObject jsonObject1 = new JSONObject(way);
                 String wname = jsonObject1.getString("name");
@@ -344,7 +351,7 @@ public class ScheduleFragment extends Fragment {
                 wlatList.add(wlat);
                 String wlon = jsonObject1.getString("longitude");
                 wlonList.add(wlon);
-                System.out.println("로그: 이름/위/경도: "+wname+", "+wlat+", "+ wlon);
+                System.out.println("로그: 이름/위/경도: " + wname + ", " + wlat + ", " + wlon);
 
             }
 
@@ -352,7 +359,7 @@ public class ScheduleFragment extends Fragment {
             JSONArray jlat = new JSONArray();
             JSONArray jlon = new JSONArray();
 
-            for(int i=0; i<wnameList.size(); i++){
+            for (int i = 0; i < wnameList.size(); i++) {
                 jname.put(wnameList.get(i));
                 jlat.put(wlatList.get(i));
                 jlon.put(wlonList.get(i));
@@ -364,16 +371,15 @@ public class ScheduleFragment extends Fragment {
             SharedPreferences.Editor editor = preferences.edit();
             editor.putString("home_lat", home_lat);
             editor.putString("home_lon", home_lon);
+            //editor.putInt("completeFlag", completeFlag);
             editor.putString("jname", jname_s);
             editor.putString("jlat", jlat_s);
             editor.putString("jlon", jlon_s);
+            editor.putString("walkId", walkId);
             editor.apply();
 
             Intent intent = new Intent(getActivity(), ShowCourseActivity.class);
             startActivity(intent);
-
-
-
 
 
         } catch (Exception e) {
@@ -393,6 +399,8 @@ public class ScheduleFragment extends Fragment {
             titleArrayList = bundle.getStringArrayList("title");
             ArrayList<String> walkIdArrayList = new ArrayList<>();
             walkIdArrayList = bundle.getStringArrayList("walkIdList");
+            ArrayList<Integer> flagArrayList = new ArrayList<>();
+            flagArrayList = bundle.getIntegerArrayList("completeFlag");
 
             //System.out.println("로그: 핸들러에서 전달된 제목 리스트: "+titleArrayList.get(0));
 
@@ -404,12 +412,18 @@ public class ScheduleFragment extends Fragment {
                 textView.setTextSize(22);
                 textView.setTextColor(Color.rgb(0, 0, 0));
                 textView.setTypeface(null, Typeface.BOLD);
-                textView.setBackgroundColor(Color.rgb(169, 214, 151));
 
-                // 임시로 버튼 처리
+                // 산책 완료 상태에 따라 텍스트뷰 색상 변경
+                if (flagArrayList.get(i) == 0) {
+                    textView.setBackgroundColor(Color.rgb(169, 214, 151));
+                } else {
+                    textView.setBackgroundColor(Color.rgb(169, 169, 169));
+                }
+
+                // 임시로 버튼 처리!! UI는 다시 손봐야 할 듯
                 Button button = new Button(getContext());
                 button.setText("walkId: " + walkIdArrayList.get(i));
-                //button.setTextColor(0x707070); // 투명 텍스트
+                button.setTextColor(0x707070); // 투명 텍스트
 
                 //DisplayMetrics dm = getResources().getDisplayMetrics();
                 //int size = Math.round(20 * dm.density);
@@ -450,41 +464,9 @@ public class ScheduleFragment extends Fragment {
             }
 
 
-
-
-
         }
     }
 
-    class CourseHandler extends Handler{
-        @Override
-        public void handleMessage(@NonNull Message msg){
-            super.handleMessage(msg);
-            Bundle bundle = msg.getData();
-            home_lat = bundle.getString("home_lat");
-            System.out.println("로그: 핸들러 전달(home_lat): "+home_lat);
-
-
-            /*
-            SharedPreferences.Editor editor = preferences.edit();
-            editor.putString("home_lat", home_lat);
-            editor.putString("jname", jname_s);
-            editor.apply();
-
-            Intent intent = new Intent(getActivity(), ShowCourseActivity.class);
-            startActivity(intent);
-
-
-             */
-
-            /*
-
-            editor.commit();
-
-             */
-
-        }
-    }
 
     // 스레드 위에서 토스트 메시지를 띄우기 위한 메소드
     public void ToastMessage(String message) {
