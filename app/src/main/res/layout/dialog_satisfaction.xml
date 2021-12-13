@@ -53,14 +53,22 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/ratingLinear"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_margin="30dp"
-        android:layout_weight="9"
-        android:background="@drawable/round_border"
-        android:orientation="vertical" />
+        android:layout_weight="9">
+    <LinearLayout
+        android:id="@+id/linear_rating"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:padding="20dp"
+        android:orientation="vertical"
+        />
+    </ScrollView>
+
+
+
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -70,14 +78,14 @@
         android:layout_marginTop="5dp">
 
         <Button
-            android:id="@+id/completeBtn"
+            android:onClick="scoreClicked"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="20dp"
             android:text="평가 완료" />
 
         <Button
-            android:id="@+id/cd_okBtn"
+            android:id="@+id/dismissBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="닫기" />

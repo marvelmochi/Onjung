@@ -88,11 +88,13 @@ public class ScheduleFragment extends Fragment {
     ArrayList<String> wnameList;
     ArrayList<String> wlatList;
     ArrayList<String> wlonList;
+    ArrayList<Integer> wspotIdList;
 
     String jname_s;
     String jlat_s;
     String jlon_s;
-    
+    String jspot_s;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -197,6 +199,7 @@ public class ScheduleFragment extends Fragment {
         wnameList = new ArrayList<>();
         wlatList = new ArrayList<>();
         wlonList = new ArrayList<>();
+        wspotIdList = new ArrayList<>();
 
         return viewGroup;
 
@@ -351,6 +354,10 @@ public class ScheduleFragment extends Fragment {
                 wlatList.add(wlat);
                 String wlon = jsonObject1.getString("longitude");
                 wlonList.add(wlon);
+                int wspot = jsonObject1.getInt("spotId");
+                wspotIdList.add(wspot);
+
+                //북마크
                 System.out.println("로그: 이름/위/경도: " + wname + ", " + wlat + ", " + wlon);
 
             }
@@ -358,15 +365,19 @@ public class ScheduleFragment extends Fragment {
             JSONArray jname = new JSONArray();
             JSONArray jlat = new JSONArray();
             JSONArray jlon = new JSONArray();
+            JSONArray jspotId = new JSONArray();
 
             for (int i = 0; i < wnameList.size(); i++) {
                 jname.put(wnameList.get(i));
                 jlat.put(wlatList.get(i));
                 jlon.put(wlonList.get(i));
+                jspotId.put(wspotIdList.get(i));
             }
             jname_s = jname.toString();
             jlat_s = jlat.toString();
             jlon_s = jlon.toString();
+            jspot_s = jspotId.toString();
+
 
             SharedPreferences.Editor editor = preferences.edit();
             editor.putString("home_lat", home_lat);
@@ -376,6 +387,7 @@ public class ScheduleFragment extends Fragment {
             editor.putString("jlat", jlat_s);
             editor.putString("jlon", jlon_s);
             editor.putString("walkId", walkId);
+            editor.putString("jspot", jspot_s);
             editor.apply();
 
             Intent intent = new Intent(getActivity(), ShowCourseActivity.class);
