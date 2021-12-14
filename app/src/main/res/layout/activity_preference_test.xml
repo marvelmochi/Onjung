@@ -48,9 +48,11 @@
                     android:orientation="vertical">
 
                     <CheckBox
+                        android:id="@+id/mountain"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center" />
+                        android:layout_gravity="center"
+                        android:text="산" />
 
                     <ImageView
                         android:layout_width="120dp"
@@ -59,22 +61,6 @@
                         android:src="@drawable/select_mountain" />
                 </LinearLayout>
                 <!--강-->
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <CheckBox
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center" />
-
-                    <ImageView
-                        android:layout_width="120dp"
-                        android:layout_height="match_parent"
-                        android:layout_margin="5dp"
-                        android:src="@drawable/select_river" />
-                </LinearLayout>
                 <!--공원-->
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -82,9 +68,30 @@
                     android:orientation="vertical">
 
                     <CheckBox
+                        android:id="@+id/mood_river"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center" />
+                        android:layout_gravity="center"
+                        android:text="강" />
+
+                    <ImageView
+                        android:layout_width="120dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="5dp"
+                        android:src="@drawable/select_river" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <CheckBox
+                        android:id="@+id/mood_forest"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="숲" />
 
                     <ImageView
                         android:layout_width="120dp"
@@ -99,9 +106,11 @@
                     android:orientation="vertical">
 
                     <CheckBox
+                        android:id="@+id/mood_lake"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center" />
+                        android:layout_gravity="center"
+                        android:text="호수" />
 
                     <ImageView
                         android:layout_width="120dp"
@@ -116,9 +125,11 @@
                     android:orientation="vertical">
 
                     <CheckBox
+                        android:id="@+id/mood_park"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center" />
+                        android:layout_gravity="center"
+                        android:text="공원" />
 
                     <ImageView
                         android:layout_width="120dp"
@@ -165,6 +176,7 @@
                         android:orientation="vertical">
 
                         <CheckBox
+                            android:id="@+id/active"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center" />
@@ -182,6 +194,7 @@
                         android:orientation="vertical">
 
                         <CheckBox
+                            android:id="@+id/quiet"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center" />
@@ -206,6 +219,7 @@
                         android:orientation="vertical">
 
                         <CheckBox
+                            android:id="@+id/walkable"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center" />
@@ -223,6 +237,7 @@
                         android:orientation="vertical">
 
                         <CheckBox
+                            android:id="@+id/sight"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center" />
@@ -248,6 +263,7 @@
                         android:orientation="vertical">
 
                         <CheckBox
+                            android:id="@+id/pet"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center" />
@@ -265,6 +281,7 @@
                         android:orientation="vertical">
 
                         <CheckBox
+                            android:id="@+id/sightseeing"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center" />
@@ -289,6 +306,7 @@
                         android:orientation="vertical">
 
                         <CheckBox
+                            android:id="@+id/exercise"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center" />
@@ -324,6 +342,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
+            android:onClick="testResultClicked"
             android:text="결과 보기" />
 
 

@@ -125,7 +125,6 @@ public class ShowCourseActivity extends AppCompatActivity {
         tMapView.setTrackingMode(false);
         LinearLayout Tmap = (LinearLayout) findViewById(R.id.map);
         Tmap.addView(tMapView);
-        // 트래킹모드 (화면중심을 단말의 현재위치로 이동)
 
 
         // Request For GPS permission
@@ -352,11 +351,18 @@ public class ShowCourseActivity extends AppCompatActivity {
                     //int responseCode = conn.getResponseCode();
                     System.out.println("로그: 응답 메시지: " + returnMsg);
                     //System.out.println("로그: responseCode: " + responseCode);
+
+                    // 토스트 메시지를 위해 응답 메시지 파싱
+                    JSONObject detailObject = new JSONObject(returnMsg);
+                    String detail = detailObject.getString("detail");
+                    ToastMessage(detail);
+
+
                 }
 
             } catch (Exception e) {
                 e.printStackTrace();
-                System.out.println("로그: 만족도 통신 예외 발생생");
+                System.out.println("로그: 만족도 통신 예외 발생");
             }
         }
 

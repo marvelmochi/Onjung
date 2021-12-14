@@ -15,6 +15,9 @@
         android:theme="@style/Theme.Test1"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".MoodRecommendActivity"
+            android:exported="false" />
+        <activity
             android:name=".ShowCourseActivity"
             android:exported="false" />
         <activity android:name=".SatisfactionScoreActivity" />

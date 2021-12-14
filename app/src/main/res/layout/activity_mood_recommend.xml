@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="7"
-    tools:context=".PreferenceTestResultActivity">
+    tools:context=".MoodRecommendActivity">
 
     <!--타이틀-->
     <TextView
@@ -45,13 +45,12 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="5"
-                android:layout_marginTop="2dp"
                 android:background="#bbdfae"
                 android:gravity="center_horizontal"
                 android:padding="10dp"
-                android:text="취향 분석 테스트에 따른 추천 산책로입니다."
+                android:text="취향을 분석한 추천 산책로입니다."
                 android:textAlignment="center"
-                android:textSize="16sp" />
+                android:textSize="20sp" />
 
 
         </LinearLayout>
@@ -102,7 +101,7 @@
                     android:text="다시" />
 
                 <Button
-                    android:onClick="okClicked"
+                    android:id="@+id/save_walk_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
