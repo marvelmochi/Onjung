@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -34,6 +35,9 @@ public class PreferenceTestResultActivity extends AppCompatActivity {
     // 홈 위치 좌표
     Double home_lat, home_lon;
 
+    //
+    TextView courseInfo;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,7 +64,7 @@ public class PreferenceTestResultActivity extends AppCompatActivity {
         tMapView = new TMapView(this);// 티맵 뷰 생성
         tMapView.setSKTMapApiKey(API_Key); // 앱 키 등록
         // 맵뷰 기본 설정
-        tMapView.setZoomLevel(16);
+        tMapView.setZoomLevel(15);
         tMapView.setIconVisibility(true);
         tMapView.setMapType(TMapView.MAPTYPE_STANDARD);
         tMapView.setLanguage(TMapView.LANGUAGE_KOREAN);
@@ -76,6 +80,16 @@ public class PreferenceTestResultActivity extends AppCompatActivity {
         ArrayList<TMapPoint> spots = new ArrayList<>();
         TMapData tmapdata = new TMapData();
 
+        courseInfo = findViewById(R.id.courseInfo);
+        String spotnameString = "";
+        // 텍스트뷰에 코스 정보 표시하기
+        for (int i = 0; i < spotName.size(); i += 3) {
+
+            spotnameString += spotName.get(i) + " ";
+
+        }
+        spotnameString += "을(를) 경유하는 산책 코스입니다. \n";
+        courseInfo.setText(spotnameString);
         /*
         for (int i = 0; i < spotLat.size(); i++) {
             Double dlat = Double.parseDouble(spotLat.get(i));
@@ -86,7 +100,7 @@ public class PreferenceTestResultActivity extends AppCompatActivity {
 
         // 경로 3개 --> 수정 요함 (하드코딩ed)
 
-        for (int i=0; i<spotLat.size();i+=3){
+        for (int i = 0; i < spotLat.size(); i += 3) {
 
             Double lat = Double.parseDouble(spotLat.get(i));
             Double lon = Double.parseDouble(spotLon.get(i));

@@ -36,9 +36,6 @@ public class PreferenceTestActivity extends AppCompatActivity
     // 분위기 타입을 담을 ArrayList
     ArrayList<CheckBox> moodList;
 
-    // 체크된 타입(수정하자..)
-    String checkedType;
-
     // 체크된 값들 담을 ArrayList
     ArrayList<String> checkedTypeList = new ArrayList<>();
 
