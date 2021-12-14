@@ -38,11 +38,12 @@
         <!--버튼-->
         <Button
             android:id="@+id/closeBtn"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="10dp"
-            android:text="닫기" />
+            android:text="닫기"
+            android:background="@drawable/button_deco"/>
 
 
     </LinearLayout>

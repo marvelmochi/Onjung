@@ -47,6 +47,9 @@ public class LoginActivity extends AppCompatActivity {
     // 로그인 성공 후 회원 정보를 저장하기 위한 프리퍼런스
     private SharedPreferences preferences;
 
+    // 산책 경로 정보를 저장할 preferences
+    private SharedPreferences preferencesCourse;
+
 
     // Intent
     //Intent intentlogin = new Intent(LoginActivity.this, MainActivity.class);
@@ -64,7 +67,6 @@ public class LoginActivity extends AppCompatActivity {
 
         //
         preferences = getSharedPreferences("UserInfo", MODE_PRIVATE);
-
 
     }
 
@@ -180,7 +182,9 @@ public class LoginActivity extends AppCompatActivity {
             editor.putString("gender", gender_s);
             editor.putString("id", id_s);
             editor.putString("pw", pw_s);
+
             editor.commit();
+
 
             //System.out.println("로그: preferences에 저장된 값: "
             //+ preferences.getInt("birth",0) );

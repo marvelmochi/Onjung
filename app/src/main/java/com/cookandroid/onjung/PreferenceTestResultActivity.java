@@ -2,6 +2,8 @@ package com.cookandroid.onjung;
 
 import android.Manifest;
 import android.app.Dialog;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.Location;
 import android.os.Build;
@@ -126,6 +128,7 @@ public class PreferenceTestResultActivity extends AppCompatActivity
         fab2 = (FloatingActionButton) findViewById(R.id.fab2);
         fab3 = (FloatingActionButton) findViewById(R.id.fab3);
 
+        // 달력 프래그먼트 띄우기
         ScheduleFragment fragment1;
         fragment1 = new ScheduleFragment();
 
@@ -158,6 +161,7 @@ public class PreferenceTestResultActivity extends AppCompatActivity
             public void onClick(View v) {
                 anim();
                 Toast.makeText(PreferenceTestResultActivity.this, "산책 일정", Toast.LENGTH_SHORT).show();
+
             }
         });
 
@@ -246,8 +250,8 @@ public class PreferenceTestResultActivity extends AppCompatActivity
     // 로딩중 표시할 프로그레스 다이얼로그
     @Override
     protected Dialog onCreateDialog(int id) {
-        LoadingDialog dialog = new LoadingDialog(this); // 사용자에게 보여줄 대화상자
-        /*
+        //LoadingDialog dialog = new LoadingDialog(this); // 사용자에게 보여줄 대화상자
+        ProgressDialog dialog = new ProgressDialog(this);
         dialog.setTitle("산책 코스를 불러오는 중...");
         dialog.setMessage("잠시만 기다려주세요...");
         dialog.setButton(ProgressDialog.BUTTON_NEGATIVE, "취소",
@@ -258,8 +262,6 @@ public class PreferenceTestResultActivity extends AppCompatActivity
                     }
                 }
         );
-
-         */
 
         return dialog;
     }

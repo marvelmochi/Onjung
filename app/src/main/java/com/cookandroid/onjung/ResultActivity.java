@@ -3,13 +3,13 @@ package com.cookandroid.onjung;
 import android.Manifest;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
-import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -24,6 +24,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.skt.Tmap.TMapData;
@@ -101,6 +103,9 @@ public class ResultActivity extends AppCompatActivity
     private Boolean isFabOpen = false;
     private FloatingActionButton fab, fab1, fab2, fab3;
 
+    // 토스트 온 스레드를 위한 핸들러
+    Handler toastHandler;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -121,6 +126,9 @@ public class ResultActivity extends AppCompatActivity
         // 날짜, 산책 제목 받아올 변수 선언
         dateText = (TextView) saveDialog.findViewById(R.id.dateText);
         titleText = (EditText) saveDialog.findViewById(R.id.titleText);
+
+        // 토스트 온 스레드
+        toastHandler = new Handler(Looper.getMainLooper());
 
         // 로딩중 표시할 프로그레스 다이얼로그
         showDialog(1); // 대화상자 호출
@@ -227,6 +235,14 @@ public class ResultActivity extends AppCompatActivity
         fab2 = (FloatingActionButton) findViewById(R.id.fab2);
         fab3 = (FloatingActionButton) findViewById(R.id.fab3);
 
+        //프래그먼트 띄우기
+        ScheduleFragment fragment1;
+        fragment1 = new ScheduleFragment();
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -256,7 +272,7 @@ public class ResultActivity extends AppCompatActivity
             public void onClick(View v) {
                 anim();
                 Toast.makeText(ResultActivity.this, "산책 일정", Toast.LENGTH_SHORT).show();
-
+                getSupportFragmentManager().beginTransaction().replace(R.id.result_layout, fragment1).commit();
             }
         });
 
@@ -386,6 +402,8 @@ public class ResultActivity extends AppCompatActivity
     // 로딩중 표시할 프로그레스 다이얼로그
     @Override
     protected Dialog onCreateDialog(int id) {
+        LoadingDialog dialog = new LoadingDialog(this);
+        /*
         ProgressDialog dialog = new ProgressDialog(this); // 사용자에게 보여줄 대화상자
         dialog.setTitle("산책 코스를 불러오는 중...");
         dialog.setMessage("잠시만 기다려주세요...");
@@ -397,6 +415,8 @@ public class ResultActivity extends AppCompatActivity
                     }
                 }
         );
+
+         */
 
         return dialog;
     }
@@ -418,6 +438,17 @@ public class ResultActivity extends AppCompatActivity
         dateDialog.setContentView(R.layout.dialog_date_picker);
         dateDialog.show();
     }*/
+
+    // 스레드 위에서 토스트 메시지를 띄우기 위한 메소드
+    public void ToastMessage(String message) {
+
+        toastHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
+            }
+        });
+    }
 
     // 서버 통신부
 
@@ -463,6 +494,11 @@ public class ResultActivity extends AppCompatActivity
                 int responseCode = conn.getResponseCode();
                 System.out.println("로그: 응답 메시지: "+returnMsg);
                 System.out.println("로그: responseCode: "+responseCode);
+
+                // Toast 띄우기
+                JSONObject jsonObject = new JSONObject(returnMsg);
+                String detail = jsonObject.getString("detail");
+                ToastMessage(detail);
 
             } catch (Exception e){
                 e.printStackTrace();
