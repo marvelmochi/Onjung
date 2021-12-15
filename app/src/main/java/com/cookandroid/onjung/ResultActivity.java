@@ -24,8 +24,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.skt.Tmap.TMapData;
@@ -101,7 +99,7 @@ public class ResultActivity extends AppCompatActivity
     //플로팅
     private Animation fab_open, fab_close, fab_rotate_open, fab_rotate_close;
     private Boolean isFabOpen = false;
-    private FloatingActionButton fab, fab1, fab2, fab3;
+    private FloatingActionButton fab, fab1, fab2;
 
     // 토스트 온 스레드를 위한 핸들러
     Handler toastHandler;
@@ -233,15 +231,6 @@ public class ResultActivity extends AppCompatActivity
         fab = (FloatingActionButton) findViewById(R.id.fab);
         fab1 = (FloatingActionButton) findViewById(R.id.fab1);
         fab2 = (FloatingActionButton) findViewById(R.id.fab2);
-        fab3 = (FloatingActionButton) findViewById(R.id.fab3);
-
-        //프래그먼트 띄우기
-        ScheduleFragment fragment1;
-        fragment1 = new ScheduleFragment();
-
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -265,14 +254,6 @@ public class ResultActivity extends AppCompatActivity
                 Toast.makeText(ResultActivity.this, "산책 다이어리", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(ResultActivity.this, DiaryActivity.class);
                 startActivity(intent);
-            }
-        });
-        fab3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                anim();
-                Toast.makeText(ResultActivity.this, "산책 일정", Toast.LENGTH_SHORT).show();
-                getSupportFragmentManager().beginTransaction().replace(R.id.result_layout, fragment1).commit();
             }
         });
 
@@ -513,19 +494,15 @@ public class ResultActivity extends AppCompatActivity
             fab.startAnimation(fab_rotate_close);
             fab1.startAnimation(fab_close);
             fab2.startAnimation(fab_close);
-            fab3.startAnimation(fab_close);
             fab1.setClickable(false);
             fab2.setClickable(false);
-            fab3.setClickable(false);
             isFabOpen = false;
         } else {
             fab.startAnimation(fab_rotate_open);
             fab1.startAnimation(fab_open);
             fab2.startAnimation(fab_open);
-            fab3.startAnimation(fab_open);
             fab1.setClickable(true);
             fab2.setClickable(true);
-            fab3.setClickable(true);
             isFabOpen = true;
         }
     }

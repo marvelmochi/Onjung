@@ -53,10 +53,15 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                android:layout_gravity="center_vertical"
                 android:layout_weight="1"
                 android:text="    날짜"
                 android:textSize="20sp" />
+
+            <View
+                android:layout_width="2dp"
+                android:layout_height="40dp"
+                android:background="#B1BCBE"/>
 
             <TextView
                 android:id="@+id/date_text"
@@ -64,9 +69,13 @@
                 android:layout_height="40dp"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="3"
-                android:background="@drawable/border_line"
                 android:paddingHorizontal="5dp"
                 android:textSize="15sp" />
+
+            <View
+                android:layout_width="2dp"
+                android:layout_height="40dp"
+                android:background="#B1BCBE"/>
 
             <!--버튼으로 쓸 이미지뷰-->
             <ImageView
@@ -93,21 +102,23 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
-                android:padding="5dp"
-                android:text="   제목"
+                android:text="    제목"
                 android:textSize="20sp" />
 
-            <TextView
+            <View
+                android:layout_width="2dp"
+                android:layout_height="40dp"
+                android:background="#B1BCBE"/>
+
+            <EditText
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="3dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="20dp"
+                android:layout_gravity="center_vertical"
                 android:layout_weight="4"
-                android:background="@drawable/border_line"
                 android:padding="5dp" />
 
         </LinearLayout>
+
 
         <!--일기 내용-->
         <TextView
@@ -118,13 +129,15 @@
             android:background="@drawable/round_border"
             android:gravity="top"
             android:padding="10dp"
-            android:text="내용입니다." />
+            android:hint="내용입니다."
+            android:scrollbars="vertical"/>
 
         <!--수정/삭제 버튼-->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
             android:orientation="horizontal">
 
             <Button

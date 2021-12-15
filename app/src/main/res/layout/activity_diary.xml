@@ -44,6 +44,7 @@
         android:layout_marginTop="10dp"
         android:onClick="diaryCreateClicked"
         android:text="작성"
+        android:textSize="16sp"
         android:background="@drawable/button_deco"/>
 
     <!--스크롤뷰로 감싸기-->
@@ -59,10 +60,55 @@
             android:orientation="vertical">
 
             <!--일기 오브젝트1-->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="20dp"
+                        android:layout_height="70dp"
+                        android:orientation="horizontal"
+                        android:background="#329F0B"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="20dp"/>
+
+                    <LinearLayout
+                        android:id="@+id/diaryObject"
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginTop="20dp"
+                        android:background="#bbdfae"
+                        android:orientation="horizontal"
+                        android:padding="20dp"
+                        android:weightSum="3"
+                        android:onClick="diaryReadClicked"
+                        >
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:text="2021/10/09"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="2"
+                            android:text="2021/10/9의 일기1"
+                            android:textSize="20sp" />
+                    </LinearLayout>
+            </LinearLayout>
+
+                <!--일기 오브젝트2-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="20dp"
@@ -73,7 +119,6 @@
                     android:layout_marginTop="20dp"/>
 
                 <LinearLayout
-                    android:id="@+id/diaryObject"
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
                     android:layout_marginRight="20dp"
@@ -81,9 +126,7 @@
                     android:background="#bbdfae"
                     android:orientation="horizontal"
                     android:padding="20dp"
-                    android:weightSum="3"
-                    android:onClick="diaryReadClicked"
-                    >
+                    android:weightSum="3">
 
                     <TextView
                         android:layout_width="0dp"
@@ -101,198 +144,216 @@
                         android:text="2021/10/9의 일기1"
                         android:textSize="20sp" />
                 </LinearLayout>
-        </LinearLayout>
+            </LinearLayout>
 
-            <!--일기 오브젝트2-->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:layout_width="20dp"
-                android:layout_height="70dp"
-                android:orientation="horizontal"
-                android:background="#329F0B"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"/>
-
+                <!--일기 오브젝트3-->
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="20dp"
-                android:background="#bbdfae"
-                android:orientation="horizontal"
-                android:padding="20dp"
-                android:weightSum="3">
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_weight="1"
-                    android:text="2021/10/09"
-                    android:textSize="15sp" />
+                <LinearLayout
+                    android:layout_width="20dp"
+                    android:layout_height="70dp"
+                    android:orientation="horizontal"
+                    android:background="#329F0B"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"/>
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_weight="2"
-                    android:text="2021/10/9의 일기1"
-                    android:textSize="20sp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="20dp"
+                    android:background="#bbdfae"
+                    android:orientation="horizontal"
+                    android:padding="20dp"
+                    android:weightSum="3">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:text="2021/10/09"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="2"
+                        android:text="2021/10/9의 일기1"
+                        android:textSize="20sp" />
+                </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
-
-            <!--일기 오브젝트3-->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:layout_width="20dp"
-                android:layout_height="70dp"
-                android:orientation="horizontal"
-                android:background="#329F0B"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="20dp"
-                android:background="#bbdfae"
-                android:orientation="horizontal"
-                android:padding="20dp"
-                android:weightSum="3">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_weight="1"
-                    android:text="2021/10/09"
-                    android:textSize="15sp" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_weight="2"
-                    android:text="2021/10/9의 일기1"
-                    android:textSize="20sp" />
-            </LinearLayout>
-        </LinearLayout>
 
             <!--일기 오브젝트4-->
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="20dp"
-                android:background="#bbdfae"
-                android:orientation="horizontal"
-                android:padding="20dp"
-                android:weightSum="3">
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_weight="1"
-                    android:text="2021/10/09"
-                    android:textSize="15sp" />
+                <LinearLayout
+                    android:layout_width="20dp"
+                    android:layout_height="70dp"
+                    android:orientation="horizontal"
+                    android:background="#329F0B"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"/>
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_weight="2"
-                    android:text="2021/10/9의 일기1"
-                    android:textSize="20sp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="20dp"
+                    android:background="#bbdfae"
+                    android:orientation="horizontal"
+                    android:padding="20dp"
+                    android:weightSum="3">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:text="2021/10/09"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="2"
+                        android:text="2021/10/9의 일기1"
+                        android:textSize="20sp" />
+                </LinearLayout>
             </LinearLayout>
 
             <!--일기 오브젝트5-->
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="20dp"
-                android:background="#bbdfae"
-                android:orientation="horizontal"
-                android:padding="20dp"
-                android:weightSum="3">
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_weight="1"
-                    android:text="2021/10/09"
-                    android:textSize="15sp" />
+                <LinearLayout
+                    android:layout_width="20dp"
+                    android:layout_height="70dp"
+                    android:orientation="horizontal"
+                    android:background="#329F0B"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"/>
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_weight="2"
-                    android:text="2021/10/9의 일기1"
-                    android:textSize="20sp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="20dp"
+                    android:background="#bbdfae"
+                    android:orientation="horizontal"
+                    android:padding="20dp"
+                    android:weightSum="3">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:text="2021/10/09"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="2"
+                        android:text="2021/10/9의 일기1"
+                        android:textSize="20sp" />
+                </LinearLayout>
             </LinearLayout>
 
             <!--일기 오브젝트6-->
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="20dp"
-                android:background="#bbdfae"
-                android:orientation="horizontal"
-                android:padding="20dp"
-                android:weightSum="3">
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_weight="1"
-                    android:text="2021/10/09"
-                    android:textSize="15sp" />
+                <LinearLayout
+                    android:layout_width="20dp"
+                    android:layout_height="70dp"
+                    android:orientation="horizontal"
+                    android:background="#329F0B"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"/>
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_weight="2"
-                    android:text="2021/10/9의 일기1"
-                    android:textSize="20sp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="20dp"
+                    android:background="#bbdfae"
+                    android:orientation="horizontal"
+                    android:padding="20dp"
+                    android:weightSum="3">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:text="2021/10/09"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="2"
+                        android:text="2021/10/9의 일기1"
+                        android:textSize="20sp" />
+                </LinearLayout>
             </LinearLayout>
 
             <!--일기 오브젝트7 / 수정 전 원본-->
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="20dp"
-                android:background="#bbdfae"
-                android:orientation="horizontal"
-                android:padding="20dp"
-                android:weightSum="3">
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_weight="1"
-                    android:text="2021/10/09"
-                    android:textSize="15sp" />
+                <LinearLayout
+                    android:layout_width="20dp"
+                    android:layout_height="70dp"
+                    android:orientation="horizontal"
+                    android:background="#329F0B"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"/>
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_weight="2"
-                    android:text="2021/10/9의 일기1"
-                    android:textSize="20sp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="20dp"
+                    android:background="#bbdfae"
+                    android:orientation="horizontal"
+                    android:padding="20dp"
+                    android:weightSum="3">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:text="2021/10/09"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="2"
+                        android:text="2021/10/9의 일기1"
+                        android:textSize="20sp" />
+                </LinearLayout>
             </LinearLayout>
 
 

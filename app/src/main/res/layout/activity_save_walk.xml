@@ -39,8 +39,13 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:text="  날짜"
+                android:text="    날짜"
                 android:textSize="20sp" />
+
+            <View
+                android:layout_width="2dp"
+                android:layout_height="40dp"
+                android:background="#B1BCBE"/>
 
             <TextView
                 android:id="@+id/date_text"
@@ -48,9 +53,13 @@
                 android:layout_height="40dp"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="3"
-                android:background="@drawable/border_line"
                 android:paddingHorizontal="5dp"
                 android:textSize="15sp" />
+
+            <View
+                android:layout_width="2dp"
+                android:layout_height="40dp"
+                android:background="#B1BCBE"/>
 
             <!--버튼으로 쓸 이미지뷰-->
             <ImageView
@@ -68,7 +77,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
-
             android:background="@drawable/round_border"
             android:orientation="horizontal"
             android:weightSum="5">
@@ -79,17 +87,19 @@
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
                 android:padding="5dp"
-                android:text=" 제목"
+                android:text="   제목"
                 android:textSize="20sp" />
+
+            <View
+                android:layout_width="2dp"
+                android:layout_height="40dp"
+                android:background="#B1BCBE"/>
 
             <EditText
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="3dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="20dp"
+                android:layout_gravity="center_vertical"
                 android:layout_weight="4"
-                android:background="@drawable/border_line"
                 android:padding="5dp" />
         </LinearLayout>
 
@@ -115,6 +125,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:text="저장"
+                android:textSize="18sp"
                 android:background="@drawable/button_deco"/>
 
             <Button
@@ -123,6 +134,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:text="취소"
+                android:textSize="18sp"
                 android:background="@drawable/button_deco"/>
 
         </LinearLayout>

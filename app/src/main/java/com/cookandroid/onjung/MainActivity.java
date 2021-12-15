@@ -124,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         } else {
             // 평가 내역이 있을 경우
-            Intent intent = new Intent(this, PreferenceTestResultActivity.class);
+            Intent intent = new Intent(this, MoodRecommendActivity.class);
             startActivity(intent);
         }
 

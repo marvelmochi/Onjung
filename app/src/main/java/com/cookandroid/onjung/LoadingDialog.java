@@ -17,7 +17,7 @@ public class LoadingDialog extends Dialog {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.progress_loading);
         getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        getWindow().setDimAmount(0.8F);
         //배경을 투명하게
-
     }
 }

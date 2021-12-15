@@ -32,9 +32,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="185dp"
                 android:layout_gravity="center"
+                android:layout_marginTop="10dp"
                 android:orientation="horizontal"
                 android:padding="10dp"
-                android:layout_marginTop="10dp"
                 android:weightSum="3">
 
                 <LinearLayout
@@ -76,7 +76,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="#6CBA4F"
+                        android:background="@drawable/title_round"
                         android:gravity="center"
                         android:text="오늘의 산책 일정"
                         android:textColor="#FFFFFF"
@@ -87,25 +87,32 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="@drawable/border_line"
                         android:gravity="center"
                         android:text="여의도한강공원 30분 산책" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="#B1BCBE"/>
 
                     <TextView
                         android:id="@+id/Task_2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="@drawable/border_line"
                         android:gravity="center"
                         android:text="유미랑 강아지 산책" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="#B1BCBE"/>
 
                     <TextView
                         android:id="@+id/Task_3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="@drawable/border_line"
                         android:gravity="center"
                         android:text="일산호수공원산책" />
 
@@ -128,7 +135,7 @@
                     android:id="@+id/HealthTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#6CBA4F"
+                    android:background="@drawable/title_round"
                     android:gravity="center"
                     android:text="헬스 데이터"
                     android:textColor="#FFFFFF"
@@ -153,7 +160,7 @@
                         <ImageView
                             android:layout_width="40dp"
                             android:layout_height="match_parent"
-                            android:src="@drawable/login_walk" />
+                            android:src="@drawable/walking" />
 
                         <TextView
                             android:layout_width="0dp"
@@ -279,7 +286,8 @@
             <!--하단부(버튼 2개)-->
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="144dp">
+                android:layout_height="120dp"
+                android:layout_marginBottom="20dp">
 
                 <Button
                     android:layout_width="150dp"
@@ -289,18 +297,20 @@
                     android:layout_marginRight="10dp"
                     android:layout_weight="1"
                     android:onClick="selectbtnClicked"
-                    android:text="조건에 맞는\n 산책로 추천" />
+                    android:text="조건에 맞는\n 산책로 추천"
+                    android:textSize="16dp"/>
 
                 <Button
                     android:id="@+id/AI_walk_btn"
                     android:layout_width="150dp"
                     android:layout_height="100dp"
                     android:layout_gravity="center"
-                    android:layout_marginRight="20dp"
                     android:layout_marginLeft="10dp"
+                    android:layout_marginRight="20dp"
                     android:layout_weight="1"
                     android:onClick="preferencebtnClicked"
-                    android:text="취향을 분석한\n 산책로 추천" />
+                    android:text="취향을 분석한\n 산책로 추천"
+                    android:textSize="16dp"/>
 
             </LinearLayout>
         </LinearLayout>

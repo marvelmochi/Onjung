@@ -406,9 +406,10 @@
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
                 android:onClick="resultbtnClicked"
                 android:text="OK"
+                android:textSize="20sp"
                 android:background="@drawable/button_deco"/>
         </LinearLayout>
     </ScrollView>

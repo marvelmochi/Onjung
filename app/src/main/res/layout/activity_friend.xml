@@ -146,6 +146,8 @@
         android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginTop="20dp"
         android:text="친구 추가"
+        android:textSize="18sp"
         android:background="@drawable/button_deco"/>
 </LinearLayout>

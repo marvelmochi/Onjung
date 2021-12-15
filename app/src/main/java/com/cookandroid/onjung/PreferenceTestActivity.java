@@ -1,11 +1,10 @@
 package com.cookandroid.onjung;
 
-import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.location.Location;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Message;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
@@ -25,45 +24,47 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
+
 public class PreferenceTestActivity extends AppCompatActivity
         implements TMapGpsManager.onLocationChangedCallback {
 
-    // 인텐트로 액티비티 간 데이터 전달
-    String data = "success";
-
     // 체크박스 선언
-    CheckBox mountain, park, lake, forest, river;
-    CheckBox crowded, quiet, pet, scenery, statue, exercise, walk;
+    CheckBox mountain, river, forest, lake, park;
+    CheckBox active, quiet, walkable, sight, pet, sightseeing, exercise;
+
+    // 체크박스 체크 여부(분위기)를 담을 ArrayList
+    ArrayList<String> checkedMoodList;
+    // 타입을 담을 ArrayList
+    ArrayList<CheckBox> typeList;
+    // 분위기 타입을 담을 ArrayList
+    ArrayList<CheckBox> moodList;
 
     // 체크된 값들 담을 ArrayList
-    ArrayList<CheckBox> spot_c = new ArrayList<>();
-    ArrayList<String> spot = new ArrayList<>();
-    //ArrayList<CheckBox> mood_c = new ArrayList<>();
-    //ArrayList<String> mood = new ArrayList<>();
+    ArrayList<String> checkedTypeList = new ArrayList<>();
 
-    //분위기 체크 값
-    String active, quiet_c, walkable, sight, pet_c, sightseeing, exercise_c;
+    // 체크된 분위기 타입
+    String c_active, c_quiet, c_walkable, c_sight, c_pet, c_sightseeing, c_exercise;
+
+    // userId(memberId)
+    String userId;
+    // Using SharedPreferences
+    SharedPreferences preferences;
+
+    // 현위치 좌표 전달
+    double home_lat, home_lon;
+    String home_lat_s, home_lon_s;
 
     // T Map 앱 키 등록
-    String API_Key = "l7xxa08e5b27d8fb417f9d09d0bc162c7df9";
-
+    String API_Key = "l7xxa57022c9d2f9453db8f198c5ca511fdb";
     // T Map GPS
     TMapGpsManager tMapGPS = null;
-    // 현위치 좌표 저장할 변수 선언;
-    double lat_d;
-    double lon_d;
-    String lat;
-    String lon;
-
-    // 파싱을 위한 변수 선언
-    JSONArray jsonArraydata = new JSONArray();
 
     // 인텐트에 담아 전달할 데이터 배열 선언
     ArrayList recentPosition = new ArrayList(); // 현위치 좌표 {"위도", "경도"}
+    ArrayList<String> spotId = new ArrayList<>();
     ArrayList<String> spotName = new ArrayList<>(); // 경유지 이름 ArrayList
     ArrayList<String> spotLat = new ArrayList<>();  // 경유지 위도 ArrayList
     ArrayList<String> spotLon = new ArrayList<>(); // 경유지 경도 ArrayList
-    ArrayList spotId = new ArrayList(); //  경유지 아이디 ArrayList
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,43 +77,43 @@ public class PreferenceTestActivity extends AppCompatActivity
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
+        // Using SharedPreferences / memberId 받아오기
+        preferences = this.getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
+        userId = preferences.getString("memberId", "");
+
+        // ArrayList 생성
+        typeList = new ArrayList<>();
+        checkedMoodList = new ArrayList<>();
+        moodList = new ArrayList<>();
+
         // 체크박스 접근
         mountain = (CheckBox) findViewById(R.id.mountain);
-        park = (CheckBox) findViewById(R.id.park);
-        lake = (CheckBox) findViewById(R.id.lake);
-        forest = (CheckBox) findViewById(R.id.forest);
-        river= (CheckBox) findViewById(R.id.river);
+        river = (CheckBox) findViewById(R.id.mood_river);
+        forest = (CheckBox) findViewById(R.id.mood_forest);
+        lake = (CheckBox) findViewById(R.id.mood_lake);
+        park = (CheckBox) findViewById(R.id.mood_park);
 
-        crowded = (CheckBox) findViewById(R.id.crowded);
+        active = (CheckBox) findViewById(R.id.active);
         quiet = (CheckBox) findViewById(R.id.quiet);
+        walkable = (CheckBox) findViewById(R.id.walkable);
+        sight = (CheckBox) findViewById(R.id.sight);
         pet = (CheckBox) findViewById(R.id.pet);
-        scenery = (CheckBox) findViewById(R.id.scenery);
-        statue= (CheckBox) findViewById(R.id.statue);
+        sightseeing = (CheckBox) findViewById(R.id.sightseeing);
         exercise = (CheckBox) findViewById(R.id.exercise);
-        walk = (CheckBox) findViewById(R.id.walk);
 
-        spot_c.add(mountain);
-        spot_c.add(park);
-        spot_c.add(lake);
-        spot_c.add(forest);
-        spot_c.add(river);
+        typeList.add(mountain);
+        typeList.add(river);
+        typeList.add(forest);
+        typeList.add(lake);
+        typeList.add(park);
 
-        /*
-        mood_c.add(crowded);
-        mood_c.add(quiet);
-        mood_c.add(pet);
-        mood_c.add(scenery);
-        mood_c.add(statue);
-        mood_c.add(exercise);
-        mood_c.add(walk);
-         */
-
-        // GPS using T Map
-        tMapGPS = new TMapGpsManager(this);
-        // Request For GPS permission
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
-        }
+        moodList.add(active);
+        moodList.add(quiet);
+        moodList.add(walkable);
+        moodList.add(sight);
+        moodList.add(pet);
+        moodList.add(sightseeing);
+        moodList.add(exercise);
 
         // GPS using T Map
         tMapGPS = new TMapGpsManager(this);
@@ -126,27 +127,7 @@ public class PreferenceTestActivity extends AppCompatActivity
 
     }
 
-    public void HomebtnClicked(View view) {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-    }
-
-    @Override
-    public void onLocationChange(Location location) {
-        // 내 위치 좌표 home에 저장
-        TMapPoint home = tMapGPS.getLocation();
-        lat_d = home.getLatitude();
-        lon_d = home.getLongitude();
-        lat = Double.toString(lat_d);
-        lon = Double.toString(lon_d);
-
-        // 배열에 현위치 담기
-        recentPosition.add(lat);
-        recentPosition.add(lon);
-
-        System.out.println("로그: 현위치 좌표 " + lat + ", " + lon);
-    }
-
+    //뒤로가기 툴바
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
@@ -159,158 +140,139 @@ public class PreferenceTestActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    public void preferenceResultbtnClicked(View view) {
-        Intent intent = new Intent(this, PreferenceTestResultActivity.class);
-        startActivity(intent);
+    @Override
+    public void onLocationChange(Location location) {
+        // 내 위치 좌표 home에 저장
+        TMapPoint home = tMapGPS.getLocation();
+        home_lat = home.getLatitude();
+        home_lon = home.getLongitude();
+        home_lat_s = Double.toString(home_lat);
+        home_lon_s = Double.toString(home_lon);
+        // 배열에 현위치 담기
+        recentPosition.add(home_lat_s);
+        recentPosition.add(home_lon_s);
 
-        for (int i = 0; i < spot_c.size(); i++) {
-            if (spot_c.get(i).isChecked()) {
-                String spots = spot_c.get(i).getText().toString();
-                spot.add(spots);
-                //System.out.println("로그: 산책지 " + spot.get(i));}
+        System.out.println("로그: 현위치 좌표 " + home_lat_s + ", " + home_lon_s);
+    }
+
+    public void testResultClicked(View view) {
+
+        // 체크된 타입을 String 변수에 저장
+        for (int i = 0; i < typeList.size(); i++) {
+            if (typeList.get(i).isChecked()) {
+                String type = typeList.get(i).getText().toString();
+                checkedTypeList.add(type);
             }
         }
 
-        if(crowded.isChecked()) {    //체크 박스가 체크 된 경우
-            active = "1";
-        }
-        else {   //체크 박스가 해제 된 경우
-            active = "0";
+        for (int i = 0; i < checkedTypeList.size(); i++) {
+            if (checkedTypeList.get(i).equals("산")) checkedTypeList.set(i, "mountain");
+            if (checkedTypeList.get(i).equals("강")) checkedTypeList.set(i, "river");
+            if (checkedTypeList.get(i).equals("숲")) checkedTypeList.set(i, "forest");
+            if (checkedTypeList.get(i).equals("호수")) checkedTypeList.set(i, "lake");
+            if (checkedTypeList.get(i).equals("공원")) checkedTypeList.set(i, "park");
+
         }
 
-        if(quiet.isChecked()) {    //체크 박스가 체크 된 경우
-            quiet_c = "1";
-        }
-        else {   //체크 박스가 해제 된 경우
-            quiet_c = "0";
-        }
-
-        if(pet.isChecked()) {    //체크 박스가 체크 된 경우
-            pet_c = "1";
-        }
-        else {   //체크 박스가 해제 된 경우
-            pet_c = "0";
+        // 분위기 체크 여부 ArrayList에 저장
+        for (int i = 0; i < moodList.size(); i++) {
+            if (moodList.get(i).isChecked()) {
+                // 체크 되어있다면 1 저장
+                checkedMoodList.add("1");
+            } else {
+                //체크 안 되어있다면 0 저장
+                checkedMoodList.add("0");
+            }
         }
 
-        if(scenery.isChecked()) {    //체크 박스가 체크 된 경우
-            sight = "1";
-        }
-        else {   //체크 박스가 해제 된 경우
-            sight = "0";
-        }
+        c_active = checkedMoodList.get(0);
+        c_quiet = checkedMoodList.get(1);
+        c_walkable = checkedMoodList.get(2);
+        c_sight = checkedMoodList.get(3);
+        c_pet = checkedMoodList.get(4);
+        c_sightseeing = checkedMoodList.get(5);
+        c_exercise = checkedMoodList.get(6);
 
-        if(statue.isChecked()) {    //체크 박스가 체크 된 경우
-            sightseeing = "1";
-        }
-        else {   //체크 박스가 해제 된 경우
-            sightseeing = "0";
-        }
-
-        if(exercise.isChecked()) {    //체크 박스가 체크 된 경우
-            exercise_c = "1";
-        }
-        else {   //체크 박스가 해제 된 경우
-            exercise_c = "0";
-        }
-
-        if(walk.isChecked()) {    //체크 박스가 체크 된 경우
-            walkable = "1";
-        }
-        else {   //체크 박스가 해제 된 경우
-            walkable = "0";
-        }
-
-
-        PreferenceTestActivity.HttpConnectorPrefer preferThread = new PreferenceTestActivity.HttpConnectorPrefer();
-        preferThread.start();
-
+        // 통신부
+        HttpConnectorMood moodThread = new HttpConnectorMood();
+        moodThread.start();
     }
 
-    //http://smwu.onjung.tk/mood?active=1&quiet=1&walkable=1&sight=1&pet=0&sightseeing=1
-    // &exercise=0&latitude=37.534784&longitude=126.851609&type=park&userId=2
-    class HttpConnectorPrefer extends Thread {
-        Message message;
-        Bundle bundle = new Bundle();
+    class HttpConnectorMood extends Thread {
+        URL url;
+        HttpURLConnection conn;
 
         @Override
         public void run() {
-            for (int z = 0; z < spot.size(); z++) {
+            for (int z = 0; z < checkedTypeList.size(); z++) {
                 try {
                     String type;
-                    type = spot.get(z);
-                    URL url = new URL("http://smwu.onjung.tk/mood?active="+ active + "&quiet=" + quiet_c + "&walkable=" + walkable
-                            + "&sight=" + sight + "&pet=" + pet_c + "&sightseeing=" + sightseeing + "&exercise=" + exercise_c
-                            + "&latitude=" + lat + "&longitude=" + lon + "&type=" + type + "&userId=1");
-                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                    type = checkedTypeList.get(z);
+                    url = new URL("http://smwu.onjung.tk/mood?active=" + c_active + "&quiet=" + c_quiet +
+                            "&walkable=" + c_walkable + "&sight=" + c_sight + "&pet=" + c_pet + "&sightseeing=" +
+                            c_sightseeing + "&exercise=" + c_exercise + "&latitude=" + home_lat_s + "&longitude=" +
+                            home_lon_s + "&type=" + type + "&userId=" + userId);
+                    System.out.println("로그: 통신 URL: " + url);
+                    conn = (HttpURLConnection) url.openConnection();
                     conn.setRequestMethod("GET");
                     BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
                     String returnMsg = in.readLine();
                     System.out.println("로그: 응답 메시지: " + returnMsg);
-
-                    // 파싱 메소드 호출
                     jsonParser(returnMsg);
-
-                    Intent intentResult = new Intent(PreferenceTestActivity.this, PreferenceTestResultActivity.class);
-                    intentResult.putExtra("mydata", data);
-                    intentResult.putExtra("recentPosition", recentPosition);
-                    intentResult.putExtra("spotName", spotName);
-                    intentResult.putExtra("spotLat", spotLat);
-                    intentResult.putExtra("spotLon", spotLon);
-                    intentResult.putExtra("spotId", spotId);
-
-                    startActivity(intentResult);
 
                 } catch (Exception e) {
                     e.printStackTrace();
-                    System.out.println("로그: 산책지 불러오기 예외발생");
+                    System.out.println("로그: 분위기 추천(평가 이력X) 예외 발생");
                 }
+            }
+
+            // 인텐트 전달
+            Intent intentResult = new Intent(PreferenceTestActivity.this, PreferenceTestResultActivity.class);
+            intentResult.putExtra("recentPosition", recentPosition);
+            intentResult.putExtra("spotName", spotName);
+            intentResult.putExtra("spotLat", spotLat);
+            intentResult.putExtra("spotLon", spotLon);
+            intentResult.putExtra("spotId", spotId);
+
+            startActivity(intentResult);
+            for (int i=0; i<spotName.size();i++){
+                System.out.println("로그: 경유지 명: "+spotName.get(i));
             }
         }
 
-        public void jsonParser(String resultJson) {
-            try {
-                JSONObject jsonObject = new JSONObject(resultJson);
-                String data = jsonObject.getString("data");
-                jsonArraydata.put(data);
+    }
 
-                JSONObject dataObject = new JSONObject(data);
-                System.out.println("로그: dataObject: " + dataObject);
+    public void jsonParser(String resultJson) {
+        try {
+            // 응답으로 받은 데이터를 JSONObject에 넣음
+            JSONObject jsonObject = new JSONObject(resultJson);
+            // JSONObject에서 "data" 부분을 추출
+            String data = jsonObject.getString("data");
+            System.out.println("로그: data: " + data);
 
-                String spotj = dataObject.getString("spot");
-                JSONObject spotObject = new JSONObject(spotj);
+            JSONArray dataArray = new JSONArray(data);
 
-                String name = spotObject.getString("name");
-                String lat = spotObject.getString("latitude");
-                String lon = spotObject.getString("longitude");
-                int spotid_int = spotObject.getInt("spotId");
-                String spotid = Integer.toString(spotid_int);
+            for (int i = 0; i < dataArray.length(); i++) {
+                String datas = dataArray.get(i).toString();
+                JSONObject jsonObject1 = new JSONObject(datas);
+                int spotId_i = jsonObject1.getInt("spotId");
+                String spotId_s = Integer.toString(spotId_i);
+                spotId.add(spotId_s);
+                String name = jsonObject1.getString("name");
                 spotName.add(name);
-                spotLat.add(lat);
-                spotLon.add(lon);
-                spotId.add(spotid);
-
-            /*
-            for (int i = 0; i<spotName.size() ; i++){
-                System.out.println("로그: spotName: " + spotName.get(i));
-                System.out.println("로그: spotLat: " + spotLat.get(i));
-                System.out.println("로그: spotLon: " + spotLon.get(i));
-            }*/
-                //spotName.add(name);
-                //spotLat.add(lat);
-                //spotLon.add(lon);
-                //System.out.println("로그: spotName: "+spotName.get(0));
-
-
-            } catch (Exception e) {
-                e.printStackTrace();
-                System.out.println("로그: 파싱 예외발생");
-            }
-            /*
-            for (int i=0; i<spotId.size(); i++){
-                System.out.println("로그: 스팟아이디: "+spotId.get(i));
+                String wlat = jsonObject1.getString("latitude");
+                spotLat.add(wlat);
+                String wlon = jsonObject1.getString("longitude");
+                spotLon.add(wlon);
             }
 
-             */
+
+
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("로그: 파싱 예외 발생");
         }
     }
 }
