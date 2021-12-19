@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -264,6 +265,7 @@ public class ShowCourseActivity extends AppCompatActivity {
         satisfactionDialog = new Dialog(ShowCourseActivity.this);
         satisfactionDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         satisfactionDialog.setContentView(R.layout.dialog_satisfaction);
+        satisfactionDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         satisfactionDialog.show();
 
         // 텍스트 뷰 & RatingBar 동적 생성
@@ -286,9 +288,9 @@ public class ShowCourseActivity extends AppCompatActivity {
             ratingBar.setMax(5);
             ratingBar.setId(i);
             LayerDrawable drawable = (LayerDrawable) ratingBar.getProgressDrawable();
-            drawable.getDrawable(0).setColorFilter(Color.parseColor("#B1BCBE"), PorterDuff.Mode.SRC_ATOP);
-            drawable.getDrawable(1).setColorFilter(Color.parseColor("#ffff00"), PorterDuff.Mode.SRC_ATOP);
-            drawable.getDrawable(2).setColorFilter(Color.parseColor("#ffff00"), PorterDuff.Mode.SRC_ATOP);
+            drawable.getDrawable(0).setColorFilter(Color.parseColor("#d3d3d3"), PorterDuff.Mode.SRC_ATOP);
+            drawable.getDrawable(1).setColorFilter(Color.parseColor("#FFEC14"), PorterDuff.Mode.SRC_ATOP);
+            drawable.getDrawable(2).setColorFilter(Color.parseColor("#FFEC14"), PorterDuff.Mode.SRC_ATOP);
 
             //ratingBar.set
                     //olor.parseColor("#B1BCBE"));

@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="350dp"
-    android:layout_height="500dp"
+    android:layout_width="320dp"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     android:layout_gravity="center"
-    android:weightSum="10"
-    android:background="@drawable/diaglog_round">
+    android:weightSum="10">
 
     <!--산책 일정 등록 다이얼로그-->
 
@@ -24,128 +23,134 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="10dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@drawable/diaglog_round">
 
-        <!--날짜 선택-->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="match_parent"
             android:layout_margin="10dp"
-            android:background="@drawable/round_border"
-            android:orientation="horizontal"
-            android:weightSum="5">
+            android:orientation="vertical">
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:text="   날짜"
-                android:textSize="20sp" />
-
-            <View
-                android:layout_width="2dp"
+            <!--날짜 선택-->
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="#B1BCBE"/>
+                android:layout_margin="10dp"
+                android:background="@drawable/round_border"
+                android:orientation="horizontal"
+                android:weightSum="5">
 
-            <TextView
-                android:id="@+id/dateText"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="3"
-                android:gravity="center"
-                android:paddingHorizontal="5dp"
-                android:textAlignment="center"
-                android:textSize="24sp" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text="   날짜"
+                    android:textSize="20sp" />
 
-            <View
-                android:layout_width="2dp"
-                android:layout_height="40dp"
-                android:background="#B1BCBE"/>
+                <View
+                    android:layout_width="2dp"
+                    android:layout_height="40dp"
+                    android:background="#B1BCBE"/>
 
-            <!--버튼으로 쓸 이미지뷰-->
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_height="35dp"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:onClick="dateTextClicked"
-                android:src="@drawable/ic_bottom_navigation_schedule"
-                />
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/dateText"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="3"
+                    android:gravity="center"
+                    android:paddingHorizontal="5dp"
+                    android:textAlignment="center"
+                    android:textSize="24sp" />
 
-        <!--제목-->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:background="@drawable/round_border"
-            android:orientation="horizontal"
-            android:weightSum="5">
+                <View
+                    android:layout_width="2dp"
+                    android:layout_height="40dp"
+                    android:background="#B1BCBE"/>
 
-            <TextView
-                android:layout_width="0dp"
+                <!--버튼으로 쓸 이미지뷰-->
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:onClick="dateTextClicked"
+                    android:src="@drawable/ic_bottom_navigation_schedule"
+                    />
+            </LinearLayout>
+
+            <!--제목-->
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                android:padding="5dp"
-                android:text="  제목"
-                android:textSize="20sp" />
+                android:layout_margin="10dp"
+                android:background="@drawable/round_border"
+                android:orientation="horizontal"
+                android:weightSum="5">
 
-            <View
-                android:layout_width="2dp"
-                android:layout_height="40dp"
-                android:background="#B1BCBE"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:padding="5dp"
+                    android:text="  제목"
+                    android:textSize="20sp" />
 
-            <EditText
-                android:id="@+id/titleText"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
+                <View
+                    android:layout_width="2dp"
+                    android:layout_height="40dp"
+                    android:background="#B1BCBE"/>
+
+                <EditText
+                    android:id="@+id/titleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="4"
+                    android:padding="5dp" />
+            </LinearLayout>
+            <TextView
+                android:id="@+id/saveText"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
                 android:layout_weight="4"
-                android:padding="5dp" />
-        </LinearLayout>
-        <TextView
-            android:id="@+id/saveText"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="4"
-            android:background="@drawable/textview_round"
-            android:layout_margin="20dp"
-            android:padding="25dp"
-            android:textSize="20sp"
-
-            />;
-
-        <!--버튼-->
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/saveBtn"
-                android:layout_width="90dp"
-                android:layout_height="wrap_content"
+                android:background="@drawable/textview_round"
                 android:layout_margin="10dp"
-                android:text="저장"
-                android:textSize="18sp"
-                android:background="@drawable/button_deco"/>
+                android:padding="25dp"
+                android:textSize="20sp"
 
-            <Button
-                android:id="@+id/noBtn"
-                android:layout_width="90dp"
+                />
+
+            <!--버튼-->
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="취소"
-                android:textSize="18sp"
-                android:background="@drawable/button_deco"/>
+                android:layout_gravity="center"
+                android:orientation="horizontal">
 
+                <Button
+                    android:id="@+id/saveBtn"
+                    android:layout_width="90dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="저장"
+                    android:textSize="18sp"
+                    android:background="@drawable/button_deco"/>
+
+                <Button
+                    android:id="@+id/noBtn"
+                    android:layout_width="90dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="취소"
+                    android:textSize="18sp"
+                    android:background="@drawable/button_deco"/>
+
+            </LinearLayout>
         </LinearLayout>
+
     </LinearLayout>
-
-
 </LinearLayout>

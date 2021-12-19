@@ -5,6 +5,8 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
@@ -315,7 +317,7 @@ public class ResultActivity extends AppCompatActivity
         intentResult.putExtra("spotLon", spotLon);
         startActivity(intentResult);
         */
-
+        saveDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         saveDialog.show();
 
         saveInfo = saveDialog.findViewById(R.id.saveText);
