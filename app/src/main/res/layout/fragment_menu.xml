@@ -136,7 +136,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:onClick="tastebtnClicked"
+                android:onClick="preferencebtnClicked"
                 android:text="취향을 분석한 산책로 추천"
                 android:textSize="28.5sp" />
         </LinearLayout>

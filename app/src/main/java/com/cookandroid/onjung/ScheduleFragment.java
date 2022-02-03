@@ -10,13 +10,14 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.text.style.RelativeSizeSpan;
+import android.text.style.StyleSpan;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
-import android.widget.CalendarView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,6 +26,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.prolificinteractive.materialcalendarview.CalendarDay;
+import com.prolificinteractive.materialcalendarview.DayViewDecorator;
+import com.prolificinteractive.materialcalendarview.DayViewFacade;
+import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
+import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
+import com.prolificinteractive.materialcalendarview.OnMonthChangedListener;
+import com.prolificinteractive.materialcalendarview.spans.DotSpan;
 import com.skt.Tmap.TMapView;
 
 import org.json.JSONArray;
@@ -35,15 +43,22 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
 
 public class ScheduleFragment extends Fragment {
     ViewGroup viewGroup;
 
     // 캘린더뷰 선언
-    CalendarView calendarView;
+    //CalendarView calendarView;
+    MaterialCalendarView calendarView;
 
     // 선택된 날짜 담을 변수 선언
-    String selectedDate;
+    String selectedDate, selectDate;
+    Integer min, max;
+    CalendarDay cal;
     // 멤버아이디 불러올 변수 선언
     String memberId;
 
@@ -104,38 +119,74 @@ public class ScheduleFragment extends Fragment {
         calendarView = viewGroup.findViewById(R.id.calendar);
 
         // 캘린더뷰 클릭 이벤트
-        calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+        OneDayDecorator today = new OneDayDecorator();
+        calendarView.addDecorators(today);
+        calendarView.setDynamicHeightEnabled(true);
+
+        calendarView.setOnDateChangedListener(new OnDateSelectedListener() {
+
             @Override
-            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
+            public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
+
+
                 String year_s, month_s, day_s;
-                year_s = Integer.toString(year);
-                if (Integer.toString(month).length() == 1) {
-                    month_s = '0' + Integer.toString(month + 1);
+
+                year_s = String.valueOf(date.getYear());
+                if (Integer.toString(date.getMonth()).length() == 1) {
+                    month_s = '0' + Integer.toString(date.getMonth());
                 } else {
-                    month_s = Integer.toString(month + 1);
+                    month_s = Integer.toString(date.getMonth());
                 }
 
-                if (Integer.toString(dayOfMonth).length() == 1) {
-                    day_s = '0' + Integer.toString(dayOfMonth);
+                if (Integer.toString(date.getDay()).length() == 1) {
+                    day_s = '0' + Integer.toString(date.getDay());
                 } else {
-                    day_s = Integer.toString(dayOfMonth);
+                    day_s = Integer.toString(date.getDay());
                 }
                 selectedDate = year_s + month_s + day_s;
                 //scheduleText.setText(selectedDate);
+
                 System.out.println("로그: 선택된 날짜: " + selectedDate);
 
                 HttpConnectorSchedule scheduleThread = new HttpConnectorSchedule();
                 scheduleThread.start();
 
-
             }
-        });
 
+        });
 
         // Using SharedPreferences on Fragment
         preferences = this.getActivity().getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
         memberId = preferences.getString("memberId", "");
         System.out.println("로그: 멤버아이디 불러오기(Schedule): " + memberId);
+
+        calendarView.setOnMonthChangedListener(new OnMonthChangedListener() {
+
+            @Override
+            public void onMonthChanged(MaterialCalendarView widget, CalendarDay date) {
+                //캘린더뷰 일정 표시
+                Calendar calendar= Calendar.getInstance();
+                calendar.add(Calendar.MONTH, date.getYear()-1);
+
+                String year_s, month_s, min_s, max_s;
+
+                year_s = String.valueOf(date.getYear());
+                if (Integer.toString(date.getMonth()).length() == 1) {
+                    month_s = '0' + Integer.toString(date.getMonth());
+                } else {
+                    month_s = Integer.toString(date.getMonth());
+                }
+
+                min_s = year_s + month_s + "01";
+                max_s = year_s + month_s + Integer.toString(calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
+                min = Integer.parseInt(min_s);
+                max = Integer.parseInt(max_s);
+
+                HttpConnectorPlans plansThread = new HttpConnectorPlans();
+                plansThread.start();
+
+            }
+        });
 
 
         // 리니어레이아웃 접근
@@ -258,6 +309,39 @@ public class ScheduleFragment extends Fragment {
             }
         }
 
+    }
+
+    class HttpConnectorPlans extends Thread {
+        URL url;
+        HttpURLConnection conn;
+
+        @Override
+        public void run() {
+            try {
+
+                for(int i = min; i <= max; i++) {
+
+                    //System.out.println("출력: 최소, 최대날짜: " + min + "/" + max);
+
+                    selectDate = Integer.toString(i);
+                    //System.out.println("로그: 현재 날짜: " + selectDate);
+
+                    url = new URL("http://smwu.onjung.tk/walk/" + memberId + "/" + selectDate);
+                    conn = (HttpURLConnection) url.openConnection();
+                    conn.setRequestMethod("GET");
+                    BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                    String returnMsg = in.readLine();
+                    //System.out.println("로그: 선택 날짜: " + selectDate);
+                    //System.out.println("로그: 응답 메시지: " + returnMsg);
+
+                    jsonParserPlans(returnMsg, selectDate);
+                }
+
+            } catch (Exception es) {
+                es.printStackTrace();
+                System.out.println("로그: 산책일정 불러오기 예외 발생");
+            }
+        }
     }
 
     public void jsonParser(String resultJson) {
@@ -479,6 +563,63 @@ public class ScheduleFragment extends Fragment {
         }
     }
 
+    public void jsonParserPlans(String resultJson, String selectDate) {
+        try {
+
+            // 응답으로 받은 데이터를 JSONObject에 넣음
+            JSONObject dataObject = new JSONObject(resultJson);
+
+            // 400 예외처리 위해
+            int code = dataObject.getInt("code");
+            if (code == 400) {
+                System.out.println("로그: 코드 400");
+                linearLayout.removeAllViewsInLayout();
+                //linearLayout.removeAllViews();
+
+                System.out.println("로그: remove on 400");
+            } else {
+
+                String year_s, month_s, day_s;
+                Integer year, month, day;
+
+                year_s = selectDate.substring(0,4);
+                month_s = selectDate.substring(4,6);
+                day_s = selectDate.substring(6,8);
+
+                year = Integer.parseInt(year_s);
+                month = Integer.parseInt(month_s);
+                day = Integer.parseInt(day_s);
+
+                cal = CalendarDay.from(year, month, day);
+                System.out.println("선택 날짜: " + cal);
+                System.out.println("응답 메시지: " + dataObject);
+
+                //calendarView.addDecorator(new EventDecorator(Color.parseColor("#329F0B"), Collections.singleton(cal)));
+                new Thread()
+                {
+                    public void run()
+
+                    {
+                        Message msg = handler.obtainMessage();
+                        handler2.sendMessage(msg);
+                    }
+                }.start();
+            }
+
+        } catch (Exception el) {
+            el.printStackTrace();
+            System.out.println("로그: 파싱 예외 발생");
+        }
+    }
+
+    final Handler handler2 = new Handler()
+    {
+        public void handleMessage(Message msg)
+        {
+            calendarView.addDecorator(new EventDecorator(Color.parseColor("#329F0B"), Collections.singleton(cal)));
+        }
+    };
+
 
     // 스레드 위에서 토스트 메시지를 띄우기 위한 메소드
     public void ToastMessage(String message) {
@@ -490,5 +631,49 @@ public class ScheduleFragment extends Fragment {
             }
         });
     }
-}
 
+    //오늘 날짜 표시하기기
+    public class OneDayDecorator implements DayViewDecorator {
+
+        private CalendarDay date;
+
+
+        public OneDayDecorator() {
+            date = CalendarDay.today();
+        }
+
+        @Override
+        public boolean shouldDecorate(CalendarDay day) {
+            return day.equals(date);
+        }
+
+        @Override
+        public void decorate(DayViewFacade view) {
+            view.addSpan(new StyleSpan(Typeface.BOLD));
+            view.addSpan(new RelativeSizeSpan(1.4f));
+            //view.addSpan(new ForegroundColorSpan(Color.parseColor("#329F0B")));
+        }
+    }
+
+    //일정 표시
+    public class EventDecorator implements DayViewDecorator {
+
+        private final int color;
+        private final HashSet<CalendarDay> dates;
+
+        public EventDecorator(int color, Collection<CalendarDay> dates) {
+            this.color = color;
+            this.dates = new HashSet<>(dates);
+        }
+
+        @Override
+        public boolean shouldDecorate(CalendarDay day) {
+            return dates.contains(day);
+        }
+
+        @Override
+        public void decorate(DayViewFacade view) {
+            view.addSpan(new DotSpan(5, color));
+        }
+    }
+}

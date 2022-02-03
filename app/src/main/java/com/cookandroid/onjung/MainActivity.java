@@ -1,7 +1,10 @@
 package com.cookandroid.onjung;
 
+import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -9,8 +12,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentManager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -43,10 +49,18 @@ public class MainActivity extends AppCompatActivity {
     TextView userNameText;
     String userName;
 
+    @RequiresApi(api = Build.VERSION_CODES.Q)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //만보기
+        if(ContextCompat.checkSelfPermission(this,
+                Manifest.permission.ACTIVITY_RECOGNITION) == PackageManager.PERMISSION_DENIED){
+
+            requestPermissions(new String[]{Manifest.permission.ACTIVITY_RECOGNITION}, 0);
+        }
 
 
         // SharedPreferences Test
@@ -68,26 +82,71 @@ public class MainActivity extends AppCompatActivity {
         fragment1 = new ScheduleFragment();
         fragment2 = new HomeFragment();
         fragment3 = new MenuFragment();
-        getSupportFragmentManager().beginTransaction().replace(R.id.main_layout, fragment2).commitAllowingStateLoss();
+        getSupportFragmentManager().beginTransaction().replace(R.id.main_layout, fragment2, "home").commitAllowingStateLoss();
+
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+
+                FragmentManager fragmentManager = getSupportFragmentManager();
                 switch (menuItem.getItemId()) {
                     case R.id.tab1: {
-                        getSupportFragmentManager().beginTransaction().replace(R.id.main_layout, fragment1)
-                                .commitAllowingStateLoss();
+                        if (fragmentManager.findFragmentByTag("schedule") != null) {
+                            //프래그먼트가 존재한다면 보여준다.
+                            fragmentManager.beginTransaction().show(fragmentManager.findFragmentByTag("schedule")).commit();
+                        } else {
+                            //getSupportFragmentManager().beginTransaction().replace(R.id.main_layout, fragment1).commitAllowingStateLoss();
+                            fragmentManager.beginTransaction().add(R.id.main_layout, new ScheduleFragment(), "schedule").commit();
+                        }
+                        if (fragmentManager.findFragmentByTag("menu") != null) {
+                            //다른프래그먼트가 보이면 가려준다.
+                            fragmentManager.beginTransaction().hide(fragmentManager.findFragmentByTag("menu")).commit();
+                        }
+                        if (fragmentManager.findFragmentByTag("schedule") != null) {
+                            //다른프래그먼트가 보이면 가려준다.
+                            fragmentManager.beginTransaction().hide(fragmentManager.findFragmentByTag("home")).commit();
+                        }
                         return true;
                     }
+
                     case R.id.tab2: {
-                        getSupportFragmentManager().beginTransaction().replace(R.id.main_layout, fragment2)
-                                .commitAllowingStateLoss();
+                        if (fragmentManager.findFragmentByTag("home") != null) {
+                            //if the fragment exists, show it.
+                            fragmentManager.beginTransaction().show(fragmentManager.findFragmentByTag("home")).commit();
+                        } else {
+                            //getSupportFragmentManager().beginTransaction().replace(R.id.main_layout, fragment2).commitAllowingStateLoss();
+                            fragmentManager.beginTransaction().add(R.id.main_layout, new HomeFragment(), "home").commit();
+                        }
+                        if (fragmentManager.findFragmentByTag("schedule") != null) {
+                            //if the other fragment is visible, hide it.
+                            fragmentManager.beginTransaction().hide(fragmentManager.findFragmentByTag("schedule")).commit();
+                        }
+                        if (fragmentManager.findFragmentByTag("menu") != null) {
+                            //if the other fragment is visible, hide it.
+                            fragmentManager.beginTransaction().hide(fragmentManager.findFragmentByTag("menu")).commit();
+                        }
                         return true;
                     }
+
                     case R.id.tab3: {
-                        getSupportFragmentManager().beginTransaction().replace(R.id.main_layout, fragment3)
-                                .commitAllowingStateLoss();
+                        if (fragmentManager.findFragmentByTag("menu") != null) {
+                            //if the fragment exists, show it.
+                            fragmentManager.beginTransaction().show(fragmentManager.findFragmentByTag("menu")).commit();
+                        } else {
+                            //getSupportFragmentManager().beginTransaction().replace(R.id.main_layout, fragment3).commitAllowingStateLoss();
+                            fragmentManager.beginTransaction().add(R.id.main_layout, new MenuFragment(), "menu").commit();
+                        }
+                        if (fragmentManager.findFragmentByTag("schedule") != null) {
+                            //if the other fragment is visible, hide it.
+                            fragmentManager.beginTransaction().hide(fragmentManager.findFragmentByTag("schedule")).commit();
+                        }
+                        if (fragmentManager.findFragmentByTag("home") != null) {
+                            //if the other fragment is visible, hide it.
+                            fragmentManager.beginTransaction().hide(fragmentManager.findFragmentByTag("home")).commit();
+                        }
                         return true;
                     }
+
                     default:
                         return false;
                 }

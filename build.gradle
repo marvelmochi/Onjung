@@ -17,7 +17,7 @@ allprojects {
         google()
         jcenter()
 
-        //슬라이딩
+        //캘린더
         maven { url 'https://jitpack.io' }
     }
 }

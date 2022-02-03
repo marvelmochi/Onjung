@@ -172,13 +172,23 @@
                             android:textSize="28sp" />
 
                         <TextView
+                            android:id="@+id/stepCountView"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
                             android:layout_weight="5"
-                            android:text="8554보"
+                            android:text="0보"
                             android:textSize="28sp" />
 
+                        <!--
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:text="보"
+                            android:textSize="28sp" />
+                        -->
                     </LinearLayout>
 
                     <!--걸은 거리-->
@@ -204,11 +214,12 @@
                             android:textSize="28sp" />
 
                         <TextView
+                            android:id="@+id/totalDistance"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
                             android:layout_weight="5"
-                            android:text="6.54km"
+                            android:text="0km"
                             android:textSize="28sp" />
 
                     </LinearLayout>
@@ -268,11 +279,12 @@
                             android:textSize="28sp" />
 
                         <TextView
+                            android:id="@+id/Calories"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
                             android:layout_weight="5"
-                            android:text="348kcal"
+                            android:text="0kcal"
                             android:textSize="28sp" />
 
                     </LinearLayout>
