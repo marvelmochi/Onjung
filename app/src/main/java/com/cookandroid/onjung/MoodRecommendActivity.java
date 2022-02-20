@@ -10,11 +10,16 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+<<<<<<< HEAD
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+=======
+import android.view.View;
+import android.view.Window;
+>>>>>>> 5c5b85631014e41a719b5a67d8e5628327272e76
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -44,8 +49,11 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Calendar;
+<<<<<<< HEAD
 import java.util.Timer;
 import java.util.TimerTask;
+=======
+>>>>>>> 5c5b85631014e41a719b5a67d8e5628327272e76
 
 public class MoodRecommendActivity extends AppCompatActivity
         implements TMapGpsManager.onLocationChangedCallback {
@@ -125,10 +133,13 @@ public class MoodRecommendActivity extends AppCompatActivity
 
     ArrayList<String> recentPosition;
 
+<<<<<<< HEAD
     //플로팅
     private Animation fab_open, fab_close, fab_rotate_open, fab_rotate_close;
     private Boolean isFabOpen = false;
     private FloatingActionButton fab, fab1, fab2;
+=======
+>>>>>>> 5c5b85631014e41a719b5a67d8e5628327272e76
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -179,8 +190,13 @@ public class MoodRecommendActivity extends AppCompatActivity
         // 경로 변경 버튼
         retryButton = findViewById(R.id.retry);
 
+<<<<<<< HEAD
         //flagText = findViewById(R.id.flagText);
         //flagText.setText(flag + "번째");
+=======
+        flagText = findViewById(R.id.flagText);
+        flagText.setText(flag + "번째");
+>>>>>>> 5c5b85631014e41a719b5a67d8e5628327272e76
 
         // 다이얼로그
         saveDialog = new Dialog(MoodRecommendActivity.this);
@@ -216,7 +232,11 @@ public class MoodRecommendActivity extends AppCompatActivity
                 // 1->2번째
                 if (flag == 1) {
                     flag += 1;
+<<<<<<< HEAD
                     //flagText.setText(flag + "번째");
+=======
+                    flagText.setText(flag + "번째");
+>>>>>>> 5c5b85631014e41a719b5a67d8e5628327272e76
 
                     tmapdata.findPathDataWithType(TMapData.TMapPathType.PEDESTRIAN_PATH, home, home, secondPoint, 10, new TMapData.FindPathDataListenerCallback() {
                         @Override
@@ -230,6 +250,7 @@ public class MoodRecommendActivity extends AppCompatActivity
                         }
                     });
                 }
+<<<<<<< HEAD
 
                 // 2->3번째
                 else if (flag == 2) {
@@ -331,7 +352,47 @@ public class MoodRecommendActivity extends AppCompatActivity
                 startActivity(intent);
             }
         });
+=======
+>>>>>>> 5c5b85631014e41a719b5a67d8e5628327272e76
 
+                // 2->3번째
+                else if (flag == 2) {
+                    flag += 1;
+                    flagText.setText(flag + "번째");
+
+                    tmapdata.findPathDataWithType(TMapData.TMapPathType.PEDESTRIAN_PATH, home, home, thirdPoint, 10, new TMapData.FindPathDataListenerCallback() {
+                        @Override
+                        public void onFindPathData(TMapPolyLine tMapPolyLine) {
+                            tMapView.addTMapPath(tMapPolyLine);
+
+                            //distance = tMapPolyLine.getDistance();
+                            //courseInfo.append("총 거리: " + distance); // km 표시로 수정 필요
+                            //saveInfo.append("총 거리: " + distance); // km 표시로 수정 필요
+                            //courseInformation = courseInfo.getText().toString();
+                        }
+                    });
+                }
+
+                // 3->1번째
+                else if (flag == 3) {
+                    flag = 1;
+                    flagText.setText(flag + "번째");
+
+                    tmapdata.findPathDataWithType(TMapData.TMapPathType.PEDESTRIAN_PATH, home, home, firstPoint, 10, new TMapData.FindPathDataListenerCallback() {
+                        @Override
+                        public void onFindPathData(TMapPolyLine tMapPolyLine) {
+                            tMapView.addTMapPath(tMapPolyLine);
+
+                            //distance = tMapPolyLine.getDistance();
+                            //courseInfo.append("총 거리: " + distance); // km 표시로 수정 필요
+                            //saveInfo.append("총 거리: " + distance); // km 표시로 수정 필요
+                            //courseInformation = courseInfo.getText().toString();
+                        }
+                    });
+                }
+
+            }
+        });
     }
 
     @Override
@@ -437,6 +498,7 @@ public class MoodRecommendActivity extends AppCompatActivity
                     String spotId3 = Integer.toString(spotId3_i);
                     thirdSpotId.add(spotId3);
                 }
+<<<<<<< HEAD
 
             }
 
@@ -473,6 +535,44 @@ public class MoodRecommendActivity extends AppCompatActivity
                     String spotId2 = Integer.toString(spotId2_i);
                     secondSpotId.add(spotId2);
                 }
+=======
+
+            }
+
+            // 두 번째
+            if (!totalObject.isNull("2")) {
+                secondTypes = totalObject.getJSONArray("2");
+
+                if (!secondTypes.isNull(0)) {
+                    JSONObject firstOfSecond = secondTypes.getJSONObject(0);
+                    String lat = firstOfSecond.getString("latitude");
+                    Double lat_d = Double.parseDouble(lat);
+                    String lon = firstOfSecond.getString("longitude");
+                    Double lon_d = Double.parseDouble(lon);
+                    TMapPoint tMapPoint = new TMapPoint(lat_d, lon_d);
+                    firstPoint.add(tMapPoint);
+
+                    // spotId
+                    int spotId1_i = firstOfSecond.getInt("spotId");
+                    String spotId1 = Integer.toString(spotId1_i);
+                    firstSpotId.add(spotId1);
+
+                }
+                if (!secondTypes.isNull(1)) {
+                    JSONObject secondOfSecond = secondTypes.getJSONObject(1);
+                    String lat = secondOfSecond.getString("latitude");
+                    Double lat_d = Double.parseDouble(lat);
+                    String lon = secondOfSecond.getString("longitude");
+                    Double lon_d = Double.parseDouble(lon);
+                    TMapPoint tMapPoint = new TMapPoint(lat_d, lon_d);
+                    secondPoint.add(tMapPoint);
+
+                    // spotId
+                    int spotId2_i = secondOfSecond.getInt("spotId");
+                    String spotId2 = Integer.toString(spotId2_i);
+                    secondSpotId.add(spotId2);
+                }
+>>>>>>> 5c5b85631014e41a719b5a67d8e5628327272e76
                 if (!secondTypes.isNull(2)) {
                     JSONObject thirdOfSecond = secondTypes.getJSONObject(2);
                     String lat = thirdOfSecond.getString("latitude");
@@ -483,7 +583,11 @@ public class MoodRecommendActivity extends AppCompatActivity
                     thirdPoint.add(tMapPoint);
 
                     // spotId
+<<<<<<< HEAD
                     int spotId3_i = thirdOfSecond.getInt("spotId");
+=======
+                    int spotId3_i =thirdOfSecond.getInt("spotId");
+>>>>>>> 5c5b85631014e41a719b5a67d8e5628327272e76
                     String spotId3 = Integer.toString(spotId3_i);
                     thirdSpotId.add(spotId3);
                 }
@@ -536,6 +640,7 @@ public class MoodRecommendActivity extends AppCompatActivity
                     thirdSpotId.add(spotId3);
                 }
             }
+
 
             Message message = handler.obtainMessage();
             Bundle bundle = new Bundle();
@@ -741,7 +846,11 @@ public class MoodRecommendActivity extends AppCompatActivity
 
         @Override
         public void run() {
+<<<<<<< HEAD
             try {
+=======
+            try{
+>>>>>>> 5c5b85631014e41a719b5a67d8e5628327272e76
                 conn.setDoOutput(true);
                 BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
                 bw.write(data.toString());
@@ -750,15 +859,24 @@ public class MoodRecommendActivity extends AppCompatActivity
                 BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
                 String returnMsg = in.readLine();
                 int responseCode = conn.getResponseCode();
+<<<<<<< HEAD
                 System.out.println("로그: 응답 메시지: " + returnMsg);
                 System.out.println("로그: responseCode: " + responseCode);
+=======
+                System.out.println("로그: 응답 메시지: "+returnMsg);
+                System.out.println("로그: responseCode: "+responseCode);
+>>>>>>> 5c5b85631014e41a719b5a67d8e5628327272e76
 
                 // Toast 띄우기
                 JSONObject jsonObject = new JSONObject(returnMsg);
                 String detail = jsonObject.getString("detail");
                 ToastMessage(detail);
 
+<<<<<<< HEAD
             } catch (Exception e) {
+=======
+            }catch (Exception e){
+>>>>>>> 5c5b85631014e41a719b5a67d8e5628327272e76
                 e.printStackTrace();
                 System.out.println("로그: 산책 코스 저장 연결 예외 발생");
             }
@@ -776,6 +894,7 @@ public class MoodRecommendActivity extends AppCompatActivity
             }
         });
     }
+<<<<<<< HEAD
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -814,4 +933,6 @@ public class MoodRecommendActivity extends AppCompatActivity
             isFabOpen = true;
         }
     }
+=======
+>>>>>>> 5c5b85631014e41a719b5a67d8e5628327272e76
 }

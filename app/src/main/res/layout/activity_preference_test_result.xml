@@ -46,6 +46,7 @@
                 android:weightSum="6"
                 android:layout_weight="7">
 
+<<<<<<< HEAD
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -143,6 +144,30 @@
                             android:background="@drawable/button_deco" />
                     </LinearLayout>
                 </LinearLayout>
+=======
+                <TextView
+                    android:id="@+id/flagText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <Button
+                    android:id="@+id/retry"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_marginTop="20dp"
+                    android:layout_weight="2"
+                    android:text="다시"
+
+                    />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_weight="2"
+                    android:text="OK"
+                    android:onClick="saveWalkClicked"/>
+>>>>>>> 5c5b85631014e41a719b5a67d8e5628327272e76
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

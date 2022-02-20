@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+<<<<<<< HEAD
         <entry key="..\:/Users/marve/AndroidStudioProjects/Onjung(20220207)/Onjung/app/src/main/res/layout/activity_diary.xml" value="0.17916666666666667" />
         <entry key="..\:/Users/marve/AndroidStudioProjects/Onjung(20220207)/Onjung/app/src/main/res/layout/activity_mood_recommend.xml" value="0.17916666666666667" />
         <entry key="..\:/Users/marve/AndroidStudioProjects/Onjung(20220207)/Onjung/app/src/main/res/layout/activity_preference_test.xml" value="0.17916666666666667" />
@@ -10,6 +11,24 @@
         <entry key="..\:/Users/marve/AndroidStudioProjects/Onjung(20220207)/Onjung/app/src/main/res/layout/activity_result.xml" value="0.17916666666666667" />
         <entry key="..\:/Users/marve/AndroidStudioProjects/Onjung(20220207)/Onjung/app/src/main/res/layout/activity_select.xml" value="0.17916666666666667" />
         <entry key="..\:/Users/marve/AndroidStudioProjects/Onjung(20220207)/Onjung/app/src/main/res/layout/dialog_show_course.xml" value="0.17916666666666667" />
+=======
+        <entry key="..\:/Users/marve/AndroidStudioProjects/Onjung/app/src/main/res/layout/activity_main.xml" value="0.17916666666666667" />
+        <entry key="..\:/Users/marve/AndroidStudioProjects/Onjung/app/src/main/res/layout/activity_mood_recommend.xml" value="0.14666666666666667" />
+        <entry key="..\:/Users/marve/AndroidStudioProjects/Onjung/app/src/main/res/layout/activity_preference_test.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/marve/AndroidStudioProjects/Onjung/app/src/main/res/layout/activity_preference_test_result.xml" value="0.22" />
+        <entry key="..\:/Users/marve/AndroidStudioProjects/Onjung/app/src/main/res/layout/activity_question.xml" value="0.17916666666666667" />
+        <entry key="..\:/Users/marve/AndroidStudioProjects/Onjung/app/src/main/res/layout/activity_result.xml" value="0.22" />
+        <entry key="..\:/Users/marve/AndroidStudioProjects/Onjung/app/src/main/res/layout/activity_satisfaction_score.xml" value="0.17916666666666667" />
+        <entry key="..\:/Users/marve/AndroidStudioProjects/Onjung/app/src/main/res/layout/activity_save_walk.xml" value="0.1" />
+        <entry key="..\:/Users/marve/AndroidStudioProjects/Onjung/app/src/main/res/layout/activity_select.xml" value="0.17916666666666667" />
+        <entry key="..\:/Users/marve/AndroidStudioProjects/Onjung/app/src/main/res/layout/activity_show_course.xml" value="0.1" />
+        <entry key="..\:/Users/marve/AndroidStudioProjects/Onjung/app/src/main/res/layout/dialog_satisfaction.xml" value="0.1609375" />
+        <entry key="..\:/Users/marve/AndroidStudioProjects/Onjung/app/src/main/res/layout/dialog_satisfaction_score.xml" value="0.22" />
+        <entry key="..\:/Users/marve/AndroidStudioProjects/Onjung/app/src/main/res/layout/dialog_save_walk.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/marve/AndroidStudioProjects/Onjung/app/src/main/res/layout/dialog_show_course.xml" value="0.22" />
+        <entry key="..\:/Users/marve/AndroidStudioProjects/Onjung/app/src/main/res/layout/fragment_home.xml" value="0.17916666666666667" />
+        <entry key="..\:/Users/marve/AndroidStudioProjects/Onjung/app/src/main/res/layout/fragment_schedule.xml" value="0.10099637681159421" />
+>>>>>>> 5c5b85631014e41a719b5a67d8e5628327272e76
       </map>
     </option>
   </component>

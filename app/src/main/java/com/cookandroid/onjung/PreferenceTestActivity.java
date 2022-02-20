@@ -68,11 +68,37 @@ public class PreferenceTestActivity extends AppCompatActivity
 
     // 인텐트에 담아 전달할 데이터 배열 선언
     ArrayList recentPosition = new ArrayList(); // 현위치 좌표 {"위도", "경도"}
+<<<<<<< HEAD
+=======
+
+>>>>>>> 5c5b85631014e41a719b5a67d8e5628327272e76
     /*
     ArrayList<String> spotId = new ArrayList<>();
     ArrayList<String> spotName = new ArrayList<>(); // 경유지 이름 ArrayList
     ArrayList<String> spotLat = new ArrayList<>();  // 경유지 위도 ArrayList
     ArrayList<String> spotLon = new ArrayList<>(); // 경유지 경도 ArrayList
+     */
+
+    // 첫 번째 경로 경유지 위경도 배열
+    ArrayList<String> firstPoint_lat = new ArrayList<>();
+    ArrayList<String> firstPoint_lon = new ArrayList<>();
+    // 두 번째 경로 경유지 위경도 배열
+    ArrayList<String> secondPoint_lat = new ArrayList<>();
+    ArrayList<String> secondPoint_lon = new ArrayList<>();
+    // 세 번째 경로 경유지 위경도 배열
+    ArrayList<String> thirdPoint_lat = new ArrayList<>();
+    ArrayList<String> thirdPoint_lon = new ArrayList<>();
+
+    // 경유지 이름 배열
+    ArrayList<String> firstName = new ArrayList<>();
+    ArrayList<String> secondName = new ArrayList<>();
+    ArrayList<String> thirdName = new ArrayList<>();
+
+    // spotId 배열(받을 때: int, 보낼 때: String)
+    ArrayList<String> firstSpotId = new ArrayList<>();
+    ArrayList<String> secondSpotId = new ArrayList<>();
+    ArrayList<String> thirdSpotId = new ArrayList<>();
+
      */
 
     // 첫 번째 경로 경유지 위경도 배열

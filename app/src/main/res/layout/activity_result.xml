@@ -46,7 +46,17 @@
                 android:weightSum="6"
                 android:layout_weight="7">
 
+<<<<<<< HEAD
                 <LinearLayout
+=======
+                <TextView
+                    android:id="@+id/flagText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <Button
+                    android:id="@+id/retry"
+>>>>>>> 5c5b85631014e41a719b5a67d8e5628327272e76
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="15dp"
