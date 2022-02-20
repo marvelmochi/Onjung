@@ -28,6 +28,13 @@ import java.util.ArrayList;
 public class PreferenceTestActivity extends AppCompatActivity
         implements TMapGpsManager.onLocationChangedCallback {
 
+    // 취향을 분석한 산책로 추천 (평가 이전 ver.)
+    // (PreferenceTestActivity에서 API 호출 후
+    // 받아온 데이터 값 PreferenceTestResultActivity로 넘김)
+
+    // API 15-1번(평가 이전) 사용 하여 경로 3개 구현
+
+
     // 체크박스 선언
     CheckBox mountain, river, forest, lake, park;
     CheckBox active, quiet, walkable, sight, pet, sightseeing, exercise;
@@ -61,10 +68,32 @@ public class PreferenceTestActivity extends AppCompatActivity
 
     // 인텐트에 담아 전달할 데이터 배열 선언
     ArrayList recentPosition = new ArrayList(); // 현위치 좌표 {"위도", "경도"}
+    /*
     ArrayList<String> spotId = new ArrayList<>();
     ArrayList<String> spotName = new ArrayList<>(); // 경유지 이름 ArrayList
     ArrayList<String> spotLat = new ArrayList<>();  // 경유지 위도 ArrayList
     ArrayList<String> spotLon = new ArrayList<>(); // 경유지 경도 ArrayList
+     */
+
+    // 첫 번째 경로 경유지 위경도 배열
+    ArrayList<String> firstPoint_lat = new ArrayList<>();
+    ArrayList<String> firstPoint_lon = new ArrayList<>();
+    // 두 번째 경로 경유지 위경도 배열
+    ArrayList<String> secondPoint_lat = new ArrayList<>();
+    ArrayList<String> secondPoint_lon = new ArrayList<>();
+    // 세 번째 경로 경유지 위경도 배열
+    ArrayList<String> thirdPoint_lat = new ArrayList<>();
+    ArrayList<String> thirdPoint_lon = new ArrayList<>();
+
+    // 경유지 이름 배열
+    ArrayList<String> firstName = new ArrayList<>();
+    ArrayList<String> secondName = new ArrayList<>();
+    ArrayList<String> thirdName = new ArrayList<>();
+
+    // spotId 배열(받을 때: int, 보낼 때: String)
+    ArrayList<String> firstSpotId = new ArrayList<>();
+    ArrayList<String> secondSpotId = new ArrayList<>();
+    ArrayList<String> thirdSpotId = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -229,15 +258,35 @@ public class PreferenceTestActivity extends AppCompatActivity
             // 인텐트 전달
             Intent intentResult = new Intent(PreferenceTestActivity.this, PreferenceTestResultActivity.class);
             intentResult.putExtra("recentPosition", recentPosition);
+
+            /*
             intentResult.putExtra("spotName", spotName);
             intentResult.putExtra("spotLat", spotLat);
             intentResult.putExtra("spotLon", spotLon);
             intentResult.putExtra("spotId", spotId);
+*/
+
+            // 경로 3개 경유지 티맵포인트 배열 전달
+            intentResult.putExtra("firstPoint_lat", firstPoint_lat);
+            intentResult.putExtra("firstPoint_lon", firstPoint_lon);
+            intentResult.putExtra("secondPoint_lat", secondPoint_lat);
+            intentResult.putExtra("secondPoint_lon", secondPoint_lon);
+            intentResult.putExtra("thirdPoint_lat", thirdPoint_lat);
+            intentResult.putExtra("thirdPoint_lon", thirdPoint_lon);
+
+            intentResult.putExtra("firstName", firstName);
+            intentResult.putExtra("secondName", secondName);
+            intentResult.putExtra("thirdName", thirdName);
+
+            intentResult.putExtra("firstSpotId", firstSpotId);
+            intentResult.putExtra("secondSpotId", secondSpotId);
+            intentResult.putExtra("thirdSpotId", thirdSpotId);
 
             startActivity(intentResult);
-            for (int i=0; i<spotName.size();i++){
-                System.out.println("로그: 경유지 명: "+spotName.get(i));
-            }
+            /*
+            for (int i = 0; i < spotName.size(); i++) {
+                System.out.println("로그: 경유지 명: " + spotName.get(i));
+            }*/
         }
 
     }
@@ -250,6 +299,7 @@ public class PreferenceTestActivity extends AppCompatActivity
             String data = jsonObject.getString("data");
             System.out.println("로그: data: " + data);
 
+            /*
             JSONArray dataArray = new JSONArray(data);
 
             for (int i = 0; i < dataArray.length(); i++) {
@@ -266,9 +316,141 @@ public class PreferenceTestActivity extends AppCompatActivity
                 spotLon.add(wlon);
             }
 
+             */
+
+            JSONArray dataArray = new JSONArray(data);
+
+            if (dataArray.length() == 3) {
+                System.out.println("로그: 응답값이 3개 왔음");
+                // 첫 번째 경유지
+                // 이름
+                String dataFirst = dataArray.get(0).toString();
+                JSONObject objectFirst = new JSONObject(dataFirst);
+                String name1 = objectFirst.getString("name");
+                firstName.add(name1);
+                // 위경도
+                String lat1_s = objectFirst.getString("latitude");
+                String lon1_s = objectFirst.getString("longitude");
+                firstPoint_lat.add(lat1_s);
+                firstPoint_lon.add(lon1_s);
+                // spotId
+                int spotId1_i = objectFirst.getInt("spotId");
+                String spotId1 = Integer.toString(spotId1_i);
+                firstSpotId.add(spotId1);
+
+                // 두 번째 경유지
+                // 이름
+                String dataSecond = dataArray.get(1).toString();
+                JSONObject objectSecond = new JSONObject(dataSecond);
+                String name2 = objectSecond.getString("name");
+                secondName.add(name2);
+                // 위경도
+                String lat2_s = objectSecond.getString("latitude");
+                String lon2_s = objectSecond.getString("longitude");
+                secondPoint_lat.add(lat2_s);
+                secondPoint_lon.add(lon2_s);
+                // spotId
+                int spotId2_i = objectSecond.getInt("spotId");
+                String spotId2 = Integer.toString(spotId2_i);
+                secondSpotId.add(spotId2);
+
+                // 세 번째 경유지
+                // 이름
+                String dataThird = dataArray.get(2).toString();
+                JSONObject objectThird = new JSONObject(dataThird);
+                String name3 = objectThird.getString("name");
+                thirdName.add(name3);
+                // 위경도
+                String lat3_s = objectThird.getString("latitude");
+                String lon3_s = objectThird.getString("longitude");
+                thirdPoint_lat.add(lat3_s);
+                thirdPoint_lon.add(lon3_s);
+                // spotId
+                int spotId3_i = objectThird.getInt("spotId");
+                String spotId3 = Integer.toString(spotId3_i);
+                thirdSpotId.add(spotId3);
+
+            } else if (dataArray.length() == 2) {
+                System.out.println("로그: 응답값이 2개 왔음");
+                // 첫 번째 경유지
+                // 이름
+                String dataFirst = dataArray.get(0).toString();
+                JSONObject objectFirst = new JSONObject(dataFirst);
+                String name1 = objectFirst.getString("name");
+                firstName.add(name1);
+                // 위경도
+                String lat1_s = objectFirst.getString("latitude");
+                String lon1_s = objectFirst.getString("longitude");
+                firstPoint_lat.add(lat1_s);
+                firstPoint_lon.add(lon1_s);
+                // spotId
+                int spotId1_i = objectFirst.getInt("spotId");
+                String spotId1 = Integer.toString(spotId1_i);
+                firstSpotId.add(spotId1);
+
+                // 두 번째 경유지
+                // 이름
+                String dataSecond = dataArray.get(1).toString();
+                JSONObject objectSecond = new JSONObject(dataSecond);
+                String name2 = objectSecond.getString("name");
+                secondName.add(name2);
+                // 위경도
+                String lat2_s = objectSecond.getString("latitude");
+                String lon2_s = objectSecond.getString("longitude");
+                secondPoint_lat.add(lat2_s);
+                secondPoint_lon.add(lon2_s);
+                // spotId
+                int spotId2_i = objectSecond.getInt("spotId");
+                String spotId2 = Integer.toString(spotId2_i);
+                secondSpotId.add(spotId2);
+
+                // 세 번째 경유지 (임의로 첫 번째 경유지를 넣음)
+                // 이름
+                thirdName.add(name1);
+                // 위경도
+                thirdPoint_lat.add(lat1_s);
+                thirdPoint_lon.add(lon1_s);
+                // spotId
+                thirdSpotId.add(spotId1);
 
 
+            } else if (dataArray.length() == 1) {
+                System.out.println("로그: 응답값이 1개 왔음");
+                // 첫 번째 경유지
+                // 이름
+                String dataFirst = dataArray.get(0).toString();
+                JSONObject objectFirst = new JSONObject(dataFirst);
+                String name1 = objectFirst.getString("name");
+                firstName.add(name1);
+                // 위경도
+                String lat1_s = objectFirst.getString("latitude");
+                String lon1_s = objectFirst.getString("longitude");
+                firstPoint_lat.add(lat1_s);
+                firstPoint_lon.add(lon1_s);
+                // spotId
+                int spotId1_i = objectFirst.getInt("spotId");
+                String spotId1 = Integer.toString(spotId1_i);
+                firstSpotId.add(spotId1);
 
+                // 두 번째 경유지 (임의로 첫 번째 경유지를 넣음)
+                secondName.add(name1); // 이름
+                secondPoint_lat.add(lat1_s); // 위도
+                secondPoint_lon.add(lon1_s); // 경도
+                secondSpotId.add(spotId1);
+
+                // 세 번째 경유지 (임의로 첫 번째 경유지를 넣음)
+                thirdName.add(name1);
+                thirdPoint_lat.add(lat1_s);
+                thirdPoint_lon.add(lon1_s);
+                thirdSpotId.add(spotId1);
+            }
+
+            for (int i = 0; i < firstName.size(); i++) {
+                System.out.println("로그: firstName: " + i + "번째: " + firstName.get(i));
+                System.out.println("로그: secondName: " + i + "번째: " + secondName.get(i));
+                System.out.println("로그: thirdName: " + i + "번째: " + thirdName.get(i));
+
+            }
 
         } catch (Exception e) {
             e.printStackTrace();

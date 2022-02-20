@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -19,6 +20,8 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentManager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.skt.Tmap.TMapGpsManager;
+import com.skt.Tmap.TMapPoint;
 
 import org.json.JSONObject;
 
@@ -26,8 +29,10 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity
+implements TMapGpsManager.onLocationChangedCallback {
 
     // 하단 내비게이션 바 선언
     BottomNavigationView bottomNavigationView;
@@ -49,11 +54,33 @@ public class MainActivity extends AppCompatActivity {
     TextView userNameText;
     String userName;
 
+    // 현위치 좌표 전달
+    double home_lat, home_lon;
+    String home_lat_s, home_lon_s;
+
+    // T Map 앱 키 등록
+    String API_Key = "l7xxa57022c9d2f9453db8f198c5ca511fdb";
+    // T Map GPS
+    TMapGpsManager tMapGPS = null;
+
+    // 인텐트에 담아 전달할 데이터 배열 선언
+    ArrayList recentPosition = new ArrayList(); // 현위치 좌표 {"위도", "경도"}
+
     @RequiresApi(api = Build.VERSION_CODES.Q)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // GPS using T Map
+        tMapGPS = new TMapGpsManager(this);
+
+        // Initial Setting
+        tMapGPS.setMinTime(1000);
+        tMapGPS.setMinDistance(10);
+        tMapGPS.setProvider(tMapGPS.NETWORK_PROVIDER);
+
+        tMapGPS.OpenGps();
 
         //만보기
         if(ContextCompat.checkSelfPermission(this,
@@ -168,9 +195,25 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onLocationChange(Location location) {
+        // 내 위치 좌표 home에 저장
+        TMapPoint home = tMapGPS.getLocation();
+        home_lat = home.getLatitude();
+        home_lon = home.getLongitude();
+        home_lat_s = Double.toString(home_lat);
+        home_lon_s = Double.toString(home_lon);
+        // 배열에 현위치 담기
+        recentPosition.add(home_lat_s);
+        recentPosition.add(home_lon_s);
+
+        System.out.println("로그: 현위치 좌표 " + home_lat_s + ", " + home_lon_s);
+    }
+
     // 조건에 맞는 산책로 추천 클릭
     public void selectbtnClicked(View view) {
         Intent intent = new Intent(this, SelectActivity.class);
+        intent.putStringArrayListExtra("recentPosition", recentPosition);
         startActivity(intent);
     }
 
@@ -184,6 +227,7 @@ public class MainActivity extends AppCompatActivity {
         } else {
             // 평가 내역이 있을 경우
             Intent intent = new Intent(this, MoodRecommendActivity.class);
+            intent.putExtra("recentPosition", recentPosition);
             startActivity(intent);
         }
 

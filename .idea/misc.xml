@@ -3,78 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/drawable-v24/button_deco.xml" value="0.14635416666666667" />
-        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/drawable-v24/check_crowded.xml" value="0.26979166666666665" />
-        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/drawable-v24/check_mountain.xml" value="0.17039473684210527" />
-        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/drawable-v24/check_show.xml" value="0.1" />
-        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/drawable-v24/checkbox_deco.xml" value="0.14635416666666667" />
-        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/drawable-v24/drawable_view.xml" value="0.26979166666666665" />
-        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/drawable-v24/drawable_view_focused.xml" value="0.26979166666666665" />
-        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/drawable-v24/item_color.xml" value="0.1" />
-        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/drawable-v24/seekbar_deco.xml" value="0.14635416666666667" />
-        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/drawable-v24/seekbar_thumb_deco.xml" value="0.14635416666666667" />
-        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/drawable-v24/select_view.xml" value="0.26979166666666665" />
-        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/drawable/black_radius.xml" value="0.21666666666666667" />
-        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/drawable/border_line.xml" value="0.26979166666666665" />
-        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/drawable/check_crowded.xml" value="0.26979166666666665" />
-        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/drawable/check_exercise.xml" value="0.26979166666666665" />
-        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/drawable/check_forest.xml" value="0.14583333333333334" />
-        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/drawable/check_lake.xml" value="0.14583333333333334" />
-        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/drawable/check_park.xml" value="0.14583333333333334" />
-        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/drawable/check_pet.xml" value="0.26979166666666665" />
-        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/drawable/check_quiet.xml" value="0.26979166666666665" />
-        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/drawable/check_river.xml" value="0.14583333333333334" />
-        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/drawable/check_scenery.xml" value="0.26979166666666665" />
-        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/drawable/check_show.xml" value="0.26979166666666665" />
-        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/drawable/check_statue.xml" value="0.26979166666666665" />
-        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/drawable/check_walk.xml" value="0.26979166666666665" />
-        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/drawable/diaglog_round.xml" value="0.17039473684210527" />
-        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/drawable/diaglog_title_round.xml" value="0.17039473684210527" />
-        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/drawable/login_round.xml" value="0.16052631578947368" />
-        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/drawable/progress_bg.xml" value="0.1" />
-        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/drawable/progress_image.xml" value="0.1" />
-        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/drawable/round_border.xml" value="0.26979166666666665" />
-        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/drawable/seek_thumb.xml" value="0.14583333333333334" />
-        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/drawable/title_round.xml" value="0.17039473684210527" />
-        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/layout/activity_atest.xml" value="0.190234375" />
-        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/layout/activity_diary.xml" value="0.25364583333333335" />
-        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/layout/activity_diary_create.xml" value="0.1" />
-        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/layout/activity_diary_read.xml" value="0.25364583333333335" />
-        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/layout/activity_edit_user_info.xml" value="0.264" />
-        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/layout/activity_friend.xml" value="0.25364583333333335" />
-        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/layout/activity_login.xml" value="0.176" />
-        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/layout/activity_mood_recommend.xml" value="0.4" />
-        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/layout/activity_preference_test.xml" value="0.2" />
-        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/layout/activity_preference_test_result.xml" value="0.1" />
-        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/layout/activity_question.xml" value="0.264" />
-        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/layout/activity_result.xml" value="0.1" />
-        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/layout/activity_satisfaction_score.xml" value="0.264" />
-        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/layout/activity_save_walk.xml" value="0.2" />
-        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/layout/activity_select.xml" value="0.16" />
-        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/layout/activity_show_course.xml" value="0.15032894736842106" />
-        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/layout/activity_sign_up.xml" value="0.2" />
-        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/layout/activity_splash.xml" value="0.1" />
-        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/layout/dialog_date_picker.xml" value="0.25364583333333335" />
-        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/layout/dialog_find_friend.xml" value="0.16019736842105264" />
-        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/layout/dialog_friend_location.xml" value="0.2" />
-        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/layout/dialog_progress.xml" value="0.1" />
-        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/layout/dialog_quit.xml" value="0.4" />
-        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/layout/dialog_satisfaction.xml" value="0.15032894736842106" />
-        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/layout/dialog_satisfaction_score.xml" value="0.25364583333333335" />
-        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/layout/dialog_save_walk.xml" value="0.2" />
-        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/layout/dialog_show_course.xml" value="0.2" />
-        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/layout/fragment_home.xml" value="0.152" />
-        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/layout/fragment_home_edit.xml" value="0.1" />
-        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/layout/fragment_home_front.xml" value="0.253125" />
-        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/layout/fragment_menu.xml" value="0.12916666666666668" />
-        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/layout/fragment_schedule.xml" value="0.2" />
-        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/layout/progress_loading.xml" value="0.2" />
-        <entry key="..\:/Users/JIYOUNG/AndroidStudioProjects/graduation/Onjung/app/src/main/res/menu/menu_bottom.xml" value="0.12916666666666668" />
+        <entry key="..\:/Users/marve/AndroidStudioProjects/Onjung(20220207)/Onjung/app/src/main/res/layout/activity_diary.xml" value="0.17916666666666667" />
+        <entry key="..\:/Users/marve/AndroidStudioProjects/Onjung(20220207)/Onjung/app/src/main/res/layout/activity_mood_recommend.xml" value="0.17916666666666667" />
+        <entry key="..\:/Users/marve/AndroidStudioProjects/Onjung(20220207)/Onjung/app/src/main/res/layout/activity_preference_test.xml" value="0.17916666666666667" />
+        <entry key="..\:/Users/marve/AndroidStudioProjects/Onjung(20220207)/Onjung/app/src/main/res/layout/activity_preference_test_result.xml" value="0.17916666666666667" />
+        <entry key="..\:/Users/marve/AndroidStudioProjects/Onjung(20220207)/Onjung/app/src/main/res/layout/activity_result.xml" value="0.17916666666666667" />
+        <entry key="..\:/Users/marve/AndroidStudioProjects/Onjung(20220207)/Onjung/app/src/main/res/layout/activity_select.xml" value="0.17916666666666667" />
+        <entry key="..\:/Users/marve/AndroidStudioProjects/Onjung(20220207)/Onjung/app/src/main/res/layout/dialog_show_course.xml" value="0.17916666666666667" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

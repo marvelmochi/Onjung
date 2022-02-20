@@ -3,6 +3,8 @@ package com.cookandroid.onjung;
 import android.Manifest;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -51,6 +53,12 @@ import java.util.TimerTask;
 public class ResultActivity extends AppCompatActivity
         implements TMapGpsManager.onLocationChangedCallback {
 
+    // 조건에 맞는 산책로 추천 구현 방식 (SelectActivity에서 API 호출 후 받아온 데이터 값 ResultActivity로 넘김)
+
+    // 첫 번째 경로: 현 위치 - API 7번 (현 위치와 반경 내에서 가장 가까운 경유지)
+    // 두 번째 경로: 현 위치 - API 4번 (현 위치와 가장 가까운 경유지)
+    // 세 번째 경로: 현 위치 - API 4번 (현 위치와 가장 가까운 경유지)
+
     // 인텐트로 액티비티 간 데이터 전달
     String myData;
     // T Map 앱 키 등록
@@ -61,10 +69,26 @@ public class ResultActivity extends AppCompatActivity
 
     // 전역변수 선언
     ArrayList<String> recentPosition;
-    ArrayList<String> spotName;
-    ArrayList<String> spotLat;
-    ArrayList<String> spotLon;
-    ArrayList<String> spotId;
+    TMapPoint home;
+
+    ArrayList<String> FirstName = new ArrayList<>();
+    ArrayList<String> FirstLat = new ArrayList<>();
+    ArrayList<String> FirstLon = new ArrayList<>();
+    ArrayList<String> FirstSpotId = new ArrayList<>();
+
+    ArrayList<String> SecondName = new ArrayList<>();
+    ArrayList<String> SecondLat = new ArrayList<>();
+    ArrayList<String> SecondLon = new ArrayList<>();
+    ArrayList<String> SecondSpotId = new ArrayList<>();
+
+    ArrayList<String> ThirdName = new ArrayList<>();
+    ArrayList<String> ThirdLat = new ArrayList<>();
+    ArrayList<String> ThirdLon = new ArrayList<>();
+    ArrayList<String> ThirdSpotId = new ArrayList<>();
+
+    ArrayList<TMapPoint> FirstPoint = new ArrayList<>();
+    ArrayList<TMapPoint> SecondPoint = new ArrayList<>();
+    ArrayList<TMapPoint> ThirdPoint = new ArrayList<>();
 
     // 코스 정보를 보여줄 텍스트뷰
     TextView courseInfo;
@@ -106,15 +130,94 @@ public class ResultActivity extends AppCompatActivity
     // 토스트 온 스레드를 위한 핸들러
     Handler toastHandler;
 
+    // 경로 flag
+    int flag = 1;
+    //TextView flagText;
+
+    //
+    Button retryButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
 
+        // 이전 액티비티에서 데이터 받아오기
+        Intent intent = getIntent();
+        myData = intent.getStringExtra("mydata");
+        System.out.println("로그: mydata: " + myData);
+        recentPosition = intent.getStringArrayListExtra("recentPosition");
+        System.out.println("로그: 현위치: " + recentPosition.get(0) + ", " + recentPosition.get(1));
+
+        Double home_lat = Double.parseDouble(recentPosition.get(0));
+        Double home_lon = Double.parseDouble(recentPosition.get(1));
+        home = new TMapPoint(home_lat, home_lon);
+
+        FirstName = intent.getStringArrayListExtra("FirstName");
+        FirstLat = intent.getStringArrayListExtra("FirstLat");
+        FirstLon = intent.getStringArrayListExtra("FirstLon");
+        FirstSpotId = intent.getStringArrayListExtra("FirstSpotId");
+
+        SecondName = intent.getStringArrayListExtra("SecondName");
+        SecondLat = intent.getStringArrayListExtra("SecondLat");
+        SecondLon = intent.getStringArrayListExtra("SecondLon");
+        SecondSpotId = intent.getStringArrayListExtra("SecondSpotId");
+
+        ThirdName = intent.getStringArrayListExtra("ThirdName");
+        ThirdLat = intent.getStringArrayListExtra("ThirdLat");
+        ThirdLon = intent.getStringArrayListExtra("ThirdLon");
+        ThirdSpotId = intent.getStringArrayListExtra("ThirdSpotId");
+
+        // TmapPoint로 만들어 배열에 담기
+        for (int i = 0; i < FirstLat.size(); i++) {
+            Double lat = Double.parseDouble(FirstLat.get(i));
+            Double lon = Double.parseDouble(FirstLon.get(i));
+            TMapPoint tMapPoint = new TMapPoint(lat, lon);
+            FirstPoint.add(tMapPoint);
+        }
+        for (int i = 0; i < SecondLat.size(); i++) {
+            Double lat = Double.parseDouble(SecondLat.get(i));
+            Double lon = Double.parseDouble(SecondLon.get(i));
+            TMapPoint tMapPoint = new TMapPoint(lat, lon);
+            SecondPoint.add(tMapPoint);
+        }
+        for (int i = 0; i < ThirdLat.size(); i++) {
+            Double lat = Double.parseDouble(ThirdLat.get(i));
+            Double lon = Double.parseDouble(ThirdLon.get(i));
+            TMapPoint tMapPoint = new TMapPoint(lat, lon);
+            ThirdPoint.add(tMapPoint);
+        }
+
         // SharedPreferences Test
         SharedPreferences preferences = getSharedPreferences("UserInfo", MODE_PRIVATE);
         memberId = preferences.getString("memberId", "");
         System.out.println("로그: 멤버아이디 불러오기(Result): " + memberId);
+
+        // GPS using T Map
+        tMapGPS = new TMapGpsManager(this);
+
+
+        // Initial Setting
+        tMapGPS.setMinTime(1000);
+        tMapGPS.setMinDistance(10);
+        tMapGPS.setProvider(tMapGPS.NETWORK_PROVIDER);
+
+        tMapGPS.OpenGps();
+
+        // 티맵 관련
+        tMapView = new TMapView(this);// 티맵 뷰 생성
+        tMapView.setSKTMapApiKey(API_Key); // 앱 키 등록
+        // 맵뷰 기본 설정
+        tMapView.setZoomLevel(15);
+        tMapView.setIconVisibility(true);
+        tMapView.setMapType(TMapView.MAPTYPE_STANDARD);
+        tMapView.setLanguage(TMapView.LANGUAGE_KOREAN);
+
+        // 지도 초기 위치 설정
+        tMapView.setCenterPoint(home_lon, home_lat);
+        tMapView.setTrackingMode(false);
+        LinearLayout Tmap = (LinearLayout) findViewById(R.id.map);
+        Tmap.addView(tMapView);
 
         // 다이얼로그
         saveDialog = new Dialog(ResultActivity.this);
@@ -126,6 +229,12 @@ public class ResultActivity extends AppCompatActivity
         // 날짜, 산책 제목 받아올 변수 선언
         dateText = (TextView) saveDialog.findViewById(R.id.dateText);
         titleText = (EditText) saveDialog.findViewById(R.id.titleText);
+
+        // 경로 변경 버튼
+        retryButton = findViewById(R.id.retry);
+
+        //flagText = findViewById(R.id.flagText);
+        //flagText.setText(flag + "번째");
 
         // 토스트 온 스레드
         toastHandler = new Handler(Looper.getMainLooper());
@@ -152,17 +261,8 @@ public class ResultActivity extends AppCompatActivity
         thread.start();
 
 
-        // 이전 액티비티에서 데이터 받아오기
-        Intent intent = getIntent();
-        myData = intent.getStringExtra("mydata");
-        System.out.println("로그: mydata: " + myData);
-        recentPosition = intent.getStringArrayListExtra("recentPosition");
-        System.out.println("로그: 현위치: " + recentPosition.get(0) + ", " + recentPosition.get(1));
-        spotName = intent.getStringArrayListExtra("spotName");
-        spotLat = intent.getStringArrayListExtra("spotLat");
-        spotLon = intent.getStringArrayListExtra("spotLon");
-        spotId = intent.getStringArrayListExtra("spotId");
 
+/*
         for (int i=0; i<spotId.size(); i++) {
             System.out.println("로그: 전달받은 인텐트: " + spotId.get(i));
         }
@@ -180,10 +280,13 @@ public class ResultActivity extends AppCompatActivity
         courseInfo = (TextView) findViewById(R.id.courseInfo);
         courseInfo.setText(spotnameString);
 
+ */
+
         //saveInfo = (TextView)findViewById(R.id.saveText);
         //saveInfo.setText(spotnameString);
 
 
+        /*
         // 티맵 관련
         tMapView = new TMapView(this); // 티맵 뷰 생성
         tMapView.setSKTMapApiKey(API_Key); // 앱 키 등록
@@ -201,6 +304,7 @@ public class ResultActivity extends AppCompatActivity
         LinearLayout Tmap = (LinearLayout) findViewById(R.id.map);
         Tmap.addView(tMapView);
 
+         */
 
         // Request For GPS permission
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -217,6 +321,90 @@ public class ResultActivity extends AppCompatActivity
         //tMapGPS.setProvider(tMapGPS.GPS_PROVIDER);
 
         tMapGPS.OpenGps();
+
+        TMapData tmapdata = new TMapData();
+
+        tmapdata.findPathDataWithType(TMapData.TMapPathType.PEDESTRIAN_PATH, home, home, FirstPoint, 10, new TMapData.FindPathDataListenerCallback() {
+            @Override
+            public void onFindPathData(TMapPolyLine tMapPolyLine) {
+                tMapView.addTMapPath(tMapPolyLine);
+
+            }
+        });
+
+
+        retryButton.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                /*
+                tmapdata.findPathDataWithType(TMapData.TMapPathType.PEDESTRIAN_PATH, home, home, spots2, 10, new TMapData.FindPathDataListenerCallback() {
+                    @Override
+                    public void onFindPathData(TMapPolyLine tMapPolyLine) {
+                        tMapView.addTMapPath(tMapPolyLine);
+
+                        //distance = tMapPolyLine.getDistance();
+                        //courseInfo.append("총 거리: " + distance); // km 표시로 수정 필요
+                        //saveInfo.append("총 거리: " + distance); // km 표시로 수정 필요
+                        //courseInformation = courseInfo.getText().toString();
+                    }
+                });*/
+
+                // 1->2번째
+                if (flag == 1) {
+                    flag += 1;
+                    //flagText.setText(flag + "번째");
+
+                    tmapdata.findPathDataWithType(TMapData.TMapPathType.PEDESTRIAN_PATH, home, home, SecondPoint, 10, new TMapData.FindPathDataListenerCallback() {
+                        @Override
+                        public void onFindPathData(TMapPolyLine tMapPolyLine) {
+                            tMapView.addTMapPath(tMapPolyLine);
+
+                            //distance = tMapPolyLine.getDistance();
+                            //courseInfo.append("총 거리: " + distance); // km 표시로 수정 필요
+                            //saveInfo.append("총 거리: " + distance); // km 표시로 수정 필요
+                            //courseInformation = courseInfo.getText().toString();
+                        }
+                    });
+                }
+
+                // 2->3번째
+                else if (flag == 2) {
+                    flag += 1;
+                    //flagText.setText(flag + "번째");
+
+                    tmapdata.findPathDataWithType(TMapData.TMapPathType.PEDESTRIAN_PATH, home, home, ThirdPoint, 10, new TMapData.FindPathDataListenerCallback() {
+                        @Override
+                        public void onFindPathData(TMapPolyLine tMapPolyLine) {
+                            tMapView.addTMapPath(tMapPolyLine);
+
+                            //distance = tMapPolyLine.getDistance();
+                            //courseInfo.append("총 거리: " + distance); // km 표시로 수정 필요
+                            //saveInfo.append("총 거리: " + distance); // km 표시로 수정 필요
+                            //courseInformation = courseInfo.getText().toString();
+                        }
+                    });
+                }
+
+                // 3->1번째
+                else if (flag == 3) {
+                    flag = 1;
+                    //flagText.setText(flag + "번째");
+
+                    tmapdata.findPathDataWithType(TMapData.TMapPathType.PEDESTRIAN_PATH, home, home, FirstPoint, 10, new TMapData.FindPathDataListenerCallback() {
+                        @Override
+                        public void onFindPathData(TMapPolyLine tMapPolyLine) {
+                            tMapView.addTMapPath(tMapPolyLine);
+
+                            //distance = tMapPolyLine.getDistance();
+                            //courseInfo.append("총 거리: " + distance); // km 표시로 수정 필요
+                            //saveInfo.append("총 거리: " + distance); // km 표시로 수정 필요
+                            //courseInformation = courseInfo.getText().toString();
+                        }
+                    });
+                }
+
+            }
+        });
 
         // 툴바: 뒤로가기 버튼
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -276,48 +464,29 @@ public class ResultActivity extends AppCompatActivity
     @Override
     public void onLocationChange(Location location) {
 
+        /*
         tMapView.setLocationPoint(location.getLongitude(), location.getLatitude());
         tMapView.setCenterPoint(location.getLongitude(), location.getLatitude());
 
-        // 현 위치, 경유지 티맵포인트 설정
-
-        TMapPoint home = new TMapPoint(Double.parseDouble(recentPosition.get(0)), Double.parseDouble(recentPosition.get(1)));
 
 
         ArrayList<TMapPoint> spots = new ArrayList<>();
         TMapData tmapdata = new TMapData();
 
-        for (int i = 0; i < spotName.size(); i++) {
-            TMapPoint spot = new TMapPoint(Double.parseDouble(spotLat.get(i)), Double.parseDouble(spotLon.get(i)));
+        for (int i = 0; i < FirstName.size(); i++) {
+            TMapPoint spot = new TMapPoint(Double.parseDouble(FirstLat.get(i)), Double.parseDouble(FirstLon.get(i)));
             spots.add(spot);
         }
 
 
-        tmapdata.findPathDataWithType(TMapData.TMapPathType.PEDESTRIAN_PATH, home, home, spots, 10, new TMapData.FindPathDataListenerCallback() {
-            @Override
-            public void onFindPathData(TMapPolyLine tMapPolyLine) {
-                tMapView.addTMapPath(tMapPolyLine);
-                distance = tMapPolyLine.getDistance();
-                courseInfo.append("총 거리: " + distance); // km 표시로 수정 필요
-                //saveInfo.append("총 거리: " + distance); // km 표시로 수정 필요
-                courseInformation = courseInfo.getText().toString();
-            }
-        });
+         */
+
 
     }
 
 
     public void saveWalkClicked(View view) {
-        /*
-        Intent intentResult = new Intent(ResultActivity.this, SaveWalkActivity.class);
-        intentResult.putExtra("mydata", myData);
-        intentResult.putExtra("recentPosition", recentPosition);
-        intentResult.putExtra("spotName", spotName);
-        intentResult.putExtra("spotLat", spotLat);
-        intentResult.putExtra("spotLon", spotLon);
-        startActivity(intentResult);
-        */
-        saveDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
         saveDialog.show();
 
         saveInfo = saveDialog.findViewById(R.id.saveText);
@@ -331,9 +500,9 @@ public class ResultActivity extends AppCompatActivity
         datePickerDialog = new DatePickerDialog(ResultActivity.this, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                dateText.setText(year + "/" + (month+1) + "/" + dayOfMonth);
+                dateText.setText(year + "/" + (month + 1) + "/" + dayOfMonth);
                 sYear = Integer.toString(year);
-                sMonth = Integer.toString((month+1));
+                sMonth = Integer.toString((month + 1));
                 sDay = Integer.toString(dayOfMonth);
 
             }
@@ -355,18 +524,18 @@ public class ResultActivity extends AppCompatActivity
                 // 날짜, 산책 제목 받아오기
 
                 // date String으로 변경하기
-                if (sMonth.length()==1){
-                    sMonth = "0"+sMonth;
+                if (sMonth.length() == 1) {
+                    sMonth = "0" + sMonth;
                 }
-                if (sDay.length()==1){
-                    sDay = "0"+sDay;
+                if (sDay.length() == 1) {
+                    sDay = "0" + sDay;
                 }
-                date = sYear+sMonth+sDay;
+                date = sYear + sMonth + sDay;
 
                 title = titleText.getText().toString();
                 System.out.println("로그: save 클릭");
-                System.out.println("로그: date: "+date);
-                System.out.println("로그: title: "+title);
+                System.out.println("로그: date: " + date);
+                System.out.println("로그: title: " + title);
 
                 HttpConnectorSaveCourse saveCourseThread = new HttpConnectorSaveCourse();
                 saveCourseThread.start();
@@ -385,8 +554,6 @@ public class ResultActivity extends AppCompatActivity
     // 로딩중 표시할 프로그레스 다이얼로그
     @Override
     protected Dialog onCreateDialog(int id) {
-        LoadingDialog dialog = new LoadingDialog(this);
-        /*
         ProgressDialog dialog = new ProgressDialog(this); // 사용자에게 보여줄 대화상자
         dialog.setTitle("산책 코스를 불러오는 중...");
         dialog.setMessage("잠시만 기다려주세요...");
@@ -398,8 +565,6 @@ public class ResultActivity extends AppCompatActivity
                     }
                 }
         );
-
-         */
 
         return dialog;
     }
@@ -439,34 +604,68 @@ public class ResultActivity extends AppCompatActivity
         JSONObject data;
         URL url;
         HttpURLConnection conn;
-        public HttpConnectorSaveCourse(){
-            try{
+
+        public HttpConnectorSaveCourse() {
+            try {
                 data = new JSONObject();
                 data.put("userId", memberId);
                 data.put("walkDate", date);
                 data.put("title", title);
-                // jsonArray에 경유지 넣기
-                JSONArray jsonArray = new JSONArray();
-                for (int i=0; i<spotId.size(); i++){
-                    jsonArray.put(spotId.get(i));
-                }
-                data.put("wayPoint", jsonArray);
-                data.put("latitude", recentPosition.get(0));
-                data.put("longitude", recentPosition.get(1));
-                System.out.println("로그: 산책로 저장 post data: "+data);
-                url = new URL("http://smwu.onjung.tk/walk");
-                conn = (HttpURLConnection) url.openConnection();
-                conn.setRequestMethod("POST");
-                conn.setRequestProperty("Content-Type", "application/json");
 
-            }catch (Exception e){
+                // 경로에 따라 다른 경유지 배열을 데이터에 넣어 보냄
+
+                if (flag == 1) {
+                    JSONArray jsonArray = new JSONArray();
+                    for (int i = 0; i < FirstSpotId.size(); i++) {
+                        jsonArray.put(FirstSpotId.get(i));
+                    }
+                    data.put("wayPoint", jsonArray);
+                    data.put("latitude", recentPosition.get(0));
+                    data.put("longitude", recentPosition.get(1));
+                    System.out.println("로그: 산책로 저장 post data: " + data);
+                    url = new URL("http://smwu.onjung.tk/walk");
+                    conn = (HttpURLConnection) url.openConnection();
+                    conn.setRequestMethod("POST");
+                    conn.setRequestProperty("Content-Type", "application/json");
+                } else if (flag == 2) {
+                    JSONArray jsonArray = new JSONArray();
+                    for (int i = 0; i < SecondSpotId.size(); i++){
+                        jsonArray.put(SecondSpotId.get(i));
+                    }
+                    data.put("wayPoint", jsonArray);
+                    data.put("latitude", recentPosition.get(0));
+                    data.put("longitude", recentPosition.get(1));
+                    System.out.println("로그: 산책로 저장 post data: " + data);
+                    url = new URL("http://smwu.onjung.tk/walk");
+                    conn = (HttpURLConnection) url.openConnection();
+                    conn.setRequestMethod("POST");
+                    conn.setRequestProperty("Content-Type", "application/json");
+                }
+
+                else if (flag == 3){
+                    JSONArray jsonArray = new JSONArray();
+                    for (int i = 0; i < ThirdSpotId.size(); i++){
+                        jsonArray.put(ThirdSpotId.get(i));
+                    }
+                    data.put("wayPoint", jsonArray);
+                    data.put("latitude", recentPosition.get(0));
+                    data.put("longitude", recentPosition.get(1));
+                    System.out.println("로그: 산책로 저장 post data: " + data);
+                    url = new URL("http://smwu.onjung.tk/walk");
+                    conn = (HttpURLConnection) url.openConnection();
+                    conn.setRequestMethod("POST");
+                    conn.setRequestProperty("Content-Type", "application/json");
+                }
+
+            } catch (Exception e) {
                 e.printStackTrace();
                 System.out.println("로그: 산책 코스 POST 예외 발생");
             }
         }
+
         @Override
-        public void run(){
-            try{
+        public void run() {
+            try {
                 conn.setDoOutput(true);
                 BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
                 bw.write(data.toString());
@@ -475,20 +674,21 @@ public class ResultActivity extends AppCompatActivity
                 BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
                 String returnMsg = in.readLine();
                 int responseCode = conn.getResponseCode();
-                System.out.println("로그: 응답 메시지: "+returnMsg);
-                System.out.println("로그: responseCode: "+responseCode);
+                System.out.println("로그: 응답 메시지: " + returnMsg);
+                System.out.println("로그: responseCode: " + responseCode);
 
                 // Toast 띄우기
                 JSONObject jsonObject = new JSONObject(returnMsg);
                 String detail = jsonObject.getString("detail");
                 ToastMessage(detail);
 
-            } catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
                 System.out.println("로그: 산책 코스 저장 연결 예외 발생");
             }
         }
     }
+
 
     public void anim() {
 
