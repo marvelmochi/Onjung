@@ -242,19 +242,6 @@ public class SelectActivity extends AppCompatActivity
 
 
 
-
-        // 인텐트 전달
-/*
-        Intent intentResult = new Intent(SelectActivity.this, ResultActivity.class);
-        intentResult.putExtra("recentPosition", recentPosition);
-        intentResult.putStringArrayListExtra("spotName", spotName);
-        intentResult.putStringArrayListExtra("spotLat", spotLat);
-        intentResult.putStringArrayListExtra("spotLon", spotLon);
-        intentResult.putExtra("spotId", spotId);
-        startActivity(intentResult);
-
-*/
-
     }
 
     class HttpConnectorSelect extends Thread {
