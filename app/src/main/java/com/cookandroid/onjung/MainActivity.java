@@ -3,13 +3,9 @@ package com.cookandroid.onjung;
 import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
-<<<<<<< HEAD
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Build;
-=======
-import android.location.Location;
->>>>>>> 5c5b85631014e41a719b5a67d8e5628327272e76
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -36,11 +32,7 @@ import java.net.URL;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity
-<<<<<<< HEAD
 implements TMapGpsManager.onLocationChangedCallback {
-=======
-        implements TMapGpsManager.onLocationChangedCallback {
->>>>>>> 5c5b85631014e41a719b5a67d8e5628327272e76
 
     // 하단 내비게이션 바 선언
     BottomNavigationView bottomNavigationView;
@@ -74,14 +66,18 @@ implements TMapGpsManager.onLocationChangedCallback {
     // 인텐트에 담아 전달할 데이터 배열 선언
     ArrayList recentPosition = new ArrayList(); // 현위치 좌표 {"위도", "경도"}
 
-<<<<<<< HEAD
     @RequiresApi(api = Build.VERSION_CODES.Q)
-=======
->>>>>>> 5c5b85631014e41a719b5a67d8e5628327272e76
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //위치정보 액세스 권한 요청
+        if(ContextCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_DENIED){
+
+            requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 0);
+        }
 
         // GPS using T Map
         tMapGPS = new TMapGpsManager(this);
@@ -92,7 +88,6 @@ implements TMapGpsManager.onLocationChangedCallback {
         tMapGPS.setProvider(tMapGPS.NETWORK_PROVIDER);
 
         tMapGPS.OpenGps();
-<<<<<<< HEAD
 
         //만보기
         if(ContextCompat.checkSelfPermission(this,
@@ -101,8 +96,6 @@ implements TMapGpsManager.onLocationChangedCallback {
             requestPermissions(new String[]{Manifest.permission.ACTIVITY_RECOGNITION}, 0);
         }
 
-=======
->>>>>>> 5c5b85631014e41a719b5a67d8e5628327272e76
 
         // SharedPreferences Test
         SharedPreferences preferences = getSharedPreferences("UserInfo", MODE_PRIVATE);
@@ -143,7 +136,7 @@ implements TMapGpsManager.onLocationChangedCallback {
                             //다른프래그먼트가 보이면 가려준다.
                             fragmentManager.beginTransaction().hide(fragmentManager.findFragmentByTag("menu")).commit();
                         }
-                        if (fragmentManager.findFragmentByTag("schedule") != null) {
+                        if (fragmentManager.findFragmentByTag("home") != null) {
                             //다른프래그먼트가 보이면 가려준다.
                             fragmentManager.beginTransaction().hide(fragmentManager.findFragmentByTag("home")).commit();
                         }

@@ -123,11 +123,41 @@ public class ScheduleFragment extends Fragment {
         calendarView.addDecorators(today);
         calendarView.setDynamicHeightEnabled(true);
 
+        // Using SharedPreferences on Fragment
+        preferences = this.getActivity().getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
+        memberId = preferences.getString("memberId", "");
+        System.out.println("로그: 멤버아이디 불러오기(Schedule): " + memberId);
+
+        // 달력켜자마자 일정
+        Calendar calendar= Calendar.getInstance();
+        calendar.add(Calendar.MONTH, Calendar.YEAR);
+
+        String year_s, month_s, min_s, max_s;
+
+        year_s = String.valueOf(calendar.get(Calendar.YEAR));
+        System.out.println("로그: 년도 " + calendar.get(Calendar.YEAR));
+        if (Integer.toString(Calendar.MONTH).length() == 1) {
+            month_s = '0' + Integer.toString(Calendar.MONTH);
+        } else {
+            month_s = Integer.toString(Calendar.MONTH);
+        }
+        System.out.println("로그: 달 " + month_s);
+
+        min_s = year_s + month_s + "01";
+        max_s = year_s + month_s + Integer.toString(calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
+        min = Integer.parseInt(min_s);
+        max = Integer.parseInt(max_s);
+
+        System.out.println("로그: 첫째날 " + min);
+        System.out.println("로그: 마지막날: " + max);
+
+        HttpConnectorPlans plansThread = new HttpConnectorPlans();
+        plansThread.start();
+
         calendarView.setOnDateChangedListener(new OnDateSelectedListener() {
 
             @Override
             public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
-
 
                 String year_s, month_s, day_s;
 
@@ -155,18 +185,13 @@ public class ScheduleFragment extends Fragment {
 
         });
 
-        // Using SharedPreferences on Fragment
-        preferences = this.getActivity().getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
-        memberId = preferences.getString("memberId", "");
-        System.out.println("로그: 멤버아이디 불러오기(Schedule): " + memberId);
-
         calendarView.setOnMonthChangedListener(new OnMonthChangedListener() {
 
             @Override
             public void onMonthChanged(MaterialCalendarView widget, CalendarDay date) {
                 //캘린더뷰 일정 표시
                 Calendar calendar= Calendar.getInstance();
-                calendar.add(Calendar.MONTH, date.getYear()-1);
+                calendar.add(Calendar.MONTH+1, date.getYear()-1);
 
                 String year_s, month_s, min_s, max_s;
 
@@ -595,15 +620,16 @@ public class ScheduleFragment extends Fragment {
                 System.out.println("응답 메시지: " + dataObject);
 
                 //calendarView.addDecorator(new EventDecorator(Color.parseColor("#329F0B"), Collections.singleton(cal)));
+
                 new Thread()
                 {
                     public void run()
-
                     {
-                        Message msg = handler.obtainMessage();
+                        Message msg = handler2.obtainMessage();
                         handler2.sendMessage(msg);
                     }
                 }.start();
+
             }
 
         } catch (Exception el) {

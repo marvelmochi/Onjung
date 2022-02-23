@@ -4,6 +4,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:layout_gravity="center"
+    android:background="@android:color/transparent"
     android:weightSum="10">
 
     <!--산책 일정 등록 다이얼로그-->

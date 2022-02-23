@@ -59,10 +59,6 @@ public class ResultActivity extends AppCompatActivity
     // 두 번째 경로: 현 위치 - API 4번 (현 위치와 가장 가까운 경유지)
     // 세 번째 경로: 현 위치 - API 4번 (현 위치와 가장 가까운 경유지)
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 5c5b85631014e41a719b5a67d8e5628327272e76
     // 인텐트로 액티비티 간 데이터 전달
     String myData;
     // T Map 앱 키 등록
@@ -136,19 +132,11 @@ public class ResultActivity extends AppCompatActivity
 
     // 경로 flag
     int flag = 1;
-<<<<<<< HEAD
     //TextView flagText;
-=======
-    TextView flagText;
->>>>>>> 5c5b85631014e41a719b5a67d8e5628327272e76
 
     //
     Button retryButton;
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 5c5b85631014e41a719b5a67d8e5628327272e76
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -245,17 +233,11 @@ public class ResultActivity extends AppCompatActivity
         // 경로 변경 버튼
         retryButton = findViewById(R.id.retry);
 
-<<<<<<< HEAD
         //flagText = findViewById(R.id.flagText);
         //flagText.setText(flag + "번째");
-=======
-        flagText = findViewById(R.id.flagText);
-        flagText.setText(flag + "번째");
->>>>>>> 5c5b85631014e41a719b5a67d8e5628327272e76
 
         // 토스트 온 스레드
         toastHandler = new Handler(Looper.getMainLooper());
-
 
         // 로딩중 표시할 프로그레스 다이얼로그
         showDialog(1); // 대화상자 호출
@@ -280,12 +262,7 @@ public class ResultActivity extends AppCompatActivity
 
 
 
-<<<<<<< HEAD
 /*
-=======
-
-        /*
->>>>>>> 5c5b85631014e41a719b5a67d8e5628327272e76
         for (int i=0; i<spotId.size(); i++) {
             System.out.println("로그: 전달받은 인텐트: " + spotId.get(i));
         }
@@ -302,17 +279,13 @@ public class ResultActivity extends AppCompatActivity
 
         courseInfo = (TextView) findViewById(R.id.courseInfo);
         courseInfo.setText(spotnameString);
-        */
 
-<<<<<<< HEAD
  */
 
         //saveInfo = (TextView)findViewById(R.id.saveText);
         //saveInfo.setText(spotnameString);
 
 
-=======
->>>>>>> 5c5b85631014e41a719b5a67d8e5628327272e76
         /*
         // 티맵 관련
         tMapView = new TMapView(this); // 티맵 뷰 생성
@@ -332,10 +305,6 @@ public class ResultActivity extends AppCompatActivity
         Tmap.addView(tMapView);
 
          */
-<<<<<<< HEAD
-=======
-
->>>>>>> 5c5b85631014e41a719b5a67d8e5628327272e76
 
         // Request For GPS permission
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -383,11 +352,7 @@ public class ResultActivity extends AppCompatActivity
                 // 1->2번째
                 if (flag == 1) {
                     flag += 1;
-<<<<<<< HEAD
                     //flagText.setText(flag + "번째");
-=======
-                    flagText.setText(flag + "번째");
->>>>>>> 5c5b85631014e41a719b5a67d8e5628327272e76
 
                     tmapdata.findPathDataWithType(TMapData.TMapPathType.PEDESTRIAN_PATH, home, home, SecondPoint, 10, new TMapData.FindPathDataListenerCallback() {
                         @Override
@@ -405,11 +370,7 @@ public class ResultActivity extends AppCompatActivity
                 // 2->3번째
                 else if (flag == 2) {
                     flag += 1;
-<<<<<<< HEAD
                     //flagText.setText(flag + "번째");
-=======
-                    flagText.setText(flag + "번째");
->>>>>>> 5c5b85631014e41a719b5a67d8e5628327272e76
 
                     tmapdata.findPathDataWithType(TMapData.TMapPathType.PEDESTRIAN_PATH, home, home, ThirdPoint, 10, new TMapData.FindPathDataListenerCallback() {
                         @Override
@@ -427,11 +388,7 @@ public class ResultActivity extends AppCompatActivity
                 // 3->1번째
                 else if (flag == 3) {
                     flag = 1;
-<<<<<<< HEAD
                     //flagText.setText(flag + "번째");
-=======
-                    flagText.setText(flag + "번째");
->>>>>>> 5c5b85631014e41a719b5a67d8e5628327272e76
 
                     tmapdata.findPathDataWithType(TMapData.TMapPathType.PEDESTRIAN_PATH, home, home, FirstPoint, 10, new TMapData.FindPathDataListenerCallback() {
                         @Override
@@ -449,7 +406,6 @@ public class ResultActivity extends AppCompatActivity
             }
         });
 
-<<<<<<< HEAD
         // 툴바: 뒤로가기 버튼
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -503,10 +459,7 @@ public class ResultActivity extends AppCompatActivity
             }
         }
         return super.onOptionsItemSelected(item);
-=======
->>>>>>> 5c5b85631014e41a719b5a67d8e5628327272e76
     }
-
 
     @Override
     public void onLocationChange(Location location) {
