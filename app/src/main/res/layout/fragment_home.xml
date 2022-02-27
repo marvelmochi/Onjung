@@ -69,26 +69,33 @@
                     android:layout_weight="2"
                     android:background="@drawable/round_border"
                     android:orientation="vertical"
-                    android:padding="0dp">
+                    android:padding="0dp"
+                    android:weightSum="4">
 
                     <TextView
                         android:id="@+id/TodayListTitle"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="0dp"
                         android:layout_weight="1"
                         android:background="@drawable/title_round"
                         android:gravity="center"
                         android:text="오늘의 산책 일정"
                         android:textColor="#FFFFFF"
-                        android:textSize="16dp" />
+                        android:textSize="16dp"/>
 
+                    <ListView
+                        android:id="@+id/listview"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="3"/>
+                    <!--임시수정
                     <TextView
                         android:id="@+id/Task_1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="여의도한강공원 30분 산책" />
+                        android:text="" />
 
                     <View
                         android:layout_width="match_parent"
@@ -101,7 +108,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="유미랑 강아지 산책" />
+                        android:text="" />
 
                     <View
                         android:layout_width="match_parent"
@@ -114,7 +121,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="일산호수공원산책" />
+                        android:text="" />
+                        -->
 
                 </LinearLayout>
 
@@ -224,7 +232,7 @@
 
                     </LinearLayout>
 
-                    <!--걸은 시간-->
+                    <!--걸은 시간
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
@@ -255,13 +263,14 @@
                             android:textSize="28sp" />
 
                     </LinearLayout>
+                    -->
 
                     <!--소모 칼로리-->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_margin="10dp"
-                        android:layout_weight="1"
+                        android:layout_weight="2"
                         android:orientation="horizontal">
 
                         <ImageView

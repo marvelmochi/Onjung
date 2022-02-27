@@ -702,4 +702,5 @@ public class ScheduleFragment extends Fragment {
             view.addSpan(new DotSpan(5, color));
         }
     }
+
 }

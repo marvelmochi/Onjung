@@ -195,7 +195,7 @@ public class PreferenceTestResultActivity extends AppCompatActivity {
 
         // 다이얼로그
         saveDialog = new Dialog(PreferenceTestResultActivity.this);
-        saveDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
         saveDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         saveDialog.setContentView(R.layout.dialog_save_walk);
 
@@ -463,6 +463,7 @@ public class PreferenceTestResultActivity extends AppCompatActivity {
     }
 
     public void saveWalkClicked(View view) {
+        saveDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         saveDialog.show();
 
         //saveInfo = saveDialog.findViewById(R.id.saveText);

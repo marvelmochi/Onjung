@@ -9,18 +9,18 @@
 
     <!--산책 일정 등록 다이얼로그-->
 
-    <!--타이틀-->
+    타이틀-->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/diaglog_title_round"
+        android:background="#6CBA4F"
         android:gravity="center"
         android:padding="10dp"
         android:text="산책 일정 등록"
         android:textColor="#ffffff"
         android:textSize="28sp" />
 
-    <!--감싸는 레이아웃-->
+<!--감싸는 레이아웃-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
