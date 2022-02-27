@@ -56,13 +56,13 @@ public class ScheduleFragment extends Fragment {
     MaterialCalendarView calendarView;
 
     // 선택된 날짜 담을 변수 선언
-    String selectedDate, selectDate;
-    Integer min, max;
+    String selectedDate, mselectDate;
     CalendarDay cal;
     // 멤버아이디 불러올 변수 선언
     String memberId;
 
     ValueHandler handler = new ValueHandler();
+    PlanHandler handler2 = new PlanHandler();
 
     String returnMsg;
 
@@ -132,7 +132,7 @@ public class ScheduleFragment extends Fragment {
         Calendar calendar= Calendar.getInstance();
         calendar.add(Calendar.MONTH, Calendar.YEAR);
 
-        String year_s, month_s, min_s, max_s;
+        String year_s, month_s, date;
 
         year_s = String.valueOf(calendar.get(Calendar.YEAR));
         System.out.println("로그: 년도 " + calendar.get(Calendar.YEAR));
@@ -143,13 +143,7 @@ public class ScheduleFragment extends Fragment {
         }
         System.out.println("로그: 달 " + month_s);
 
-        min_s = year_s + month_s + "01";
-        max_s = year_s + month_s + Integer.toString(calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
-        min = Integer.parseInt(min_s);
-        max = Integer.parseInt(max_s);
-
-        System.out.println("로그: 첫째날 " + min);
-        System.out.println("로그: 마지막날: " + max);
+        mselectDate = year_s + month_s;
 
         HttpConnectorPlans plansThread = new HttpConnectorPlans();
         plansThread.start();
@@ -193,7 +187,7 @@ public class ScheduleFragment extends Fragment {
                 Calendar calendar= Calendar.getInstance();
                 calendar.add(Calendar.MONTH+1, date.getYear()-1);
 
-                String year_s, month_s, min_s, max_s;
+                String year_s, month_s;
 
                 year_s = String.valueOf(date.getYear());
                 if (Integer.toString(date.getMonth()).length() == 1) {
@@ -202,10 +196,7 @@ public class ScheduleFragment extends Fragment {
                     month_s = Integer.toString(date.getMonth());
                 }
 
-                min_s = year_s + month_s + "01";
-                max_s = year_s + month_s + Integer.toString(calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
-                min = Integer.parseInt(min_s);
-                max = Integer.parseInt(max_s);
+                mselectDate = year_s + month_s;
 
                 HttpConnectorPlans plansThread = new HttpConnectorPlans();
                 plansThread.start();
@@ -344,23 +335,15 @@ public class ScheduleFragment extends Fragment {
         public void run() {
             try {
 
-                for(int i = min; i <= max; i++) {
-
-                    //System.out.println("출력: 최소, 최대날짜: " + min + "/" + max);
-
-                    selectDate = Integer.toString(i);
-                    //System.out.println("로그: 현재 날짜: " + selectDate);
-
-                    url = new URL("http://smwu.onjung.tk/walk/" + memberId + "/" + selectDate);
+                    url = new URL("http://smwu.onjung.tk/walk/" + memberId + "/" + mselectDate);
                     conn = (HttpURLConnection) url.openConnection();
                     conn.setRequestMethod("GET");
                     BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
                     String returnMsg = in.readLine();
-                    //System.out.println("로그: 선택 날짜: " + selectDate);
-                    //System.out.println("로그: 응답 메시지: " + returnMsg);
+                    System.out.println("로그: 선택 날짜: " + mselectDate);
+                    System.out.println("로그: 응답 메시지: " + returnMsg);
 
-                    jsonParserPlans(returnMsg, selectDate);
-                }
+                    jsonParserPlans(returnMsg);
 
             } catch (Exception es) {
                 es.printStackTrace();
@@ -588,7 +571,7 @@ public class ScheduleFragment extends Fragment {
         }
     }
 
-    public void jsonParserPlans(String resultJson, String selectDate) {
+    public void jsonParserPlans(String resultJson) {
         try {
 
             // 응답으로 받은 데이터를 JSONObject에 넣음
@@ -604,31 +587,35 @@ public class ScheduleFragment extends Fragment {
                 System.out.println("로그: remove on 400");
             } else {
 
-                String year_s, month_s, day_s;
-                Integer year, month, day;
+                // JSONObject에서 "data" 부분을 추출
+                String data = dataObject.getString("data");
+                System.out.println("로그: data: " + data);
+                // "data"의 값을 jsonArray에 넣음(요소 값은 각각의 일정을 의미)
+                JSONArray jsonArray = new JSONArray(data);
 
-                year_s = selectDate.substring(0,4);
-                month_s = selectDate.substring(4,6);
-                day_s = selectDate.substring(6,8);
+                // 산책 제목 저장할 ArrayList
+                ArrayList<String> date_List = new ArrayList<>();
 
-                year = Integer.parseInt(year_s);
-                month = Integer.parseInt(month_s);
-                day = Integer.parseInt(day_s);
+                for (int i = 0; i < jsonArray.length(); i++) {
 
-                cal = CalendarDay.from(year, month, day);
-                System.out.println("선택 날짜: " + cal);
-                System.out.println("응답 메시지: " + dataObject);
+                    // 각 일정을 String으로 변환
+                    String plan = jsonArray.get(i).toString();
+                    // 일정을 jsonObject에 넣음
+                    JSONObject jsonObject = new JSONObject(plan);
+                    // 산책 제목을 꺼내 저장
+                    String plan_date = jsonObject.getString("walkDate");
+                    System.out.println("로그: 산책 날짜: " + plan_date);
 
-                //calendarView.addDecorator(new EventDecorator(Color.parseColor("#329F0B"), Collections.singleton(cal)));
+                    //calendarView.addDecorator(new EventDecorator(Color.parseColor("#329F0B"), Collections.singleton(cal)));
+                    date_List.add(plan_date);
 
-                new Thread()
-                {
-                    public void run()
-                    {
-                        Message msg = handler2.obtainMessage();
-                        handler2.sendMessage(msg);
-                    }
-                }.start();
+                }
+
+                Message msg = handler2.obtainMessage();
+                Bundle pbundle = new Bundle();
+                pbundle.putStringArrayList("date", date_List);
+                msg.setData(pbundle);
+                handler2.sendMessage(msg);
 
             }
 
@@ -638,13 +625,38 @@ public class ScheduleFragment extends Fragment {
         }
     }
 
-    final Handler handler2 = new Handler()
-    {
-        public void handleMessage(Message msg)
-        {
-            calendarView.addDecorator(new EventDecorator(Color.parseColor("#329F0B"), Collections.singleton(cal)));
+    class PlanHandler extends Handler {
+        @Override
+        public void handleMessage(@NonNull Message msg) {
+            super.handleMessage(msg);
+
+            Bundle bundle = msg.getData();
+            //String returnmsg = bundle.getString("returnMsg");
+            ArrayList<String> dateArrayList = new ArrayList<>();
+            dateArrayList = bundle.getStringArrayList("date");
+
+            linearLayout.removeAllViewsInLayout();
+            //System.out.println("로그: remove on Handler");
+            for (int i = 0; i < dateArrayList.size(); i++) {
+
+                String year_s, month_s, day_s;
+                Integer year, month, day;
+
+                year_s = dateArrayList.get(i).substring(0,4);
+                month_s = dateArrayList.get(i).substring(5,7);
+                day_s = dateArrayList.get(i).substring(8,10);
+                System.out.println("로그: 날짜: " + year_s + month_s + day_s);
+
+                year = Integer.parseInt(year_s);
+                month = Integer.parseInt(month_s);
+                day = Integer.parseInt(day_s);
+
+                cal = CalendarDay.from(year, month, day);
+                calendarView.addDecorator(new EventDecorator(Color.parseColor("#329F0B"), Collections.singleton(cal)));
+
+            }
         }
-    };
+    }
 
 
     // 스레드 위에서 토스트 메시지를 띄우기 위한 메소드
