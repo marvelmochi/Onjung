@@ -131,7 +131,7 @@
             <!--중앙부(헬스 데이터)-->
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="20dp"
                 android:layout_weight="1"
@@ -160,7 +160,7 @@
                     <!--걸음 수-->
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="0dp"
+                        android:layout_height="wrap_content"
                         android:layout_margin="10dp"
                         android:layout_weight="1"
                         android:orientation="horizontal">
@@ -202,7 +202,7 @@
                     <!--걸은 거리-->
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="0dp"
+                        android:layout_height="wrap_content"
                         android:layout_margin="10dp"
                         android:layout_weight="1"
                         android:orientation="horizontal">
@@ -268,7 +268,7 @@
                     <!--소모 칼로리-->
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="0dp"
+                        android:layout_height="wrap_content"
                         android:layout_margin="10dp"
                         android:layout_weight="2"
                         android:orientation="horizontal">
