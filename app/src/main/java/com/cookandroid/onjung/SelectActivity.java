@@ -9,8 +9,6 @@ import android.os.Message;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
-import android.widget.SeekBar;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -30,11 +28,6 @@ import java.util.ArrayList;
 public class SelectActivity extends AppCompatActivity
         implements TMapGpsManager.onLocationChangedCallback {
 
-    // 조건에 맞는 산책로 추천 구현 방식 (SelectActivity에서 API 호출 후 받아온 데이터 값 ResultActivity로 넘김)
-
-    // 첫 번째 경로: 현 위치 - API 7번 (현 위치와 반경 내에서 가장 가까운 경유지)
-    // 두 번째 경로: 현 위치 - API 4번 (현 위치와 가장 가까운 경유지)
-    // 세 번째 경로: 현 위치 - API 4번 (현 위치와 가장 가까운 경유지)
 
     // 인텐트로 액티비티 간 데이터 전달
     String data = "success";
@@ -61,44 +54,16 @@ public class SelectActivity extends AppCompatActivity
     JSONArray jsonArraydata = new JSONArray();
 
     // 인텐트에 담아 전달할 데이터 배열 선언
+    ArrayList recentPosition = new ArrayList(); // 현위치 좌표 {"위도", "경도"}
+    ArrayList<String> spotName = new ArrayList<>(); // 경유지 이름 ArrayList
+    ArrayList<String> spotLat = new ArrayList<>();  // 경유지 위도 ArrayList
+    ArrayList<String> spotLon = new ArrayList<>(); // 경유지 경도 ArrayList
 
-    ArrayList<String> recentPosition = new ArrayList(); // 현위치 좌표 {"위도", "경도"}
-
-    ArrayList<String> FirstName = new ArrayList<>();
-    ArrayList<String> FirstLat = new ArrayList<>();
-    ArrayList<String> FirstLon = new ArrayList<>();
-    ArrayList<String> FirstSpotId = new ArrayList<>();
-
-    ArrayList<String> SecondName = new ArrayList<>();
-    ArrayList<String> SecondLat = new ArrayList<>();
-    ArrayList<String> SecondLon = new ArrayList<>();
-    ArrayList<String> SecondSpotId = new ArrayList<>();
-
-    ArrayList<String> ThirdName = new ArrayList<>();
-    ArrayList<String> ThirdLat = new ArrayList<>();
-    ArrayList<String> ThirdLon = new ArrayList<>();
-    ArrayList<String> ThirdSpotId = new ArrayList<>();
-
-    // 반경을 입력 받을 시크바
-    SeekBar seekBar;
-    TextView seekText;
-    //원하는 반경 값
-    String radius;
-
-    // 호출할 때 필요한 변수 선언
-    String type; // 경유지 타입
-    String lat1, lat2;
-    String lon1, lon2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select);
-
-        Intent intent = getIntent();
-        recentPosition = intent.getStringArrayListExtra("recentPosition");
-        lat = recentPosition.get(0);
-        lon = recentPosition.get(1);
 
         // 체크박스 접근
         mountain = (CheckBox) findViewById(R.id.mountain);
@@ -147,26 +112,6 @@ public class SelectActivity extends AppCompatActivity
 
         tMapGPS.OpenGps();
 
-        // 시크바 접근 및 이벤트 등록
-        seekBar = (SeekBar)findViewById(R.id.radiusSeekbar);
-        seekText = (TextView)findViewById(R.id.seekbarText);
-        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-                seekText.setText(String.format("%dkm", seekBar.getProgress()));
-                radius = Integer.toString(seekBar.getProgress());
-            }
-        });
 
         // 툴바: 뒤로가기 버튼
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -190,7 +135,6 @@ public class SelectActivity extends AppCompatActivity
 
     @Override
     public void onLocationChange(Location location) {
-        /* 위치 좌표 찾는 시간 텀이 길어져서 메인에서 받아온 위치를 현위치로.
         // 내 위치 좌표 home에 저장
         TMapPoint home = tMapGPS.getLocation();
         lat_d = home.getLatitude();
@@ -203,8 +147,6 @@ public class SelectActivity extends AppCompatActivity
         recentPosition.add(lon);
 
         System.out.println("로그: 현위치 좌표 " + lat + ", " + lon);
-
-         */
     }
 
     public void resultbtnClicked(View view) {
@@ -225,8 +167,8 @@ public class SelectActivity extends AppCompatActivity
             if (spot.get(i).equals("호수/저수지")) spot.set(i, "lake");
             if (spot.get(i).equals("공원"))spot.set(i,"park");
             if (spot.get(i).equals("숲"))spot.set(i,"forest");
-            if (spot.get(i).equals("대교"))spot.set(i,"bridge");
-            if (spot.get(i).equals("강/하천"))spot.set(i,"river");
+            if (spot.get(i).equals("한강대교"))spot.set(i,"bridge");
+            if (spot.get(i).equals("한강공원"))spot.set(i,"river");
 
             if (spot.get(i).equals("문화재"))spot.set(i,"heritage");
             if (spot.get(i).equals("한옥마을"))spot.set(i,"hanok");
@@ -244,16 +186,17 @@ public class SelectActivity extends AppCompatActivity
 
 
         // 인텐트 전달
-/*
+        /*
         Intent intentResult = new Intent(SelectActivity.this, ResultActivity.class);
         intentResult.putExtra("recentPosition", recentPosition);
-        intentResult.putStringArrayListExtra("spotName", spotName);
-        intentResult.putStringArrayListExtra("spotLat", spotLat);
-        intentResult.putStringArrayListExtra("spotLon", spotLon);
-        intentResult.putExtra("spotId", spotId);
+
+        intentResult.putExtra("spotName", spotName);
+        intentResult.putExtra("spotLat", spotLat);
+        intentResult.putExtra("spotLon", spotLon);
         startActivity(intentResult);
 
-*/
+
+         */
 
     }
 
@@ -263,110 +206,38 @@ public class SelectActivity extends AppCompatActivity
 
         @Override
         public void run() {
-            // 첫 번째 경유지
-            for (int i = 0; i < spot.size(); i++) {
+            for (int z = 0; z < spot.size(); z++) {
                 try {
-
-                    // 첫 번째 경로
-                    String type = spot.get(i);
-                    URL url = new URL("http://smwu.onjung.tk/spot/" + radius + "?latitude=" + lat
+                    String type;
+                    type = spot.get(z);
+                    URL url = new URL("http://3.18.232.232:8080/spot?latitude=" + lat
                             + "&longitude=" + lon + "&type=" + type);
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                     conn.setRequestMethod("GET");
                     BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
                     String returnMsg = in.readLine();
-                    System.out.println("로그: 요청 URL1: " + url);
-                    System.out.println("로그: 응답 메시지1: " + returnMsg);
+                    System.out.println("로그: 응답 메시지: " + returnMsg);
 
                     // 파싱 메소드 호출
-                    jsonParserFirst(returnMsg);
-
-                    /* (세 번째 파싱 이후에 넣기)
-                    Intent intentResult = new Intent(SelectActivity.this, ResultActivity.class);
-                    intentResult.putExtra("mydata", data);
-                    intentResult.putExtra("recentPosition", recentPosition);
-                    intentResult.putExtra("spotName", spotName);
-                    intentResult.putExtra("spotLat", spotLat);
-                    intentResult.putExtra("spotLon", spotLon);
-                    intentResult.putExtra("spotId", spotId);
-
-                    startActivity(intentResult);
-
-                     */
-
+                    jsonParser(returnMsg);
 
                 } catch (Exception e) {
                     e.printStackTrace();
-                    System.out.println("로그: 산책지 불러오기 예외발생1");
+                    System.out.println("로그: 산책지 불러오기 예외발생");
                 }
             }
 
-            // 두 번째 경유지
-            for (int i = 0; i < spot.size(); i++) {
-                try {
-                    String type = spot.get(i);
-                    URL url = new URL("http://smwu.onjung.tk/spot/?latitude=" + lat1
-                            + "&longitude=" + lon1 + "&type=" + type);
-                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                    conn.setRequestMethod("GET");
-                    BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-                    String returnMsg = in.readLine();
-                    System.out.println("로그: 요청 URL2: " + url);
-                    System.out.println("로그: 응답 메시지2: " + returnMsg);
 
-                    // 파싱 메소드 호출
-                    jsonParserSecond(returnMsg);
+            Intent intentResult = new Intent(SelectActivity.this, ResultActivity.class);
+            intentResult.putExtra("recentPosition", recentPosition);
 
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    System.out.println("로그: 산책지 불러오기 예외발생2");
-                }
-            }
-
-            // 세 번째 경유지
-            for (int i = 0; i < spot.size(); i++) {
-                try {
-                    String type = spot.get(i);
-                    URL url = new URL("http://smwu.onjung.tk/spot/?latitude=" + lat2
-                            + "&longitude=" + lon2 + "&type=" + type);
-                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                    conn.setRequestMethod("GET");
-                    BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-                    String returnMsg = in.readLine();
-                    System.out.println("로그: 요청 URL3: " + url);
-                    System.out.println("로그: 응답 메시지3: " + returnMsg);
-
-                    // 파싱 메소드 호출
-                    jsonParserThird(returnMsg);
-
-                    // 인텐트에 데이터를 담아 전달
-                    Intent intentResult = new Intent(SelectActivity.this, ResultActivity.class);
-                    intentResult.putExtra("mydata", data);
-                    intentResult.putExtra("recentPosition", recentPosition);
-                    intentResult.putStringArrayListExtra("FirstName", FirstName);
-                    intentResult.putStringArrayListExtra("SecondName", SecondName);
-                    intentResult.putStringArrayListExtra("ThirdName", ThirdName);
-                    intentResult.putStringArrayListExtra("FirstLat", FirstLat);
-                    intentResult.putStringArrayListExtra("SecondLat", SecondLat);
-                    intentResult.putStringArrayListExtra("ThirdLat", ThirdLat);
-                    intentResult.putStringArrayListExtra("FirstLon", FirstLon);
-                    intentResult.putStringArrayListExtra("SecondLon", SecondLon);
-                    intentResult.putStringArrayListExtra("ThirdLon", ThirdLon);
-                    intentResult.putStringArrayListExtra("FirstSpotId", FirstSpotId);
-                    intentResult.putStringArrayListExtra("SecondSpotId", SecondSpotId);
-                    intentResult.putStringArrayListExtra("ThirdSpotId", ThirdSpotId);
-
-                    startActivity(intentResult);
-
-                } catch (Exception e){
-                    e.printStackTrace();
-                    System.out.println("로그: 산책지 불러오기 예외발생3");
-                }
-            }
-
+            intentResult.putExtra("spotName", spotName);
+            intentResult.putExtra("spotLat", spotLat);
+            intentResult.putExtra("spotLon", spotLon);
+            startActivity(intentResult);
         }
 
-        public void jsonParserFirst(String resultJson) {
+        public void jsonParser(String resultJson) {
             try {
                 JSONObject jsonObject = new JSONObject(resultJson);
                 String data = jsonObject.getString("data");
@@ -381,100 +252,19 @@ public class SelectActivity extends AppCompatActivity
                 String name = spotObject.getString("name");
                 String lat = spotObject.getString("latitude");
                 String lon = spotObject.getString("longitude");
-                int spotid_int = spotObject.getInt("spotId");
-                String spotid = Integer.toString(spotid_int);
+                spotName.add(name);
+                spotLat.add(lat);
+                spotLon.add(lon);
 
-                FirstName.add(name);
-                FirstLat.add(lat);
-                FirstLon.add(lon);
-                FirstSpotId.add(spotid);
-
-                lat1 = lat;
-                lon1 = lon;
-
-                System.out.println("로그: lat1, lon1: " + lat1 + ", " + lon1);
 
 
             } catch (Exception e) {
                 e.printStackTrace();
                 System.out.println("로그: 파싱 예외발생");
             }
-            /*
-            for (int i=0; i<spotId.size(); i++){
-                System.out.println("로그: 스팟아이디: "+spotId.get(i));
-            }
-
-             */
-        }
-
-        public void jsonParserSecond(String resultJson) {
-            try {
-                JSONObject jsonObject = new JSONObject(resultJson);
-                String data = jsonObject.getString("data");
-                jsonArraydata.put(data);
-
-                JSONObject dataObject = new JSONObject(data);
-                System.out.println("로그: dataObject: " + dataObject);
-
-                String spotj = dataObject.getString("spot");
-                JSONObject spotObject = new JSONObject(spotj);
-
-                String name = spotObject.getString("name");
-                String lat = spotObject.getString("latitude");
-                String lon = spotObject.getString("longitude");
-                int spotid_int = spotObject.getInt("spotId");
-                String spotid = Integer.toString(spotid_int);
-
-                SecondName.add(name);
-                SecondLat.add(lat);
-                SecondLon.add(lon);
-                SecondSpotId.add(spotid);
-
-                lat2 = lat;
-                lon2 = lon;
-
-                System.out.println("로그: lat2, lon2: " + lat2 + ", " + lon2);
-
-            } catch (Exception e) {
-                e.printStackTrace();
-                System.out.println("로그: 파싱 예외발생2");
-            }
-
-        }
-
-        public void jsonParserThird(String resultJson) {
-            try {
-                JSONObject jsonObject = new JSONObject(resultJson);
-                String data = jsonObject.getString("data");
-                jsonArraydata.put(data);
-
-                JSONObject dataObject = new JSONObject(data);
-                System.out.println("로그: dataObject: " + dataObject);
-
-                String spotj = dataObject.getString("spot");
-                JSONObject spotObject = new JSONObject(spotj);
-
-                String name = spotObject.getString("name");
-                String lat = spotObject.getString("latitude");
-                String lon = spotObject.getString("longitude");
-                int spotid_int = spotObject.getInt("spotId");
-                String spotid = Integer.toString(spotid_int);
-
-                ThirdName.add(name);
-                ThirdLat.add(lat);
-                ThirdLon.add(lon);
-                ThirdSpotId.add(spotid);
-
-                System.out.println("로그: lat3, lon3: " + lat + ", " + lon);
-
-            } catch (Exception e) {
-                e.printStackTrace();
-                System.out.println("로그: 파싱 예외발생3");
-            }
 
         }
     }
-
 
 
 }
