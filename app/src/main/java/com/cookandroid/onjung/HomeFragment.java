@@ -320,11 +320,11 @@ public class HomeFragment extends Fragment implements SensorEventListener {
     public void onSensorChanged(SensorEvent event) {
         // 걸음 센서 이벤트 발생시
 
-        //pedometer = getActivity().getSharedPreferences(memberId, MODE_PRIVATE);
-        //currentSteps = pedometer.getInt("currentSteps", 0);
+        pedometer = getActivity().getSharedPreferences(memberId, MODE_PRIVATE);
+        currentSteps = pedometer.getInt("currentSteps", 0);
 
-        HomeFragment.HttpConnectorGetpedometer getpedometerThread = new HomeFragment.HttpConnectorGetpedometer();
-        getpedometerThread.start();
+        //HomeFragment.HttpConnectorGetpedometer getpedometerThread = new HomeFragment.HttpConnectorGetpedometer();
+        //getpedometerThread.start();
 
         if(event.sensor.getType() == Sensor.TYPE_STEP_COUNTER){
 
@@ -360,7 +360,7 @@ public class HomeFragment extends Fragment implements SensorEventListener {
         }*/
 
     }
-
+/*
     class HttpConnectorPedometer extends Thread {
         public JSONObject data;
         URL url;
@@ -446,7 +446,6 @@ public class HomeFragment extends Fragment implements SensorEventListener {
                 // JSONObject에서 "data" 부분을 추출
                 String data = dataObject.getString("data");
                 System.out.println("로그: data: " + data);
-                // "data"의 값을 jsonArray에 넣음(요소 값은 각각의 일정을 의미)
 
                 currentSteps = Integer.parseInt(data);
             }
@@ -457,6 +456,8 @@ public class HomeFragment extends Fragment implements SensorEventListener {
             System.out.println("로그: 파싱 예외 발생");
         }
     }
+
+ */
 
     // 스레드 위에서 토스트 메시지를 띄우기 위한 메소드
     public void ToastMessage(final String message) {
