@@ -2,9 +2,12 @@ package com.cookandroid.onjung;
 
 import static android.content.Context.MODE_PRIVATE;
 
+import static androidx.core.content.ContextCompat.getSystemService;
+
 import android.Manifest;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
+import android.app.job.JobService;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -29,6 +32,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -40,7 +44,9 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.SimpleDateFormat;
@@ -65,6 +71,11 @@ public class HomeFragment extends Fragment implements SensorEventListener {
     TextView stepCountView, totalDistance ,Calories;
     private SharedPreferences pedometer;
 
+    int responseCode;
+
+    // 토스트 온 스레드를 위한 핸들러
+    Handler toastHandler;
+
     //오늘의 일정
     TextView task1, task2 ,task3;
 
@@ -80,12 +91,6 @@ public class HomeFragment extends Fragment implements SensorEventListener {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         viewGroup = (ViewGroup) inflater.inflate(R.layout.fragment_home, container, false);
-
-        //오늘 일정
-        //task1 = viewGroup.findViewById(R.id.Task_1);
-        //task2 = viewGroup.findViewById(R.id.Task_2);
-        //task3 = viewGroup.findViewById(R.id.Task_3);
-        listview = (ListView) viewGroup.findViewById(R.id.listview);
 
         stepCountView = viewGroup.findViewById(R.id.stepCountView);
         totalDistance = viewGroup.findViewById(R.id.totalDistance);
@@ -105,21 +110,24 @@ public class HomeFragment extends Fragment implements SensorEventListener {
         sensorManager = (SensorManager)getActivity().getSystemService(Context.SENSOR_SERVICE);
         stepCountSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
 
-        pedometer = getActivity().getSharedPreferences("Pedometer", MODE_PRIVATE);
+        //pedometer = getActivity().getSharedPreferences(memberId, MODE_PRIVATE);
+        //알람
+        int DATA_FETCHER_RC = 123;
+        AlarmManager mAlarmManager = (AlarmManager)getActivity().getSystemService(Context.ALARM_SERVICE);
 
-        //define your intent
-        AlarmManager alarmMgr = (AlarmManager)getActivity().getSystemService(Context.ALARM_SERVICE);
-        Intent intent = new Intent(getActivity(), AlarmReceiver.class);
-        PendingIntent alarmIntent = PendingIntent.getBroadcast(getActivity(), 0, intent, 0);
-
-        // Set the alarm to start at approximately 00:00 h(24h format).
         Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(System.currentTimeMillis());
-        calendar.set(Calendar.HOUR_OF_DAY, 00);
-        //repeteat alarm every 24hours
-        alarmMgr.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, alarmIntent);
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.add(Calendar.DATE, 1);
 
-        //오늘 날짜 받아오기
+        Intent intent = new Intent(getActivity(), AlarmReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(getActivity(), DATA_FETCHER_RC,intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        mAlarmManager.setInexactRepeating(AlarmManager.RTC,calendar.getTimeInMillis(),AlarmManager.INTERVAL_DAY, pendingIntent);
+
+        //오늘 일정 불러오기
+        listview = (ListView) viewGroup.findViewById(R.id.listview);
+
         now = System.currentTimeMillis();
         date = new Date(now);
         SimpleDateFormat sdformat = new SimpleDateFormat("yyyyMMdd");
@@ -141,10 +149,26 @@ public class HomeFragment extends Fragment implements SensorEventListener {
 
     }
 
+    //알람
+    //This is the broadcast receiver you create where you place your logic once the alarm is run. Once the system realizes your alarm should be run, it will communicate to your app via the BroadcastReceiver. You must implement onReceive.
+    public static class AlarmReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            SharedPreferences preferences = context.getSharedPreferences("UserInfo", MODE_PRIVATE);
+            String memberId = preferences.getString("memberId", "");
+
+            SharedPreferences pedometer = context.getSharedPreferences(memberId, MODE_PRIVATE);
+            SharedPreferences.Editor peditor = pedometer.edit();
+
+            peditor.putInt("currentSteps", 0);
+
+            peditor.apply();
+        }
+    }
+
     class HttpConnectorSchedule extends Thread {
         URL url;
         HttpURLConnection conn;
-        String nowDate = "20211203";
 
         @Override
         public void run() {
@@ -296,8 +320,11 @@ public class HomeFragment extends Fragment implements SensorEventListener {
     public void onSensorChanged(SensorEvent event) {
         // 걸음 센서 이벤트 발생시
 
-        currentSteps = pedometer.getInt("currentSteps", 0);
+        //pedometer = getActivity().getSharedPreferences(memberId, MODE_PRIVATE);
+        //currentSteps = pedometer.getInt("currentSteps", 0);
 
+        HomeFragment.HttpConnectorGetpedometer getpedometerThread = new HomeFragment.HttpConnectorGetpedometer();
+        getpedometerThread.start();
 
         if(event.sensor.getType() == Sensor.TYPE_STEP_COUNTER){
 
@@ -309,6 +336,9 @@ public class HomeFragment extends Fragment implements SensorEventListener {
             totalDistance.setText(distance+"km");
             Calories.setText(calorie+"kcal");
 
+            //System.out.println("발자국: " + currentSteps);
+
+            pedometer = getActivity().getSharedPreferences(memberId, MODE_PRIVATE);
             SharedPreferences.Editor peditor = pedometer.edit();
 
             peditor.putInt("currentSteps", currentSteps);
@@ -316,6 +346,10 @@ public class HomeFragment extends Fragment implements SensorEventListener {
             peditor.putString("calorie", calorie);
 
             peditor.apply();
+
+            //api 연결
+            //HomeFragment.HttpConnectorPedometer pedometerThread = new HomeFragment.HttpConnectorPedometer();
+            //pedometerThread.start();
         }
 
         /*
@@ -327,25 +361,119 @@ public class HomeFragment extends Fragment implements SensorEventListener {
 
     }
 
+    class HttpConnectorPedometer extends Thread {
+        public JSONObject data;
+        URL url;
+        HttpURLConnection conn;
+        public HttpConnectorPedometer(){
+            try {
+                data = new JSONObject();
+                data.put("userId", memberId);
+                data.put("steps", currentSteps);
+                System.out.println("로그: data: " + data);
+                url = new URL("http://localhost:8080/pedometer");
+                conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("POST");
+                conn.setRequestProperty("Content-Type", "application/json");
+
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+        @Override
+        public void run() {
+            try {
+                conn.setDoOutput(true);
+                BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
+                bw.write(data.toString());
+                bw.flush();
+                bw.close();
+                BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                String returnMsg = in.readLine();
+                responseCode = conn.getResponseCode();
+                System.out.println("로그: 응답 메시지: " +returnMsg);
+
+                int resCode = conn.getResponseCode();
+                System.out.println("로그: ResponseCode: " +resCode);
+                if (resCode == 200) {
+                    ToastMessage("만보기값이 저장되었습니다.");
+                } else ToastMessage("만보기값이 저장되었습니다.");
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+    }
+
+    class HttpConnectorGetpedometer extends Thread {
+        URL url;
+        HttpURLConnection conn;
+
+        @Override
+        public void run() {
+            try {
+                url = new URL("http://localhost:8080/pedometer/" + memberId);
+                conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("GET");
+                BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                String returnMsg = in.readLine();
+                System.out.println("로그: 응답 메시지: " + returnMsg);
+                jsonParserPedometer(returnMsg);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.out.println("로그: 만보기 불러오기 예외 발생");
+            }
+        }
+    }
+
+    public void jsonParserPedometer(String resultJson) {
+        try {
+
+            // 응답으로 받은 데이터를 JSONObject에 넣음
+            JSONObject dataObject = new JSONObject(resultJson);
+
+            // 400 예외처리 위해
+            int code = dataObject.getInt("code");
+            if (code == 400) {
+                System.out.println("로그: 코드 400");
+                linearLayout.removeAllViewsInLayout();
+                System.out.println("로그: remove on 400");
+            } else {
+
+                // JSONObject에서 "data" 부분을 추출
+                String data = dataObject.getString("data");
+                System.out.println("로그: data: " + data);
+                // "data"의 값을 jsonArray에 넣음(요소 값은 각각의 일정을 의미)
+
+                currentSteps = Integer.parseInt(data);
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("로그: 파싱 예외 발생");
+        }
+    }
+
+    // 스레드 위에서 토스트 메시지를 띄우기 위한 메소드
+    public void ToastMessage(final String message) {
+
+        toastHandler.post(new Runnable(){
+            @Override
+            public void run(){
+                Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
 
     }
 
-    public class AlarmReceiver extends BroadcastReceiver
-    {
-        @Override
-        public void onReceive(Context context, Intent intent)
-        {
-            //do whatever you want.
-            System.out.println("초기화한다아아아아아");
 
-            SharedPreferences.Editor peditor = pedometer.edit();
-
-            peditor.putInt("currentSteps", 0);
-
-            peditor.apply();
-        }
-    }
 }
 

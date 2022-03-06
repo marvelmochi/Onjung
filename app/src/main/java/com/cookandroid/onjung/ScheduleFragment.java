@@ -607,8 +607,9 @@ public class ScheduleFragment extends Fragment {
                     System.out.println("로그: 산책 날짜: " + plan_date);
 
                     //calendarView.addDecorator(new EventDecorator(Color.parseColor("#329F0B"), Collections.singleton(cal)));
-                    date_List.add(plan_date);
-
+                    if (!date_List.contains(plan_date)) {
+                        date_List.add(plan_date);
+                    }
                 }
 
                 Message msg = handler2.obtainMessage();
