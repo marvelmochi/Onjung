@@ -235,17 +235,7 @@ public class SelectActivity extends AppCompatActivity
                 spotName.add(name);
                 spotLat.add(lat);
                 spotLon.add(lon);
-
-            /*
-            for (int i = 0; i<spotName.size() ; i++){
-                System.out.println("로그: spotName: " + spotName.get(i));
-                System.out.println("로그: spotLat: " + spotLat.get(i));
-                System.out.println("로그: spotLon: " + spotLon.get(i));
-            }*/
-                //spotName.add(name);
-                //spotLat.add(lat);
-                //spotLon.add(lon);
-                //System.out.println("로그: spotName: "+spotName.get(0));
+                
 
 
             } catch (Exception e) {
