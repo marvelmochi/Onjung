@@ -1,0 +1,138 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.cookandroid.onjung"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="26"
+8-->C:\Users\marve\AndroidStudioProjects\Onjung\app\src\main\AndroidManifest.xml
+9        android:targetSdkVersion="30" />
+9-->C:\Users\marve\AndroidStudioProjects\Onjung\app\src\main\AndroidManifest.xml
+10    <!-- 티맵 관련 -->
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->C:\Users\marve\AndroidStudioProjects\Onjung\app\src\main\AndroidManifest.xml:5:5-67
+11-->C:\Users\marve\AndroidStudioProjects\Onjung\app\src\main\AndroidManifest.xml:5:22-64
+12    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+12-->C:\Users\marve\AndroidStudioProjects\Onjung\app\src\main\AndroidManifest.xml:6:5-79
+12-->C:\Users\marve\AndroidStudioProjects\Onjung\app\src\main\AndroidManifest.xml:6:22-76
+13    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+13-->C:\Users\marve\AndroidStudioProjects\Onjung\app\src\main\AndroidManifest.xml:7:5-79
+13-->C:\Users\marve\AndroidStudioProjects\Onjung\app\src\main\AndroidManifest.xml:7:22-76
+14
+15    <!-- 만보기 -->
+16    <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION" />
+16-->C:\Users\marve\AndroidStudioProjects\Onjung\app\src\main\AndroidManifest.xml:10:5-78
+16-->C:\Users\marve\AndroidStudioProjects\Onjung\app\src\main\AndroidManifest.xml:10:22-76
+17    <!-- API 버전 28 이하 -->
+18    <uses-permission android:name="com.google.android.gms.permission.ACTIVITY_RECOGNITION" />
+18-->C:\Users\marve\AndroidStudioProjects\Onjung\app\src\main\AndroidManifest.xml:12:5-94
+18-->C:\Users\marve\AndroidStudioProjects\Onjung\app\src\main\AndroidManifest.xml:12:22-91
+19
+20    <application
+20-->C:\Users\marve\AndroidStudioProjects\Onjung\app\src\main\AndroidManifest.xml:14:5-49:19
+21        android:allowBackup="true"
+21-->C:\Users\marve\AndroidStudioProjects\Onjung\app\src\main\AndroidManifest.xml:15:9-35
+22        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+22-->[androidx.core:core:1.5.0] C:\Users\marve\.gradle\caches\transforms-3\97e7ec19bd11dff7ae3d399ac9d0fa5b\transformed\core-1.5.0\AndroidManifest.xml:24:18-86
+23        android:debuggable="true"
+24        android:extractNativeLibs="false"
+25        android:icon="@mipmap/ic_launcher"
+25-->C:\Users\marve\AndroidStudioProjects\Onjung\app\src\main\AndroidManifest.xml:16:9-43
+26        android:label="@string/app_name"
+26-->C:\Users\marve\AndroidStudioProjects\Onjung\app\src\main\AndroidManifest.xml:17:9-41
+27        android:roundIcon="@mipmap/ic_launcher_round"
+27-->C:\Users\marve\AndroidStudioProjects\Onjung\app\src\main\AndroidManifest.xml:18:9-54
+28        android:supportsRtl="true"
+28-->C:\Users\marve\AndroidStudioProjects\Onjung\app\src\main\AndroidManifest.xml:19:9-35
+29        android:testOnly="true"
+30        android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
+30-->C:\Users\marve\AndroidStudioProjects\Onjung\app\src\main\AndroidManifest.xml:20:9-68
+31        android:usesCleartextTraffic="true" >
+31-->C:\Users\marve\AndroidStudioProjects\Onjung\app\src\main\AndroidManifest.xml:21:9-44
+32        <activity
+32-->C:\Users\marve\AndroidStudioProjects\Onjung\app\src\main\AndroidManifest.xml:22:9-24:40
+33            android:name="com.cookandroid.onjung.MoodRecommendActivity"
+33-->C:\Users\marve\AndroidStudioProjects\Onjung\app\src\main\AndroidManifest.xml:23:13-50
+34            android:exported="false" />
+34-->C:\Users\marve\AndroidStudioProjects\Onjung\app\src\main\AndroidManifest.xml:24:13-37
+35        <activity
+35-->C:\Users\marve\AndroidStudioProjects\Onjung\app\src\main\AndroidManifest.xml:25:9-27:40
+36            android:name="com.cookandroid.onjung.ShowCourseActivity"
+36-->C:\Users\marve\AndroidStudioProjects\Onjung\app\src\main\AndroidManifest.xml:26:13-47
+37            android:exported="false" />
+37-->C:\Users\marve\AndroidStudioProjects\Onjung\app\src\main\AndroidManifest.xml:27:13-37
+38        <activity android:name="com.cookandroid.onjung.SatisfactionScoreActivity" />
+38-->C:\Users\marve\AndroidStudioProjects\Onjung\app\src\main\AndroidManifest.xml:28:9-63
+38-->C:\Users\marve\AndroidStudioProjects\Onjung\app\src\main\AndroidManifest.xml:28:19-60
+39        <activity android:name="com.cookandroid.onjung.PreferenceTestResultActivity" />
+39-->C:\Users\marve\AndroidStudioProjects\Onjung\app\src\main\AndroidManifest.xml:29:9-66
+39-->C:\Users\marve\AndroidStudioProjects\Onjung\app\src\main\AndroidManifest.xml:29:19-63
+40        <activity android:name="com.cookandroid.onjung.PreferenceTestActivity" />
+40-->C:\Users\marve\AndroidStudioProjects\Onjung\app\src\main\AndroidManifest.xml:30:9-60
+40-->C:\Users\marve\AndroidStudioProjects\Onjung\app\src\main\AndroidManifest.xml:30:19-57
+41        <activity android:name="com.cookandroid.onjung.LoginActivity" >
+41-->C:\Users\marve\AndroidStudioProjects\Onjung\app\src\main\AndroidManifest.xml:31:9-37:20
+41-->C:\Users\marve\AndroidStudioProjects\Onjung\app\src\main\AndroidManifest.xml:31:19-48
+42            <intent-filter>
+42-->C:\Users\marve\AndroidStudioProjects\Onjung\app\src\main\AndroidManifest.xml:32:13-36:29
+43                <action android:name="android.intent.action.MAIN" />
+43-->C:\Users\marve\AndroidStudioProjects\Onjung\app\src\main\AndroidManifest.xml:33:17-69
+43-->C:\Users\marve\AndroidStudioProjects\Onjung\app\src\main\AndroidManifest.xml:33:25-66
+44
+45                <category android:name="android.intent.category.LAUNCHER" />
+45-->C:\Users\marve\AndroidStudioProjects\Onjung\app\src\main\AndroidManifest.xml:35:17-77
+45-->C:\Users\marve\AndroidStudioProjects\Onjung\app\src\main\AndroidManifest.xml:35:27-74
+46            </intent-filter>
+47        </activity>
+48        <activity android:name="com.cookandroid.onjung.EditUserInfoActivity" />
+48-->C:\Users\marve\AndroidStudioProjects\Onjung\app\src\main\AndroidManifest.xml:38:9-58
+48-->C:\Users\marve\AndroidStudioProjects\Onjung\app\src\main\AndroidManifest.xml:38:19-55
+49        <activity android:name="com.cookandroid.onjung.SignUpActivity" />
+49-->C:\Users\marve\AndroidStudioProjects\Onjung\app\src\main\AndroidManifest.xml:39:9-52
+49-->C:\Users\marve\AndroidStudioProjects\Onjung\app\src\main\AndroidManifest.xml:39:19-49
+50        <activity android:name="com.cookandroid.onjung.FriendActivity" />
+50-->C:\Users\marve\AndroidStudioProjects\Onjung\app\src\main\AndroidManifest.xml:40:9-52
+50-->C:\Users\marve\AndroidStudioProjects\Onjung\app\src\main\AndroidManifest.xml:40:19-49
+51        <activity android:name="com.cookandroid.onjung.DiaryReadActivity" />
+51-->C:\Users\marve\AndroidStudioProjects\Onjung\app\src\main\AndroidManifest.xml:41:9-55
+51-->C:\Users\marve\AndroidStudioProjects\Onjung\app\src\main\AndroidManifest.xml:41:19-52
+52        <activity android:name="com.cookandroid.onjung.DiaryCreateActivity" />
+52-->C:\Users\marve\AndroidStudioProjects\Onjung\app\src\main\AndroidManifest.xml:42:9-57
+52-->C:\Users\marve\AndroidStudioProjects\Onjung\app\src\main\AndroidManifest.xml:42:19-54
+53        <activity android:name="com.cookandroid.onjung.DiaryActivity" />
+53-->C:\Users\marve\AndroidStudioProjects\Onjung\app\src\main\AndroidManifest.xml:43:9-51
+53-->C:\Users\marve\AndroidStudioProjects\Onjung\app\src\main\AndroidManifest.xml:43:19-48
+54        <activity android:name="com.cookandroid.onjung.ResultActivity" />
+54-->C:\Users\marve\AndroidStudioProjects\Onjung\app\src\main\AndroidManifest.xml:44:9-52
+54-->C:\Users\marve\AndroidStudioProjects\Onjung\app\src\main\AndroidManifest.xml:44:19-49
+55        <activity android:name="com.cookandroid.onjung.SelectActivity" />
+55-->C:\Users\marve\AndroidStudioProjects\Onjung\app\src\main\AndroidManifest.xml:45:9-52
+55-->C:\Users\marve\AndroidStudioProjects\Onjung\app\src\main\AndroidManifest.xml:45:19-49
+56        <activity android:name="com.cookandroid.onjung.MainActivity" >
+56-->C:\Users\marve\AndroidStudioProjects\Onjung\app\src\main\AndroidManifest.xml:46:9-48:20
+56-->C:\Users\marve\AndroidStudioProjects\Onjung\app\src\main\AndroidManifest.xml:46:19-47
+57        </activity>
+58        <activity android:name="com.vmadalin.easypermissions.components.TestActivity" />
+58-->[com.vmadalin:easypermissions-ktx:1.0.0] C:\Users\marve\.gradle\caches\transforms-3\ad9ecbaf4b877836d21a73a23fddb989\transformed\jetified-easypermissions-ktx-1.0.0\AndroidManifest.xml:13:9-89
+58-->[com.vmadalin:easypermissions-ktx:1.0.0] C:\Users\marve\.gradle\caches\transforms-3\ad9ecbaf4b877836d21a73a23fddb989\transformed\jetified-easypermissions-ktx-1.0.0\AndroidManifest.xml:13:19-86
+59        <activity android:name="com.vmadalin.easypermissions.components.TestAppCompatActivity" />
+59-->[com.vmadalin:easypermissions-ktx:1.0.0] C:\Users\marve\.gradle\caches\transforms-3\ad9ecbaf4b877836d21a73a23fddb989\transformed\jetified-easypermissions-ktx-1.0.0\AndroidManifest.xml:14:9-98
+59-->[com.vmadalin:easypermissions-ktx:1.0.0] C:\Users\marve\.gradle\caches\transforms-3\ad9ecbaf4b877836d21a73a23fddb989\transformed\jetified-easypermissions-ktx-1.0.0\AndroidManifest.xml:14:19-95
+60        <activity android:name="com.vmadalin.easypermissions.components.TestSupportFragmentActivity" />
+60-->[com.vmadalin:easypermissions-ktx:1.0.0] C:\Users\marve\.gradle\caches\transforms-3\ad9ecbaf4b877836d21a73a23fddb989\transformed\jetified-easypermissions-ktx-1.0.0\AndroidManifest.xml:15:9-104
+60-->[com.vmadalin:easypermissions-ktx:1.0.0] C:\Users\marve\.gradle\caches\transforms-3\ad9ecbaf4b877836d21a73a23fddb989\transformed\jetified-easypermissions-ktx-1.0.0\AndroidManifest.xml:15:19-101
+61
+62        <provider
+62-->[com.github.prolificinteractive:material-calendarview:2.0.1] C:\Users\marve\.gradle\caches\transforms-3\fa3cc584108c881915ad8111863c7952\transformed\jetified-material-calendarview-2.0.1\AndroidManifest.xml:12:9-16:40
+63            android:name="com.prolificinteractive.materialcalendarview.MaterialCalendarViewInitProvider"
+63-->[com.github.prolificinteractive:material-calendarview:2.0.1] C:\Users\marve\.gradle\caches\transforms-3\fa3cc584108c881915ad8111863c7952\transformed\jetified-material-calendarview-2.0.1\AndroidManifest.xml:13:13-105
+64            android:authorities="com.cookandroid.onjung.materialcalendarviewinitprovider"
+64-->[com.github.prolificinteractive:material-calendarview:2.0.1] C:\Users\marve\.gradle\caches\transforms-3\fa3cc584108c881915ad8111863c7952\transformed\jetified-material-calendarview-2.0.1\AndroidManifest.xml:14:13-84
+65            android:enabled="true"
+65-->[com.github.prolificinteractive:material-calendarview:2.0.1] C:\Users\marve\.gradle\caches\transforms-3\fa3cc584108c881915ad8111863c7952\transformed\jetified-material-calendarview-2.0.1\AndroidManifest.xml:15:13-35
+66            android:exported="false" />
+66-->[com.github.prolificinteractive:material-calendarview:2.0.1] C:\Users\marve\.gradle\caches\transforms-3\fa3cc584108c881915ad8111863c7952\transformed\jetified-material-calendarview-2.0.1\AndroidManifest.xml:16:13-37
+67    </application>
+68
+69</manifest>

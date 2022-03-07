@@ -1,0 +1,586 @@
+[
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable_title_round.xml.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable\\title_round.xml"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_check_forest.xml.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable-v24\\check_forest.xml"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_check_scenery.xml.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable-v24\\check_scenery.xml"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\layout_dialog_find_friend.xml.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\layout\\dialog_find_friend.xml"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\layout_activity_preference_test_result.xml.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\layout\\activity_preference_test_result.xml"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_marker_trash.png.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable-v24\\marker_trash.png"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\anim_fab_rotate_open.xml.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\anim\\fab_rotate_open.xml"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_marker_bell.png.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable-v24\\marker_bell.png"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable_select_park_check.png.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable\\select_park_check.png"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\layout_activity_show_course.xml.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\layout\\activity_show_course.xml"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_tree.png.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable-v24\\tree.png"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\layout_progress_loading.xml.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\layout\\progress_loading.xml"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable_user.png.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable\\user.png"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_marker_exercise.png.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable-v24\\marker_exercise.png"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher_round.xml"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_loading.png.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable\\ic_loading.png"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\layout_activity_edit_user_info.xml.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\layout\\activity_edit_user_info.xml"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_friends.png.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable-v24\\friends.png"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable_select_river_check.png.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable\\select_river_check.png"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable_select_mountain.png.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable\\select_mountain.png"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable_seek_thumb.xml.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable\\seek_thumb.xml"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_market.png.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable-v24\\market.png"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable_select_river.png.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable\\select_river.png"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_seekbar_deco.xml.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable-v24\\seekbar_deco.xml"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable_select_show.png.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable\\select_show.png"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_check_quiet.xml.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable-v24\\check_quiet.xml"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable_select_statue.png.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable\\select_statue.png"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_online.png.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable\\ic_online.png"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable_select_show_check.png.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable\\select_show_check.png"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_read.png.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable-v24\\read.png"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_bottom_navigation_home.png.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable\\ic_bottom_navigation_home.png"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\layout_dialog_friend_location.xml.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\layout\\dialog_friend_location.xml"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable_select_walk_check.png.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable\\select_walk_check.png"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_button_deco.xml.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable-v24\\button_deco.xml"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_check_pet.xml.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable-v24\\check_pet.xml"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_calendar.png.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable-v24\\calendar.png"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable_select_statue_check.png.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable\\select_statue_check.png"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_walking.png.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable-v24\\walking.png"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\layout_dialog_satisfaction.xml.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\layout\\dialog_satisfaction.xml"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_smartwatch.png.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable-v24\\smartwatch.png"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable_round_border.xml.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable\\round_border.xml"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\layout_activity_satisfaction_score.xml.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\layout\\activity_satisfaction_score.xml"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_marker_start.png.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable-v24\\marker_start.png"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_item_color.xml.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable-v24\\item_color.xml"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\layout_activity_result.xml.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\layout\\activity_result.xml"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_mountain.png.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable-v24\\mountain.png"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_mood.png.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable-v24\\mood.png"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable_select_pet_check.png.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable\\select_pet_check.png"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_rate.png.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable-v24\\rate.png"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\anim_fab_close.xml.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\anim\\fab_close.xml"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_marker_toilet.png.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable-v24\\marker_toilet.png"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_loading.gif.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable-v24\\loading.gif"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable_select_quiet_check.png.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable\\select_quiet_check.png"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_check_statue.xml.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable-v24\\check_statue.xml"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_size120.gif.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable-v24\\size120.gif"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher.xml"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxhdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\layout_activity_select.xml.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\layout\\activity_select.xml"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_clock.png.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable-v24\\clock.png"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable_select_scenery_check.png.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable\\select_scenery_check.png"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\layout_activity_main.xml.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable_login_round.xml.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable\\login_round.xml"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_check_crowded.xml.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable-v24\\check_crowded.xml"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_marker_pass.png.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable-v24\\marker_pass.png"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable_select_quiet.png.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable\\select_quiet.png"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_bottom_navigation_menu.png.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable\\ic_bottom_navigation_menu.png"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\mipmap-mdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_check_lake.xml.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable-v24\\check_lake.xml"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable_select_forest_check.png.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable\\select_forest_check.png"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_check_mountain.xml.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable-v24\\check_mountain.xml"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_track.png.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable-v24\\track.png"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_add.png.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable-v24\\add.png"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable_diaglog_title_round.xml.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable\\diaglog_title_round.xml"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\layout_activity_friend.xml.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\layout\\activity_friend.xml"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\layout_dialog_save_walk.xml.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\layout\\dialog_save_walk.xml"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_run.png.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable-v24\\run.png"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_check_walk.xml.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable-v24\\check_walk.xml"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\layout_activity_login.xml.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\layout\\activity_login.xml"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\mipmap-hdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable_diaglog_round.xml.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable\\diaglog_round.xml"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_diary.png.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable-v24\\diary.png"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable_seekbar.xml.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable\\seekbar.xml"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\layout_activity_sign_up.xml.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\layout\\activity_sign_up.xml"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable_select_forest.png.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable\\select_forest.png"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_launcher_background.xml.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable\\ic_launcher_background.xml"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable_border_line.xml.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable\\border_line.xml"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable_select_mountain_check.png.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable\\select_mountain_check.png"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_check_river.xml.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable-v24\\check_river.xml"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\layout_activity_save_walk.xml.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\layout\\activity_save_walk.xml"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\layout_fragment_home.xml.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\layout\\fragment_home.xml"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable_select_pet.png.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable\\select_pet.png"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\mipmap-hdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\layout_activity_mood_recommend.xml.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\layout\\activity_mood_recommend.xml"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_bottom_navigation_schedule.png.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable\\ic_bottom_navigation_schedule.png"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xhdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_login_walk.jpg.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable-v24\\login_walk.jpg"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_splash2.gif.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable-v24\\splash2.gif"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_temp_round.png.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable\\ic_temp_round.png"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_calendar_float.png.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable-v24\\calendar_float.png"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_edit.png.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable-v24\\edit.png"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_splash.gif.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable-v24\\splash.gif"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\layout_activity_preference_test.xml.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\layout\\activity_preference_test.xml"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\layout_activity_diary.xml.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\layout\\activity_diary.xml"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable_select_lake.png.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable\\select_lake.png"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\layout_activity_diary_read.xml.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\layout\\activity_diary_read.xml"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable_select_crowded_check.png.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable\\select_crowded_check.png"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_ic_launcher_foreground.xml.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable-v24\\ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable_textview_round.xml.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable\\textview_round.xml"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_check_park.xml.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable-v24\\check_park.xml"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable_location.png.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable\\location.png"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\layout_dialog_show_course.xml.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\layout\\dialog_show_course.xml"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_check_show.xml.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable-v24\\check_show.xml"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\layout_dialog_date_picker.xml.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\layout\\dialog_date_picker.xml"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_temp.png.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable\\ic_temp.png"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxxhdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\menu_menu_bottom.xml.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\menu\\menu_bottom.xml"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable_select_exercise.png.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable\\select_exercise.png"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_users.png.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable-v24\\users.png"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\anim_fab_open.xml.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\anim\\fab_open.xml"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_marker_light.png.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable-v24\\marker_light.png"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_condition.png.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable-v24\\condition.png"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable_select_walk.png.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable\\select_walk.png"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\layout_dialog_quit.xml.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\layout\\dialog_quit.xml"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable_select_crowded.png.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable\\select_crowded.png"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable_bg_appcolorwhite_radius.xml.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable\\bg_appcolorwhite_radius.xml"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\layout_fragment_menu.xml.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\layout\\fragment_menu.xml"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable_progress_bg.xml.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable\\progress_bg.xml"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_stopwatch.png.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable-v24\\stopwatch.png"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_rect.png.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable\\ic_rect.png"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable_select_scenery.png.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable\\select_scenery.png"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_settings.png.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable-v24\\settings.png"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_offline.png.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable\\ic_offline.png"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable_select_park.png.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable\\select_park.png"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_map.png.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable-v24\\map.png"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable_select_exercise_check.png.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable\\select_exercise_check.png"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_check_exercise.xml.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable-v24\\check_exercise.xml"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_light.png.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable-v24\\light.png"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\mipmap-mdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable_img_user_profile.jpg.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable\\img_user_profile.jpg"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\layout_activity_diary_create.xml.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\layout\\activity_diary_create.xml"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\drawable_select_lake_check.png.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\drawable\\select_lake_check.png"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\anim_fab_rotate_close.xml.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\anim\\fab_rotate_close.xml"
+    },
+    {
+        "merged": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\build\\intermediates\\merged_res\\debug\\layout_fragment_schedule.xml.flat",
+        "source": "C:\\Users\\marve\\AndroidStudioProjects\\Onjung\\app\\src\\main\\res\\layout\\fragment_schedule.xml"
+    }
+]

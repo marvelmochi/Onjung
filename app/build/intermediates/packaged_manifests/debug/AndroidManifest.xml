@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.cookandroid.onjung"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="26"
+        android:targetSdkVersion="30" />
+    <!-- 티맵 관련 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <!-- 만보기 -->
+    <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION" />
+    <!-- API 버전 28 이하 -->
+    <uses-permission android:name="com.google.android.gms.permission.ACTIVITY_RECOGNITION" />
+
+    <application
+        android:allowBackup="true"
+        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+        android:debuggable="true"
+        android:extractNativeLibs="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:testOnly="true"
+        android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
+        android:usesCleartextTraffic="true" >
+        <activity
+            android:name="com.cookandroid.onjung.MoodRecommendActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.cookandroid.onjung.ShowCourseActivity"
+            android:exported="false" />
+        <activity android:name="com.cookandroid.onjung.SatisfactionScoreActivity" />
+        <activity android:name="com.cookandroid.onjung.PreferenceTestResultActivity" />
+        <activity android:name="com.cookandroid.onjung.PreferenceTestActivity" />
+        <activity android:name="com.cookandroid.onjung.LoginActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.cookandroid.onjung.EditUserInfoActivity" />
+        <activity android:name="com.cookandroid.onjung.SignUpActivity" />
+        <activity android:name="com.cookandroid.onjung.FriendActivity" />
+        <activity android:name="com.cookandroid.onjung.DiaryReadActivity" />
+        <activity android:name="com.cookandroid.onjung.DiaryCreateActivity" />
+        <activity android:name="com.cookandroid.onjung.DiaryActivity" />
+        <activity android:name="com.cookandroid.onjung.ResultActivity" />
+        <activity android:name="com.cookandroid.onjung.SelectActivity" />
+        <activity android:name="com.cookandroid.onjung.MainActivity" >
+        </activity>
+        <activity android:name="com.vmadalin.easypermissions.components.TestActivity" />
+        <activity android:name="com.vmadalin.easypermissions.components.TestAppCompatActivity" />
+        <activity android:name="com.vmadalin.easypermissions.components.TestSupportFragmentActivity" />
+
+        <provider
+            android:name="com.prolificinteractive.materialcalendarview.MaterialCalendarViewInitProvider"
+            android:authorities="com.cookandroid.onjung.materialcalendarviewinitprovider"
+            android:enabled="true"
+            android:exported="false" />
+    </application>
+
+</manifest>
