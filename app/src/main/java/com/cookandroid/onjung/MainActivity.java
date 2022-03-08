@@ -17,7 +17,9 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.skt.Tmap.TMapGpsManager;
@@ -40,6 +42,8 @@ implements TMapGpsManager.onLocationChangedCallback {
     HomeFragment fragment2;
     MenuFragment fragment3;
 
+    FragmentManager fragmentManager;
+    FragmentTransaction ft;
 
     // 뒤로가기 두 번 눌러 종료
     private long backKeyPressedTime = 0;
@@ -103,8 +107,6 @@ implements TMapGpsManager.onLocationChangedCallback {
 
         System.out.println("로그: 멤버아이디 불러오기(Main): " + memberId);
 
-
-
         // 평가 횟수 받아오기
         HttpConnectorRatingNumber ratingNumberThread = new HttpConnectorRatingNumber();
         ratingNumberThread.start();
@@ -116,13 +118,23 @@ implements TMapGpsManager.onLocationChangedCallback {
         fragment1 = new ScheduleFragment();
         fragment2 = new HomeFragment();
         fragment3 = new MenuFragment();
+
+        /*
+        ft = getSupportFragmentManager().beginTransaction();
+        ft.add(R.id.main_layout, fragment1, "schedule");
+        ft.add(R.id.main_layout, fragment2, "home");
+        ft.add(R.id.main_layout, fragment3, "menu");
+
+         */
+
         getSupportFragmentManager().beginTransaction().replace(R.id.main_layout, fragment2, "home").commitAllowingStateLoss();
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 
-                FragmentManager fragmentManager = getSupportFragmentManager();
+                fragmentManager = getSupportFragmentManager();
+
                 switch (menuItem.getItemId()) {
                     case R.id.tab1: {
                         if (fragmentManager.findFragmentByTag("schedule") != null) {
@@ -186,19 +198,6 @@ implements TMapGpsManager.onLocationChangedCallback {
                 }
             }
         });
-
-
-
-
-
-
-        /*
-        preferences = getSharedPreferences("UserInfo", MODE_MULTI_PROCESS);
-        TextView UserId = (TextView) findViewById(R.id.UserId);
-        String id = preferences.getString("id", "");
-        UserId.setText(id);
-         */
-
 
     }
 
@@ -281,8 +280,12 @@ implements TMapGpsManager.onLocationChangedCallback {
 
     // 하단 내비게이션 -> 캘린더 프래그먼트 클릭
     public void calendarClicked(View view) {
-        getSupportFragmentManager().beginTransaction().replace(R.id.main_layout, fragment1)
-                .commitAllowingStateLoss();
+        //getSupportFragmentManager().beginTransaction().replace(R.id.main_layout, fragment1).commitAllowingStateLoss();
+//////////////////////////////////////////////////수정/////////////////////////////////////////////////////////////////
+        fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().hide(fragmentManager.findFragmentByTag("menu")).commit();
+        fragmentManager.beginTransaction().show(fragmentManager.findFragmentByTag("schedule")).commit();
+
     }
 
     // [메뉴] - 산책 다이어리 클릭

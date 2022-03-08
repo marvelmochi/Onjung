@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".DiaryCreateActivity">
+    tools:context=".DiaryReadActivity">
 
     <!--타이틀
     <TextView
@@ -67,10 +67,9 @@
                 android:id="@+id/date_text"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
-                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical"
                 android:layout_weight="3"
-                android:paddingHorizontal="5dp"
-                android:textSize="15sp" />
+                android:paddingHorizontal="5dp" />
 
             <View
                 android:layout_width="2dp"
@@ -85,6 +84,7 @@
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:clickable="true"
+                android:onClick="dateTextClicked"
                 android:src="@drawable/ic_bottom_navigation_schedule" />
         </LinearLayout>
 
@@ -111,6 +111,7 @@
                 android:background="#B1BCBE"/>
 
             <EditText
+                android:id="@+id/title_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -121,7 +122,8 @@
 
 
         <!--일기 내용-->
-        <TextView
+        <EditText
+            android:id="@+id/contents_text"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_margin="10dp"
@@ -147,6 +149,7 @@
                 android:layout_margin="10dp"
                 android:text="수정"
                 android:textSize="20sp"
+                android:onClick="updateDiaryClicked"
                 android:background="@drawable/button_deco"/>
 
             <Button
@@ -156,6 +159,7 @@
                 android:layout_margin="10dp"
                 android:text="삭제"
                 android:textSize="20sp"
+                android:onClick="deleteDiaryClicked"
                 android:background="@drawable/button_deco"/>
         </LinearLayout>
     </LinearLayout>

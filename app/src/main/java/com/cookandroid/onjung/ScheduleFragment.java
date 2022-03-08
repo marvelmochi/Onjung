@@ -95,8 +95,6 @@ public class ScheduleFragment extends Fragment {
     // 토스트 온 스레드를 위한 핸들러
     Handler toastHandler;
 
-
-
     // UserInfo(title) 전달할 SharedPrefereces
     SharedPreferences preferences;
 
@@ -509,6 +507,7 @@ public class ScheduleFragment extends Fragment {
             //System.out.println("로그: 핸들러에서 전달된 제목 리스트: "+titleArrayList.get(0));
 
             linearLayout.removeAllViewsInLayout();
+            linearLayout.removeAllViews();
             //System.out.println("로그: remove on Handler");
             for (int i = 0; i < titleArrayList.size(); i++) {
                 TextView textView = new TextView(getContext());
@@ -528,6 +527,7 @@ public class ScheduleFragment extends Fragment {
                 Button button = new Button(getContext());
                 button.setText("walkId: " + walkIdArrayList.get(i));
                 button.setTextColor(0x707070); // 투명 텍스트
+                button.setOutlineProvider(null);
 
                 //DisplayMetrics dm = getResources().getDisplayMetrics();
                 //int size = Math.round(20 * dm.density);

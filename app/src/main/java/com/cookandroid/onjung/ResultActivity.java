@@ -540,6 +540,7 @@ public class ResultActivity extends AppCompatActivity
                 HttpConnectorSaveCourse saveCourseThread = new HttpConnectorSaveCourse();
                 saveCourseThread.start();
 
+                saveDialog.dismiss();
             }
 
         });
@@ -554,18 +555,7 @@ public class ResultActivity extends AppCompatActivity
     // 로딩중 표시할 프로그레스 다이얼로그
     @Override
     protected Dialog onCreateDialog(int id) {
-        ProgressDialog dialog = new ProgressDialog(this); // 사용자에게 보여줄 대화상자
-        dialog.setTitle("산책 코스를 불러오는 중...");
-        dialog.setMessage("잠시만 기다려주세요...");
-        dialog.setButton(ProgressDialog.BUTTON_NEGATIVE, "취소",
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                    }
-                }
-        );
-
+        LoadingDialog dialog = new LoadingDialog(this);
         return dialog;
     }
 

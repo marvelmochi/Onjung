@@ -15,6 +15,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -118,7 +119,7 @@ public class HomeFragment extends Fragment implements SensorEventListener {
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.HOUR_OF_DAY, 0);
         calendar.set(Calendar.MINUTE, 0);
-        //calendar.add(Calendar.DATE, 1);
+        calendar.add(Calendar.DATE, 1);
 
         Intent intent = new Intent(getActivity(), AlarmReceiver.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(getActivity(), DATA_FETCHER_RC,intent, PendingIntent.FLAG_UPDATE_CURRENT);
@@ -131,7 +132,7 @@ public class HomeFragment extends Fragment implements SensorEventListener {
         now = System.currentTimeMillis();
         date = new Date(now);
         SimpleDateFormat sdformat = new SimpleDateFormat("yyyyMMdd");
-        String nowDate = sdformat.format(date);
+        nowDate = sdformat.format(date);
         //System.out.println("출력: "+ nowDate);
 
         HomeFragment.HttpConnectorSchedule scheduleThread = new HomeFragment.HttpConnectorSchedule();
@@ -177,8 +178,6 @@ public class HomeFragment extends Fragment implements SensorEventListener {
                 conn.setRequestMethod("GET");
                 BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
                 String returnMsg = in.readLine();
-                //System.out.println("로그: 응답 메시지: " + returnMsg);
-
                 jsonParser(returnMsg);
 
             } catch (Exception e) {
@@ -225,8 +224,11 @@ public class HomeFragment extends Fragment implements SensorEventListener {
                     adapter.addItem(new TitleItem(schedule_title));
                     title_List.add(schedule_title);
                 }
+                if(adapter == null) {
+                    adapter.addItem(new TitleItem("오늘은 산책 일정이 없습니다."));
+                    listview.setDivider(new ColorDrawable(Color.TRANSPARENT));
+                }
                 listview.setAdapter(adapter);
-
             }
 
 

@@ -443,6 +443,7 @@ public class PreferenceTestResultActivity extends AppCompatActivity {
         return dialog;
     }
 
+
     @Override
     public void onBackPressed() {
         if (System.currentTimeMillis() > backKeyPressedTime + 2000) {
