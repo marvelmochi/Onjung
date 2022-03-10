@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".EditUserInfoActivity">
+    tools:context=".SignUpActivity">
 
     <!--타이틀
     <TextView
@@ -81,33 +81,6 @@
                 android:layout_margin="20dp"
                 android:orientation="vertical">
 
-                <!--사진 변경-->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="30dp"
-                    android:orientation="vertical"
-                    android:padding="5dp">
-
-                    <ImageButton
-                        android:id="@+id/profile_img"
-                        android:layout_width="150dp"
-                        android:layout_height="150dp"
-                        android:gravity="center_vertical"
-                        android:layout_gravity="center"
-                        android:textSize="24sp"
-                        android:background="@drawable/img_user_profile"/>
-                    <!--
-                    <Button
-                        android:layout_width="100dp"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:text="변경하기"
-                        android:layout_marginTop="20dp"
-                        android:background="@drawable/button_deco"/>
-                        -->
-                </LinearLayout>
-
                 <!--이름-->
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -133,7 +106,6 @@
                         android:background="#B1BCBE"/>
 
                     <EditText
-                        android:id="@+id/name"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_marginRight="10dp"
@@ -165,13 +137,12 @@
                         android:background="#B1BCBE"/>
 
                     <EditText
-                        android:id="@+id/birth"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_marginRight="10dp"
                         android:layout_weight="6"
                         android:maxLength="8"
-                        android:hint=" YYYY/MM/DD"
+                        android:hint=" YYYYY/MM/DD"
                         android:autoSizeTextType="uniform"
                         />
 
@@ -202,29 +173,29 @@
                         android:background="#B1BCBE"/>
 
                     <RadioGroup
-                        android:id="@+id/genderRG"
+                        android:id="@+id/radioGroup"
                         android:orientation="horizontal"
                         android:layout_width="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_height="match_parent">
 
                         <RadioButton
-                            android:id="@+id/female"
                             android:layout_weight="1"
                             android:text="여성"
+                            android:id="@+id/rg_btn1"
                             android:layout_width="100dp"
                             android:layout_height="wrap_content" />
 
                         <RadioButton
-                            android:id="@+id/male"
                             android:layout_weight="1"
                             android:text="남성"
+                            android:id="@+id/rg_btn2"
                             android:layout_width="100dp"
                             android:layout_height="wrap_content" />
                     </RadioGroup>
                 </LinearLayout>
 
-                <!--아이디
+                <!--이메일-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -261,7 +232,7 @@
                         android:layout_weight="2"
                         android:layout_marginRight="7dp"
                         android:text="확인" />
-                </LinearLayout>-->
+                </LinearLayout>
 
                 <!--비밀번호-->
                 <LinearLayout
@@ -288,7 +259,6 @@
                         android:background="#B1BCBE"/>
 
                     <EditText
-                        android:id="@+id/pw"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_marginRight="10dp"
@@ -322,7 +292,6 @@
                         android:background="#B1BCBE"/>
 
                     <EditText
-                        android:id="@+id/check_pw"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_marginRight="10dp"
@@ -333,24 +302,31 @@
                 </LinearLayout>
 
                 <!--수정/취소 버튼-->
-                <Button
-                    android:onClick="editClicked"
-                    android:layout_width="120dp"
-                    android:layout_height="45dp"
-                    android:layout_gravity="center"
-                    android:layout_marginHorizontal="20dp"
-                    android:background="@drawable/button_deco"
-                    android:text="수정"
-                    android:textSize="20sp" />
-                <!--
-                <Button
-                    android:layout_width="120dp"
+                <LinearLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginHorizontal="10dp"
-                    android:text="취소"
-                    android:background="@drawable/button_deco"/>
-                    -->
+                    android:orientation="horizontal"
+                    android:layout_gravity="center">
+
+                    <Button
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginHorizontal="20dp"
+                        android:text="수정"
+                        android:layout_weight="1"
+                        android:textSize="20sp"
+                        android:background="@drawable/button_deco"/>
+                    <!--
+                    <Button
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginHorizontal="10dp"
+                        android:text="취소"
+                        android:background="@drawable/button_deco"/>
+                        -->
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

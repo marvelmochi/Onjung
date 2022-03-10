@@ -130,14 +130,14 @@ public class ScheduleFragment extends Fragment {
         Calendar calendar= Calendar.getInstance();
         calendar.add(Calendar.MONTH, Calendar.YEAR);
 
-        String year_s, month_s, date;
+        String year_s, month_s;
 
         year_s = String.valueOf(calendar.get(Calendar.YEAR));
         System.out.println("로그: 년도 " + calendar.get(Calendar.YEAR));
         if (Integer.toString(Calendar.MONTH).length() == 1) {
-            month_s = '0' + Integer.toString(Calendar.MONTH);
+            month_s = '0' + Integer.toString(Calendar.MONTH+1);
         } else {
-            month_s = Integer.toString(Calendar.MONTH);
+            month_s = Integer.toString(Calendar.MONTH+1);
         }
         System.out.println("로그: 달 " + month_s);
 
@@ -333,15 +333,15 @@ public class ScheduleFragment extends Fragment {
         public void run() {
             try {
 
-                    url = new URL("http://smwu.onjung.tk/walk/" + memberId + "/" + mselectDate);
-                    conn = (HttpURLConnection) url.openConnection();
-                    conn.setRequestMethod("GET");
-                    BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-                    String returnMsg = in.readLine();
-                    System.out.println("로그: 선택 날짜: " + mselectDate);
-                    System.out.println("로그: 응답 메시지: " + returnMsg);
+                url = new URL("http://smwu.onjung.tk/walk/" + memberId + "/" + mselectDate);
+                conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("GET");
+                BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                String returnMsg = in.readLine();
+                System.out.println("로그: 선택 날짜: " + mselectDate);
+                System.out.println("로그: 응답 메시지: " + returnMsg);
 
-                    jsonParserPlans(returnMsg);
+                jsonParserPlans(returnMsg);
 
             } catch (Exception es) {
                 es.printStackTrace();

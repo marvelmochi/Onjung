@@ -48,7 +48,4 @@ dependencies {
 
     //캘린더
     implementation 'com.github.prolificinteractive:material-calendarview:2.0.1'
-
-    //헬스데이터 프로그레스바
-    implementation 'com.dinuscxj:circleprogressbar:1.3.0' // CircleProgressBar
 }

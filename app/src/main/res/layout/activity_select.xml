@@ -46,7 +46,7 @@
             android:orientation="vertical"
             android:padding="10dp">
 
-            <!--경유 시간-->
+            <!--경유 시간
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -66,9 +66,9 @@
                     android:text="산책 시간은 어느 정도가 좋으신가요?"
                     android:textSize="16sp" />
 
-            </LinearLayout>
+            </LinearLayout>-->
 
-            <!--체크박스-->
+            <!--체크박스
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -105,7 +105,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="무관" />
-            </LinearLayout>
+            </LinearLayout>-->
 
             <!--편의 사항-->
             <LinearLayout
@@ -144,18 +144,21 @@
                     android:weightSum="3">
 
                     <CheckBox
+                        android:id="@+id/toilet"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="공공화장실" />
 
                     <CheckBox
+                        android:id="@+id/bell"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="안심벨" />
 
                     <CheckBox
+                        android:id="@+id/trash"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -171,12 +174,14 @@
                     android:weightSum="3">
 
                     <CheckBox
+                        android:id="@+id/exercise"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="운동기구" />
 
                     <CheckBox
+                        android:id="@+id/light"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"

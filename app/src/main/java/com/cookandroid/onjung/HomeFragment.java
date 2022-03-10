@@ -117,9 +117,11 @@ public class HomeFragment extends Fragment implements SensorEventListener {
         AlarmManager mAlarmManager = (AlarmManager)getActivity().getSystemService(Context.ALARM_SERVICE);
 
         Calendar calendar = Calendar.getInstance();
+        if (calendar.get(Calendar.HOUR_OF_DAY) >= 0){
+            calendar.add(Calendar.DATE, 1);
+        }
         calendar.set(Calendar.HOUR_OF_DAY, 0);
         calendar.set(Calendar.MINUTE, 0);
-        calendar.add(Calendar.DATE, 1);
 
         Intent intent = new Intent(getActivity(), AlarmReceiver.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(getActivity(), DATA_FETCHER_RC,intent, PendingIntent.FLAG_UPDATE_CURRENT);
@@ -344,7 +346,6 @@ public class HomeFragment extends Fragment implements SensorEventListener {
 
             peditor.apply()
             ;
-
 
         }
 

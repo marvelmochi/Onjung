@@ -93,213 +93,213 @@
 
             </LinearLayout>
 
-        <!--중앙부(헬스 데이터)-->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="20dp"
-            android:layout_weight="1"
-            android:background="@drawable/round_border"
-            android:orientation="vertical">
-
-            <!--미니 타이틀-->
-            <TextView
-                android:id="@+id/HealthTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/title_round"
-                android:gravity="center"
-                android:text="헬스 데이터"
-                android:textColor="#FFFFFF"
-                android:textSize="18dp" />
-
-            <!--감싸는 레이아웃-->
+            <!--중앙부(헬스 데이터)-->
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="10dp"
-                android:orientation="vertical"
-                android:weightSum="4">
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="20dp"
+                android:layout_weight="1"
+                android:background="@drawable/round_border"
+                android:orientation="vertical">
 
-                <!--걸음 수-->
-                <LinearLayout
+                <!--미니 타이틀-->
+                <TextView
+                    android:id="@+id/HealthTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/title_round"
+                    android:gravity="center"
+                    android:text="헬스 데이터"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18dp" />
+
+                <!--감싸는 레이아웃-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_margin="10dp"
-                    android:orientation="horizontal">
+                    android:orientation="vertical"
+                    android:weightSum="4">
 
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:src="@drawable/walking"
-                        android:layout_gravity="center"/>
-
+                    <!--걸음 수-->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1">
+                        android:layout_margin="10dp"
+                        android:orientation="horizontal">
 
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginHorizontal="10dp"
-                            android:layout_weight="6"
-                            android:text="걸음 수"
-                            android:textSize="28sp" />
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/walking"
+                            android:layout_gravity="center"/>
 
-                        <TextView
-                            android:id="@+id/stepCountView"
-                            android:layout_width="0dp"
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:layout_weight="5"
-                            android:text="0보"
-                            android:textSize="28sp" />
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginHorizontal="10dp"
+                                android:layout_weight="6"
+                                android:text="걸음 수"
+                                android:textSize="28sp" />
+
+                            <TextView
+                                android:id="@+id/stepCountView"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_weight="5"
+                                android:text="0보"
+                                android:textSize="28sp" />
+
+                        </LinearLayout>
 
                     </LinearLayout>
 
-                </LinearLayout>
-
-                <!--일일 걸음 달성도-->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:src="@drawable/stopwatch"
-                        android:layout_gravity="center"/>
-
+                    <!--일일 걸음 달성도-->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1">
+                        android:layout_margin="10dp"
+                        android:orientation="horizontal">
 
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginHorizontal="10dp"
-                            android:layout_weight="6"
-                            android:text="일일 걸음 \n달성도"
-                            android:textSize="28sp" />
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/report"
+                            android:layout_gravity="center"/>
 
                         <LinearLayout
-                            android:layout_width="0dp"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_weight="5"
-                            android:orientation="vertical">
-
-                            <ProgressBar
-                                android:id="@+id/progress_bar"
-                                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-                                android:layout_width="match_parent"
-                                android:layout_height="12dp"
-                                android:layout_gravity="center"
-                                android:max="6000"
-                                android:progress="3000"
-                                android:progressDrawable="@drawable/progressbar" />
+                            android:layout_weight="1">
 
                             <TextView
-                                android:id="@+id/progress_text"
-                                android:layout_width="wrap_content"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="right"
-                                android:text="/6000" />
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginHorizontal="10dp"
+                                android:layout_weight="6"
+                                android:text="일일 걸음 \n달성도"
+                                android:textSize="28sp" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_weight="5"
+                                android:orientation="vertical">
+
+                                <ProgressBar
+                                    android:id="@+id/progress_bar"
+                                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="12dp"
+                                    android:layout_gravity="center"
+                                    android:max="6000"
+                                    android:progress="3000"
+                                    android:progressDrawable="@drawable/progressbar" />
+
+                                <TextView
+                                    android:id="@+id/progress_text"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="right"
+                                    android:text="/6000" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+
+                    <!--걸은 거리-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/track"
+                            android:layout_gravity="center"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginHorizontal="10dp"
+                                android:layout_weight="6"
+                                android:text="걸은 거리"
+                                android:textSize="28sp" />
+
+                            <TextView
+                                android:id="@+id/totalDistance"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_weight="5"
+                                android:text="0km"
+                                android:textSize="28sp" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <!--소모 칼로리-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/smartwatch"
+                            android:layout_gravity="center"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginHorizontal="10dp"
+                                android:layout_weight="6"
+                                android:text="소모 칼로리"
+                                android:textSize="28sp" />
+
+                            <TextView
+                                android:id="@+id/Calories"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_weight="5"
+                                android:text="0kcal"
+                                android:textSize="28sp" />
                         </LinearLayout>
 
                     </LinearLayout>
 
                 </LinearLayout>
 
-
-                <!--걸은 거리-->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:src="@drawable/track"
-                        android:layout_gravity="center"/>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1">
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginHorizontal="10dp"
-                            android:layout_weight="6"
-                            android:text="걸은 거리"
-                            android:textSize="28sp" />
-
-                        <TextView
-                            android:id="@+id/totalDistance"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:layout_weight="5"
-                            android:text="0km"
-                            android:textSize="28sp" />
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <!--소모 칼로리-->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:src="@drawable/smartwatch"
-                        android:layout_gravity="center"/>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1">
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginHorizontal="10dp"
-                            android:layout_weight="6"
-                            android:text="소모 칼로리"
-                            android:textSize="28sp" />
-
-                        <TextView
-                            android:id="@+id/Calories"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:layout_weight="5"
-                            android:text="0kcal"
-                            android:textSize="28sp" />
-                    </LinearLayout>
-
-                </LinearLayout>
-
             </LinearLayout>
-
-        </LinearLayout>
 
             <!--하단부(버튼 2개)-->
             <LinearLayout
@@ -326,7 +326,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="20dp"
                     android:layout_weight="1"
-                    android:onClick="preferencebtnClicked"
+                    android:onClick="moodClicked"
                     android:text="취향을 분석한\n 산책로 추천"
                     android:textSize="16dp"/>
 

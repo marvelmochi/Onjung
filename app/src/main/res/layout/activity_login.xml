@@ -67,7 +67,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginRight="10dp"
-
+                android:text="eunjeong"
                 android:layout_weight="6"
                 android:maxLength="10"/>
 
@@ -92,6 +92,7 @@
                 android:textSize="26sp" />
 
             <EditText
+                android:text="1234"
                 android:id="@+id/password"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -120,7 +121,7 @@
             android:textSize="16sp"
             android:text="회원가입"
             android:textColor="#6CBA4F"
-            android:onClick="editClicked"
+            android:onClick="signupClicked"
             android:background="#00000000"/>
 
     </LinearLayout>
