@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:orientation="vertical"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
+    android:weightSum="10">
+
+    <!--산책 일정에서 경로 다시 보여주는 다이얼로그-->
+
+    <!--타이틀-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/diaglog_title_round"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="산책코스 평가"
+        android:textColor="#ffffff"
+        android:textSize="24sp" />
+
+    <!--추천 멘트 부분-->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/diaglog_round">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="15dp"
+
+            android:orientation="horizontal"
+            android:weightSum="6">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:src="@drawable/rate" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:layout_weight="5"
+                android:background="@drawable/textview_round"
+                android:gravity="center_horizontal"
+                android:padding="10dp"
+                android:text="산책지를 평가해주시면 \n앞으로 더욱 나은 추천을 할 수 있어요."
+                android:textAlignment="center"
+                android:textSize="13sp" />
+
+        </LinearLayout>
+
+
+        <ScrollView
+            android:id="@+id/scrollViews"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="9">
+
+            <LinearLayout
+                android:id="@+id/linear_rating"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="15dp"
+                android:orientation="vertical"
+                android:padding="20dp" />
+        </ScrollView>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="30dp">
+
+            <Button
+                android:onClick="scoreClicked"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:text="평가 완료"
+                android:textSize="16sp"
+                android:background="@drawable/button_deco"/>
+
+            <Button
+                android:onClick="satisfactionDialogCloseClicked"
+                android:id="@+id/dismissBtn"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:text="닫기"
+                android:textSize="16sp"
+                android:background="@drawable/button_deco"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
