@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".DiaryCreateActivity">
+
+    <!--타이틀
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:layout_marginBottom="20dp"
+        android:background="#6CBA4F"
+        android:gravity="center"
+        android:text="산책 다이어리"
+        android:textColor="#ffffff"
+        android:textSize="28sp" />
+        -->
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="산책 다이어리"
+            android:textColor="#ffffff"
+            android:textSize="28sp" />
+    </androidx.appcompat.widget.Toolbar>
+
+    <!--감싸는 레이아웃-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!--날짜 선택-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/round_border"
+            android:orientation="horizontal"
+            android:weightSum="5">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:text="    날짜"
+                android:textSize="20sp" />
+
+            <View
+                android:layout_width="2dp"
+                android:layout_height="40dp"
+                android:background="#B1BCBE"/>
+
+            <TextView
+                android:id="@+id/date_text"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="3"
+                android:paddingHorizontal="5dp"
+                android:textSize="15sp" />
+
+            <View
+                android:layout_width="2dp"
+                android:layout_height="40dp"
+                android:background="#B1BCBE"/>
+
+            <!--버튼으로 쓸 이미지뷰-->
+            <ImageView
+                android:id="@+id/date"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:src="@drawable/ic_bottom_navigation_schedule" />
+        </LinearLayout>
+
+        <!--제목-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/round_border"
+            android:orientation="horizontal"
+            android:weightSum="5">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:text="    제목"
+                android:textSize="20sp" />
+
+            <View
+                android:layout_width="2dp"
+                android:layout_height="40dp"
+                android:background="#B1BCBE"/>
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="4"
+                android:padding="5dp" />
+
+        </LinearLayout>
+
+
+        <!--일기 내용-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/round_border"
+            android:gravity="top"
+            android:padding="10dp"
+            android:hint="내용입니다."
+            android:scrollbars="vertical"/>
+
+        <!--수정/삭제 버튼-->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:text="수정"
+                android:textSize="20sp"
+                android:background="@drawable/button_deco"/>
+
+            <Button
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:text="삭제"
+                android:textSize="20sp"
+                android:background="@drawable/button_deco"/>
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="10"
+    tools:context=".PreferenceTestActivity">
+
+    <!--타이틀-->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="취향 분석 테스트"
+            android:textColor="#ffffff"
+            android:textSize="28sp" />
+    </androidx.appcompat.widget.Toolbar>
+
+
+    <!--첫 번째 질문-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:orientation="vertical">
+        <!--질문 텍스트뷰-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="다음 중 가장 걷고 싶은 풍경은 어디인가요?" />
+        <!--가로 스크롤뷰-->
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="180dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:orientation="horizontal">
+                <!--산-->
+                <CheckBox
+                    android:id="@+id/mountain"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_margin="5dp"
+                    android:button="@android:color/transparent"
+                    android:background="@drawable/check_mountain"
+                    android:text="산"
+                    android:textColor="@android:color/transparent"
+                    />
+                <!--강-->
+                <CheckBox
+                    android:id="@+id/mood_river"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_margin="5dp"
+                    android:button="@android:color/transparent"
+                    android:background="@drawable/check_river"
+                    android:text="강"
+                    android:textColor="@android:color/transparent"/>
+                <!--숲-->
+                <CheckBox
+                    android:id="@+id/mood_forest"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_margin="5dp"
+                    android:button="@android:color/transparent"
+                    android:background="@drawable/check_forest"
+                    android:text="숲"
+                    android:textColor="@android:color/transparent"/>
+                <!--호수-->
+                <CheckBox
+                    android:id="@+id/mood_lake"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_margin="5dp"
+                    android:button="@android:color/transparent"
+                    android:background="@drawable/check_lake"
+                    android:text="호수"
+                    android:textColor="@android:color/transparent"/>
+                <!--공원-->
+                <CheckBox
+                    android:id="@+id/mood_park"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_margin="5dp"
+                    android:button="@android:color/transparent"
+                    android:background="@drawable/check_park"
+                    android:text="공원"
+                    android:textColor="@android:color/transparent"/>
+
+            </LinearLayout>
+        </HorizontalScrollView>
+    </LinearLayout>
+
+    <!--두 번째 질문-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="6"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="분위기가 마음에 드는 사진을 골라보세요." />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <!--첫째 줄-->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
+
+                    <CheckBox
+                        android:id="@+id/active"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_margin="10dp"
+                        android:button="@android:color/transparent"
+                        android:background="@drawable/check_crowded"/>
+
+                    <CheckBox
+                        android:id="@+id/quiet"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_margin="10dp"
+                        android:button="@android:color/transparent"
+                        android:background="@drawable/check_quiet"/>
+                </LinearLayout>
+
+                <!--둘째 줄-->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
+
+                    <CheckBox
+                        android:id="@+id/walkable"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_margin="10dp"
+                        android:button="@android:color/transparent"
+                        android:background="@drawable/check_walk"/>
+
+                    <CheckBox
+                        android:id="@+id/sight"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_margin="10dp"
+                        android:button="@android:color/transparent"
+                        android:background="@drawable/check_scenery"/>
+                </LinearLayout>
+
+                <!--셋째 줄-->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
+
+                    <CheckBox
+                        android:id="@+id/pet"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_margin="10dp"
+                        android:button="@android:color/transparent"
+                        android:background="@drawable/check_pet"/>
+
+                    <CheckBox
+                        android:id="@+id/sightseeing"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_margin="10dp"
+                        android:button="@android:color/transparent"
+                        android:background="@drawable/check_show"/>
+                </LinearLayout>
+
+                <!--넷째 줄-->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
+
+                    <CheckBox
+                        android:id="@+id/exercise"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_margin="10dp"
+                        android:button="@android:color/transparent"
+                        android:background="@drawable/check_exercise"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </ScrollView>
+
+    </LinearLayout>
+
+    <!--버튼-->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:layout_gravity="center">
+
+        <Button
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:onClick="testResultClicked"
+            android:text="결과 보기"
+            android:textSize="16sp"
+            android:layout_gravity="center"
+            android:background="@drawable/button_deco" />
+
+    </LinearLayout>
+</LinearLayout>
